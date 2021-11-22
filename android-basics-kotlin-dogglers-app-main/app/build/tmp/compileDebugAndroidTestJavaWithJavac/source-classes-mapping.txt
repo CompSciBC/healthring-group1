@@ -1,2 +1,0 @@
-com/example/dogglers/test/BuildConfig.java
- com.example.dogglers.test.BuildConfig
