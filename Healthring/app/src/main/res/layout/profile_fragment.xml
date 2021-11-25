@@ -40,4 +40,174 @@
         tools:layout_editor_absoluteX="58dp"
         tools:layout_editor_absoluteY="303dp" />
 
+    <TextView
+        android:id="@+id/profileNameTextView"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/profileNameTextInput"
+        app:layout_constraintTop_toTopOf="@id/profileNameTextInput"
+        app:layout_constraintBottom_toBottomOf="@id/profileNameTextInput"
+        tools:text="Name:"
+        android:textAlignment="center"
+        android:textSize="24sp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/profileNameTextInput"
+        android:layout_width="160dp"
+        android:layout_height="30dp"
+        app:layout_constraintTop_toBottomOf="@id/profileImage"
+        app:layout_constraintStart_toEndOf="@id/profileNameTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/profileBirthdayTextView"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/profileBirthdayTextInput"
+        app:layout_constraintTop_toTopOf="@id/profileBirthdayTextInput"
+        app:layout_constraintBottom_toBottomOf="@id/profileBirthdayTextInput"
+        tools:text="Birthday:"
+        android:textAlignment="center"
+        android:textSize="24sp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/profileBirthdayTextInput"
+        android:layout_width="160dp"
+        android:layout_height="30dp"
+        app:layout_constraintTop_toBottomOf="@id/profileNameTextInput"
+        app:layout_constraintStart_toEndOf="@id/profileBirthdayTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="12dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/profileHeightTextView"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/profileHeightTextInput"
+        app:layout_constraintTop_toTopOf="@id/profileHeightTextInput"
+        app:layout_constraintBottom_toBottomOf="@id/profileHeightTextInput"
+        tools:text="Height:"
+        android:textAlignment="center"
+        android:textSize="24sp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/profileHeightTextInput"
+        android:layout_width="160dp"
+        android:layout_height="30dp"
+        app:layout_constraintTop_toBottomOf="@id/profileBirthdayTextInput"
+        app:layout_constraintStart_toEndOf="@id/profileHeightTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="12dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/profileWeightTextView"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/profileWeightTextInput"
+        app:layout_constraintTop_toTopOf="@id/profileWeightTextInput"
+        app:layout_constraintBottom_toBottomOf="@id/profileWeightTextInput"
+        tools:text="Weight:"
+        android:textAlignment="center"
+        android:textSize="24sp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/profileWeightTextInput"
+        android:layout_width="160dp"
+        android:layout_height="30dp"
+        app:layout_constraintTop_toBottomOf="@id/profileHeightTextInput"
+        app:layout_constraintStart_toEndOf="@id/profileWeightTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="12dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/profileGenderTextView"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/profileGenderTextInput"
+        app:layout_constraintTop_toTopOf="@id/profileGenderTextInput"
+        app:layout_constraintBottom_toBottomOf="@id/profileGenderTextInput"
+        tools:text="Gender:"
+        android:textAlignment="center"
+        android:textSize="24sp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/profileGenderTextInput"
+        android:layout_width="160dp"
+        android:layout_height="30dp"
+        app:layout_constraintTop_toBottomOf="@id/profileWeightTextInput"
+        app:layout_constraintStart_toEndOf="@id/profileGenderTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="12dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/profilePhoneTextView"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/profilePhoneTextInput"
+        app:layout_constraintTop_toTopOf="@id/profilePhoneTextInput"
+        app:layout_constraintBottom_toBottomOf="@id/profilePhoneTextInput"
+        tools:text="Phone:"
+        android:textAlignment="center"
+        android:textSize="24sp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/profilePhoneTextInput"
+        android:layout_width="160dp"
+        android:layout_height="30dp"
+        app:layout_constraintTop_toBottomOf="@id/profileGenderTextInput"
+        app:layout_constraintStart_toEndOf="@id/profilePhoneTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="12dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
