@@ -4,4 +4,9 @@
         <item name="android:textSize">20dp</item>
         <item name="android:textColor">#673AB7</item>
     </style>
+    <style name="ProfileLabels" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">25dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="fontFamily">@font/roboto</item>
+    </style>
 </resources>
