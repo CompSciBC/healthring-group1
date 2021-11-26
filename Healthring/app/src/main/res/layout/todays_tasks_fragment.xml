@@ -1,13 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".todaytasks.TodaysTasksFragment">
-
-    <TextView
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        android:background="@drawable/main_background_selector"
+        tools:context=".todaytasks.TodaysTasksFragment"
+        android:padding="24dp">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/health_ring_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HealthRing"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="32dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/health_ring_text"
+            app:layout_constraintStart_toEndOf="@+id/health_ring_text"
+            app:layout_constraintTop_toTopOf="@+id/health_ring_text"
+            app:srcCompat="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/todays_tasks_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Today's Tasks"
+            android:textColor="@color/white"
+            android:textSize="48sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/health_ring_text" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
