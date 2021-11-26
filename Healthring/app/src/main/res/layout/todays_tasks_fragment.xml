@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/main_background_selector"
+        tools:context=".todaytasks.TodaysTasksFragment"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/health_ring_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HealthRing"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="32dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/health_ring_text"
+            app:layout_constraintStart_toEndOf="@+id/health_ring_text"
+            app:layout_constraintTop_toTopOf="@+id/health_ring_text"
+            app:srcCompat="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/todays_tasks_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Today's Tasks"
+            android:textColor="@color/white"
+            android:textSize="48sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/health_ring_text" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/fitness_tracker_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/todays_tasks_header">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:text="Doctor appointment @6"
+                    android:textColor="@color/white"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:text="Take yo pills"
+                    android:textColor="@color/white"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:text="Set it to wumbo"
+                    android:textColor="@color/white"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:text="'I'll use my frying pan... As a DRYING pan!'"
+                    android:textColor="@color/white"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:text="Thank Brock for the gem of a quote that is above this entry"
+                    android:textColor="@color/white"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:text="I like shorts -- they're comfortable and easy to wear"
+                    android:textColor="@color/white"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:text="Remember my super cool Rattata? My Rattata is different from regular Rattata. It’s like my Rattata is in the top percentage of all Rattata. Do you know what I'm saying?"
+                    android:textColor="@color/white"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:text="Whether we wanted it or not, we've stepped into a war with the Cabal on Mars. So let's get to taking out their command, one by one. Valus Ta'aurc. From what I can gather he commands the Siege Dancers from an Imperial Land Tank outside of Rubicon. He's well protected, but with the right team, we can punch through those defenses, take this beast out, and break their grip on Freehold"
+                    android:textColor="@color/white"
+                    android:textSize="20dp" />
+
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:text="Add New Task"
+                    android:textColor="@color/white"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- Bottom row buttons  -->
+
+
+        <Button
+            android:id="@+id/health_monitor_button"
+            android:layout_width="115dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Health Monitor"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/fitness_tracker_button"
+            android:layout_width="115dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:text="Fitness Tracker"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/todays_task_button"
+            app:layout_constraintStart_toEndOf="@id/health_monitor_button" />
+
+        <!-- Today's tasks button - Disable this, as it is the current fragment  -->
+        <Button
+            android:id="@+id/todays_task_button"
+            android:layout_width="115dp"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:text="Today's Task"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
