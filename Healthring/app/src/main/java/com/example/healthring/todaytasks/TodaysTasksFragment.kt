@@ -18,6 +18,6 @@ class TodaysTasksFragment : Fragment() {
     ): View? {
         viewModel = ViewModelProvider(this).get(TodaysTasksViewModel::class.java)
 
-        return inflater.inflate(R.layout.todays_tasks_fragment, container, false)
+        return inflater.inflate(R.layout.old_todays_tasks_fragment, container, false)
     }
 }
