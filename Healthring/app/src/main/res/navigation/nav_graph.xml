@@ -6,5 +6,13 @@
     <fragment
         android:id="@+id/healthMonitorFragment"
         android:name="com.example.healthring.ui.main.HealthMonitorFragment"
-        android:label="HealthMonitorFragment" />
+        android:label="HealthMonitorFragment" >
+        <action
+            android:id="@+id/action_healthMonitorFragment_to_todaysTasksFragment2"
+            app:destination="@id/todaysTasksFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/todaysTasksFragment2"
+        android:name="com.example.healthring.todaytasks.TodaysTasksFragment"
+        android:label="TodaysTasksFragment" />
 </navigation>
