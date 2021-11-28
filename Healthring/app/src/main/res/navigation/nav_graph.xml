@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/healthMonitorFragment">
+    app:startDestination="@id/fitnessTrackerFragment">
     <fragment
         android:id="@+id/healthMonitorFragment"
         android:name="com.example.healthring.ui.main.HealthMonitorFragment"
@@ -15,4 +15,12 @@
         android:id="@+id/todaysTasksFragment2"
         android:name="com.example.healthring.todaytasks.TodaysTasksFragment"
         android:label="TodaysTasksFragment" />
+    <fragment
+        android:id="@+id/fitnessTrackerFragment"
+        android:name="com.example.healthring.ui.main.FitnessTrackerFragment"
+        android:label="FitnessTrackerFragment" >
+        <action
+            android:id="@+id/action_fitnessTrackerFragment_to_healthMonitorFragment"
+            app:destination="@id/healthMonitorFragment" />
+    </fragment>
 </navigation>
