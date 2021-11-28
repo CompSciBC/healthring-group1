@@ -39,4 +39,12 @@ class FitnessTrackerFragment : Fragment(R.layout.fitness_tracker_fragment) {
         findNavController().navigate(R.id.action_fitnessTrackerFragment_to_healthMonitorFragment)
     }
 
+    fun goToTaskFragment() {
+        findNavController().navigate(R.id.action_fitnessTrackerFragment_to_todaysTasksFragment2)
+    }
+
+    fun goToProfileFragment() {
+        findNavController().navigate(R.id.action_fitnessTrackerFragment_to_profileFragment)
+    }
+
 }
