@@ -37,16 +37,17 @@
                 tools:ignore="MissingClass" />
 
             <com.google.android.material.button.MaterialButtonToggleGroup
-                android:id="@+id/profileUnitsToggleGroup"
+                android:id="@+id/profileGenderToggleGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingVertical="0dp"
                 app:singleSelection="true"
                 android:layout_gravity="center"
-                android:layout_marginTop="24dp">
+                android:layout_marginTop="24dp"
+                >
 
                 <Button
-                    android:id="@+id/profileUnitsStandardButton"
+                    android:id="@+id/profileGenderMaleButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Male"
@@ -54,7 +55,7 @@
                     style="?attr/materialButtonOutlinedStyle"/>
 
                 <Button
-                    android:id="@+id/profileUnitsMetricButton"
+                    android:id="@+id/profileGenderFemaleButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Female"
@@ -75,6 +76,7 @@
                     style="@style/ProfileTextFieldFonts"
                     tools:text="Alexander Filbert"
                     android:hint="Name"
+                    android:inputType="textPersonName"
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -91,6 +93,7 @@
                     style="@style/ProfileTextFieldFonts"
                     tools:text="02/27/1997"
                     android:hint="Birthday"
+                    android:inputType="date"
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -107,6 +110,7 @@
                     style="@style/ProfileTextFieldFonts"
                     tools:text="5.8"
                     android:hint="Height"
+                    android:inputType="numberDecimal"
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -123,6 +127,7 @@
                     style="@style/ProfileTextFieldFonts"
                     tools:text="165"
                     android:hint="Weight"
+                    android:inputType="numberDecimal"
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -139,27 +144,38 @@
                     style="@style/ProfileTextFieldFonts"
                     tools:text="1234567890"
                     android:hint="Phone"
+                    android:inputType="phone"
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/profileUnitsTextInput"
-                app:layout_constraintTop_toBottomOf="@id/profilePhoneTextInput"
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/profileUnitsToggleGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="0dp"
+                app:singleSelection="true"
                 android:layout_gravity="center"
-                style="@style/ProfileTextFields">
+                android:layout_marginTop="24dp"
+                >
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
+                <Button
+                    android:id="@+id/profileUnitsStandardButton"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/ProfileTextFieldFonts"
-                    tools:text="Standard"
-                    android:hint="Units"
+                    android:text="Standard"
+                    android:textColor="@color/white"
+                    style="?attr/materialButtonOutlinedStyle"/>
 
-                    />
+                <Button
+                    android:id="@+id/profileUnitsMetricButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Metric"
+                    android:textColor="@color/white"
+                    style="?attr/materialButtonOutlinedStyle"/>
 
-            </com.google.android.material.textfield.TextInputLayout>
-
+            </com.google.android.material.button.MaterialButtonToggleGroup>
 
             <Button
                 android:id="@+id/button"
@@ -169,7 +185,7 @@
                 android:layout_height="64dp"
                 android:layout_marginBottom="24dp"
                 android:layout_marginTop="12dp"
-                app:layout_constraintTop_toBottomOf="@id/profileUnitsTextInput"
+                app:layout_constraintTop_toBottomOf="@id/profileUnitsToggleGroup"
                 android:textSize="30sp"
                 android:fontFamily="@font/roboto"
                 tools:text="Save"
