@@ -10,6 +10,12 @@
         <action
             android:id="@+id/action_healthMonitorFragment_to_todaysTasksFragment2"
             app:destination="@id/todaysTasksFragment2" />
+        <action
+            android:id="@+id/action_healthMonitorFragment_to_fitnessTrackerFragment"
+            app:destination="@id/fitnessTrackerFragment" />
+        <action
+            android:id="@+id/action_healthMonitorFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/todaysTasksFragment2"
@@ -21,6 +27,14 @@
         android:label="FitnessTrackerFragment" >
         <action
             android:id="@+id/action_fitnessTrackerFragment_to_healthMonitorFragment"
+            app:destination="@id/healthMonitorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.healthring.ui.main.ProfileFragment"
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_healthMonitorFragment"
             app:destination="@id/healthMonitorFragment" />
     </fragment>
 </navigation>

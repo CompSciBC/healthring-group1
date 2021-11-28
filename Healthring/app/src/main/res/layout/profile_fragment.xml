@@ -1,171 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <!-- Layout for user profile -->
-    <LinearLayout
-        android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.healthring.ui.main.MainViewModel" />
+        <variable
+            name="profileFragment"
+            type="com.example.healthring.ui.main.ProfileFragment" />
+    </data>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/main_background_selector">
-
-        <com.mikhaellopez.circularimageview.CircularImageView
-            android:id="@+id/profileImage"
-            android:layout_gravity="center"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@drawable/profile_silhouette"
-            app:civ_border_color="#000000"
-            app:civ_border_width="2dp"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="24dp"
-            tools:layout_editor_absoluteX="58dp"
-            tools:layout_editor_absoluteY="303dp"
-            tools:ignore="MissingClass" />
-
-        <com.google.android.material.button.MaterialButtonToggleGroup
-            android:id="@+id/profileUnitsToggleGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingVertical="0dp"
-            app:singleSelection="true"
-            android:layout_gravity="center"
-            android:layout_marginTop="24dp">
-
-            <Button
-                android:id="@+id/profileUnitsStandardButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Male"
-                android:textColor="@color/white"
-                style="?attr/materialButtonOutlinedStyle"/>
-
-            <Button
-                android:id="@+id/profileUnitsMetricButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Female"
-                android:textColor="@color/white"
-                style="?attr/materialButtonOutlinedStyle"/>
-
-        </com.google.android.material.button.MaterialButtonToggleGroup>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/profileNameTextInput"
-            app:layout_constraintTop_toBottomOf="@id/profileImage"
-            android:layout_gravity="center"
-            style="@style/ProfileTextFields">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/ProfileTextFieldFonts"
-                tools:text="Alexander Filbert"
-                android:hint="Name"
-                />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/profileBirthdayTextInput"
-            app:layout_constraintTop_toBottomOf="@id/profileNameTextInput"
-            android:layout_gravity="center"
-            style="@style/ProfileTextFields">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/ProfileTextFieldFonts"
-                tools:text="02/27/1997"
-                android:hint="Birthday"
-                />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/profileHeightTextInput"
-            app:layout_constraintTop_toBottomOf="@id/profileBirthdayTextInput"
-            android:layout_gravity="center"
-            style="@style/ProfileTextFields">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/ProfileTextFieldFonts"
-                tools:text="5.8"
-                android:hint="Height"
-                />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/profileWeightTextInput"
-            app:layout_constraintTop_toBottomOf="@id/profileHeightTextInput"
-            android:layout_gravity="center"
-            style="@style/ProfileTextFields">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/ProfileTextFieldFonts"
-                tools:text="165"
-                android:hint="Weight"
-                />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/profilePhoneTextInput"
-            android:layout_gravity="center"
-            app:layout_constraintTop_toBottomOf="@id/profileUnitsToggleGroup"
-            style="@style/ProfileTextFields">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/ProfileTextFieldFonts"
-                tools:text="1234567890"
-                android:hint="Phone"
-                />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/profileUnitsTextInput"
-            app:layout_constraintTop_toBottomOf="@id/profilePhoneTextInput"
-            android:layout_gravity="center"
-            style="@style/ProfileTextFields">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/ProfileTextFieldFonts"
-                tools:text="Standard"
-                android:hint="Units"
-
-                />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <Button
-            android:id="@+id/button"
+        android:layout_height="match_parent">
+        <!-- Layout for user profile -->
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:layout_height="64dp"
-            android:layout_marginBottom="24dp"
-            android:layout_marginTop="12dp"
-            app:layout_constraintTop_toBottomOf="@id/profileUnitsTextInput"
-            android:textSize="30sp"
-            android:fontFamily="@font/roboto"
-            tools:text="Save"
-            android:text="Save"
-            app:backgroundTint="#4A148C"
-            android:textColor="#FFFFFF"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+            android:layout_height="wrap_content"
+            android:background="@drawable/main_background_selector">
 
-    </LinearLayout>
-</ScrollView>
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/profileImage"
+                android:layout_gravity="center"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/profile_silhouette"
+                app:civ_border_color="#000000"
+                app:civ_border_width="2dp"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="24dp"
+                tools:layout_editor_absoluteX="58dp"
+                tools:layout_editor_absoluteY="303dp"
+                tools:ignore="MissingClass" />
+
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/profileUnitsToggleGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="0dp"
+                app:singleSelection="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="24dp">
+
+                <Button
+                    android:id="@+id/profileUnitsStandardButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Male"
+                    android:textColor="@color/white"
+                    style="?attr/materialButtonOutlinedStyle"/>
+
+                <Button
+                    android:id="@+id/profileUnitsMetricButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Female"
+                    android:textColor="@color/white"
+                    style="?attr/materialButtonOutlinedStyle"/>
+
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/profileNameTextInput"
+                app:layout_constraintTop_toBottomOf="@id/profileImage"
+                android:layout_gravity="center"
+                style="@style/ProfileTextFields">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/ProfileTextFieldFonts"
+                    tools:text="Alexander Filbert"
+                    android:hint="Name"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/profileBirthdayTextInput"
+                app:layout_constraintTop_toBottomOf="@id/profileNameTextInput"
+                android:layout_gravity="center"
+                style="@style/ProfileTextFields">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/ProfileTextFieldFonts"
+                    tools:text="02/27/1997"
+                    android:hint="Birthday"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/profileHeightTextInput"
+                app:layout_constraintTop_toBottomOf="@id/profileBirthdayTextInput"
+                android:layout_gravity="center"
+                style="@style/ProfileTextFields">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/ProfileTextFieldFonts"
+                    tools:text="5.8"
+                    android:hint="Height"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/profileWeightTextInput"
+                app:layout_constraintTop_toBottomOf="@id/profileHeightTextInput"
+                android:layout_gravity="center"
+                style="@style/ProfileTextFields">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/ProfileTextFieldFonts"
+                    tools:text="165"
+                    android:hint="Weight"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/profilePhoneTextInput"
+                android:layout_gravity="center"
+                app:layout_constraintTop_toBottomOf="@id/profileUnitsToggleGroup"
+                style="@style/ProfileTextFields">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/ProfileTextFieldFonts"
+                    tools:text="1234567890"
+                    android:hint="Phone"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/profileUnitsTextInput"
+                app:layout_constraintTop_toBottomOf="@id/profilePhoneTextInput"
+                android:layout_gravity="center"
+                style="@style/ProfileTextFields">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/ProfileTextFieldFonts"
+                    tools:text="Standard"
+                    android:hint="Units"
+
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_height="64dp"
+                android:layout_marginBottom="24dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@id/profileUnitsTextInput"
+                android:textSize="30sp"
+                android:fontFamily="@font/roboto"
+                tools:text="Save"
+                android:text="Save"
+                app:backgroundTint="#4A148C"
+                android:textColor="#FFFFFF"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:onClick="@{() -> profileFragment.goToHealthMonitorFragment()}"/>
+
+        </LinearLayout>
+    </ScrollView>
+</layout>

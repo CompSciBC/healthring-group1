@@ -58,7 +58,8 @@
             android:layout_height="wrap_content"
             app:srcCompat="@android:drawable/ic_menu_gallery"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            android:onClick="@{() -> healthMonitorFragment.goToProfileFragment()}" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -167,7 +168,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/todays_task_button"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/health_monitor_button" />
+            app:layout_constraintStart_toEndOf="@+id/health_monitor_button"
+            android:onClick="@{() -> healthMonitorFragment.goToFitnessFragment()}"/>
 
         <Button
             android:id="@+id/todays_task_button"
