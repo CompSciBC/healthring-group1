@@ -22,7 +22,17 @@
     <fragment
         android:id="@+id/todaysTasksFragment2"
         android:name="com.example.healthring.todaytasks.TodaysTasksFragment"
-        android:label="TodaysTasksFragment" />
+        android:label="TodaysTasksFragment" >
+        <action
+            android:id="@+id/action_todaysTasksFragment2_to_healthMonitorFragment2"
+            app:destination="@id/healthMonitorFragment" />
+        <action
+            android:id="@+id/action_todaysTasksFragment2_to_fitnessTrackerFragment"
+            app:destination="@id/fitnessTrackerFragment" />
+        <action
+            android:id="@+id/action_todaysTasksFragment2_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/fitnessTrackerFragment"
         android:name="com.example.healthring.ui.main.FitnessTrackerFragment"

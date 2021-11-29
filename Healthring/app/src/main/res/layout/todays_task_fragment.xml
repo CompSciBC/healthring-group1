@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/main_background_selector"
-    android:padding="24dp">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="todaysTasksFragment"
+            type="com.example.healthring.todaytasks.TodaysTasksFragment" />
+        <variable
+            name="viewModel"
+            type="com.example.healthring.ui.main.MainViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/main_background_selector"
+        android:padding="24dp">
+
+
 
     <TextView
         android:id="@+id/health_ring"
@@ -46,7 +58,8 @@
         android:layout_height="wrap_content"
         app:srcCompat="@android:drawable/ic_menu_gallery"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:onClick="@{() -> todaysTasksFragment.goToProfileFragment()}" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -144,7 +157,8 @@
         android:text="Health Moniter"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="@{() -> todaysTasksFragment.goToHealthMonitorFragment()}"/>
 
     <Button
         android:id="@+id/fitness_tracker_button"
@@ -155,7 +169,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/todays_task_button"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/health_monitor_button" />
+        app:layout_constraintStart_toEndOf="@+id/health_monitor_button"
+        android:onClick="@{() -> todaysTasksFragment.goToFitnessFragment()}"/>
 
     <Button
         android:id="@+id/todays_task_button"
@@ -169,4 +184,5 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </layout>
