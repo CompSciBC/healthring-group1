@@ -193,7 +193,7 @@
                 app:backgroundTint="#4A148C"
                 android:textColor="#FFFFFF"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:onClick="@{() -> profileFragment.goToHealthMonitorFragment()}"/>
+                android:onClick="@{() -> profileFragment.navigateBack()}"/>
 
         </LinearLayout>
     </ScrollView>

@@ -39,4 +39,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment){
         findNavController().navigate(R.id.action_profileFragment_to_healthMonitorFragment)
     }
 
+    fun navigateBack() {
+        findNavController().navigateUp()
+    }
 }
