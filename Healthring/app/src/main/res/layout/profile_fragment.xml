@@ -15,12 +15,6 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-
-
-
-
-        <!-- Added a new line of random comment stuff for git testing purposes -->
         <!-- Layout for user profile -->
         <LinearLayout
             android:orientation="vertical"
