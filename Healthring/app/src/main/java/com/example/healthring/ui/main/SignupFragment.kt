@@ -11,10 +11,11 @@ import com.example.healthring.R
 import com.example.healthring.databinding.FitnessTrackerFragmentBinding
 import com.example.healthring.databinding.HealthMonitorFragmentBinding
 import com.example.healthring.databinding.LoginFragmentBinding
+import com.example.healthring.databinding.SignupFragmentBinding
 
-class LoginFragment : Fragment(R.layout.fitness_tracker_fragment) {
+class SignupFragment : Fragment(R.layout.fitness_tracker_fragment) {
 
-    private var binding : LoginFragmentBinding? = null
+    private var binding : SignupFragmentBinding? = null
     private val mainViewModel : MainViewModel by viewModels()
 
     override fun onCreateView(
@@ -22,7 +23,7 @@ class LoginFragment : Fragment(R.layout.fitness_tracker_fragment) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val fragmentBinding = LoginFragmentBinding.inflate(inflater, container, false)
+        val fragmentBinding = SignupFragmentBinding.inflate(inflater, container, false)
         binding = fragmentBinding
         return fragmentBinding.root
     }
@@ -31,17 +32,17 @@ class LoginFragment : Fragment(R.layout.fitness_tracker_fragment) {
         super.onViewCreated(view, savedInstanceState)
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
-            loginFragment = this@LoginFragment
+            signupFragment = this@SignupFragment
             viewModel = mainViewModel
         }
     }
 
     fun goToHealthMonitorFragment() {
-        findNavController().navigate(R.id.action_loginFragment_to_healthMonitorFragment)
+        findNavController().navigate(R.id.action_signupFragment_to_healthMonitorFragment)
     }
 
-    fun goToSignupFragment() {
-        findNavController().navigate(R.id.action_loginFragment_to_signupFragment)
+    fun goToLoginFragment() {
+        findNavController().navigate(R.id.action_signupFragment_to_loginFragment)
     }
 
 }

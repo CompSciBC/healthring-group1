@@ -8,8 +8,8 @@
             name="viewModel"
             type="com.example.healthring.ui.main.MainViewModel" />
         <variable
-            name="loginFragment"
-            type="com.example.healthring.ui.main.LoginFragment" />
+            name="signupFragment"
+            type="com.example.healthring.ui.main.SignupFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,22 +19,22 @@
         android:padding="24dp">
 
         <TextView
-            android:id="@+id/title_healthring"
+            android:id="@+id/title_signup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="72dp"
-            android:text="HEALTHRING"
+            android:text="Create an Account"
             android:textColor="@color/white"
-            android:textSize="48sp"
+            android:textSize="40sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/login_email"
+            android:id="@+id/signup_email"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title_healthring"
+            app:layout_constraintTop_toBottomOf="@id/title_signup"
             android:layout_marginTop="100dp"
             android:layout_gravity="center"
             style="@style/ProfileTextFields">
@@ -44,16 +44,16 @@
                 android:layout_height="wrap_content"
                 style="@style/ProfileTextFieldFonts"
                 tools:text="Alexander Filbert"
-                android:hint="Email"
+                android:hint="Enter your Email"
                 android:inputType="textPersonName"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/login_password"
+            android:id="@+id/signup_password"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/login_email"
+            app:layout_constraintTop_toBottomOf="@id/signup_email"
             android:layout_gravity="center"
             style="@style/ProfileTextFields">
 
@@ -62,47 +62,83 @@
                 android:layout_height="wrap_content"
                 style="@style/ProfileTextFieldFonts"
                 tools:text="password321"
-                android:hint="Password"
+                android:hint="Choose a Password"
                 android:inputType="textPassword"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/signup_reenter_password"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/signup_password"
+            android:layout_gravity="center"
+            style="@style/ProfileTextFields">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/ProfileTextFieldFonts"
+                tools:text="password321"
+                android:hint="Re-Enter the Password"
+                android:inputType="textPassword"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/signup_confirm_code"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/signup_reenter_password"
+            android:layout_gravity="center"
+            style="@style/ProfileTextFields">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/ProfileTextFieldFonts"
+                tools:text="987654"
+                android:hint="Confirmation Code"
+                android:inputType="text"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
         <Button
-            android:id="@+id/login_submit_button"
+            android:id="@+id/signup_submit_button"
             android:layout_width="match_parent"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:layout_height="64dp"
             android:layout_marginBottom="24dp"
             android:layout_marginTop="12dp"
-            app:layout_constraintTop_toBottomOf="@id/login_password"
-            android:textSize="30sp"
+            app:layout_constraintTop_toBottomOf="@id/signup_confirm_code"
+            android:textSize="25sp"
             android:fontFamily="@font/roboto"
-            tools:text="login"
-            android:text="login"
+            tools:text="Sign up"
+            android:text="Sign up"
             app:backgroundTint="#4A148C"
             android:textColor="#FFFFFF"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:onClick="@{() -> loginFragment.goToHealthMonitorFragment()}"/>
+            android:onClick="@{() -> signupFragment.goToHealthMonitorFragment()}"/>
 
         <Button
-            android:id="@+id/login_create_account_button"
+            android:id="@+id/signup_back_to_login_button"
             android:layout_width="match_parent"
             android:layout_marginLeft="80dp"
             android:layout_marginRight="80dp"
             android:layout_height="64dp"
             android:layout_marginBottom="24dp"
             android:layout_marginTop="12dp"
-            app:layout_constraintTop_toBottomOf="@id/login_submit_button"
+            app:layout_constraintTop_toBottomOf="@id/signup_submit_button"
             android:textSize="16sp"
             android:fontFamily="@font/roboto"
-            tools:text="create account"
-            android:text="create account"
+            tools:text="Back to login"
+            android:text="Back to login"
             app:backgroundTint="#4A148C"
             android:textColor="#FFFFFF"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:onClick="@{() -> loginFragment.goToSignupFragment()}" />
+            android:onClick="@{() -> signupFragment.goToLoginFragment()}"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

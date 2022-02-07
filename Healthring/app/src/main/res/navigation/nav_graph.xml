@@ -62,5 +62,19 @@
         <action
             android:id="@+id/action_loginFragment_to_healthMonitorFragment"
             app:destination="@id/healthMonitorFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_signupFragment"
+            app:destination="@id/signupFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signupFragment"
+        android:name="com.example.healthring.ui.main.SignupFragment"
+        android:label="SignupFragment" >
+        <action
+            android:id="@+id/action_signupFragment_to_healthMonitorFragment"
+            app:destination="@id/healthMonitorFragment" />
+        <action
+            android:id="@+id/action_signupFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 </navigation>
