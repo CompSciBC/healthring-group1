@@ -8,6 +8,9 @@
             name="viewModel"
             type="com.example.healthring.ui.main.MainViewModel" />
         <variable
+            name="loginVM"
+            type="com.example.healthring.ui.main.LoginViewModel" />
+        <variable
             name="loginFragment"
             type="com.example.healthring.ui.main.LoginFragment" />
     </data>
@@ -46,6 +49,7 @@
                 tools:text="Alexander Filbert"
                 android:hint="Email"
                 android:inputType="textPersonName"
+                android:afterTextChanged="@{(edtitable)->loginVM.afterUserChangeEmail(edtitable)}"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -64,6 +68,7 @@
                 tools:text="password321"
                 android:hint="Password"
                 android:inputType="textPassword"
+                android:afterTextChanged="@{(edtitable)->loginVM.afterUserChangePassword(edtitable)}"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -84,7 +89,7 @@
             app:backgroundTint="#4A148C"
             android:textColor="#FFFFFF"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:onClick="@{() -> loginFragment.goToHealthMonitorFragment()}"/>
+            android:onClick="@{() -> loginFragment.signIn()}"/>
 
         <Button
             android:id="@+id/login_create_account_button"
