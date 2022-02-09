@@ -1,11 +1,10 @@
-package com.example.healthring.ui.main
+package com.example.healthring.healthmonitor
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.healthring.R
 import com.example.healthring.databinding.HealthMonitorFragmentBinding
@@ -14,7 +13,6 @@ import com.example.healthring.databinding.HealthMonitorFragmentBinding
 class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
 
     private var binding : HealthMonitorFragmentBinding? = null
-    private val mainViewModel : MainViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,7 +30,6 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
             lifecycleOwner = viewLifecycleOwner
             // pass instance of the viewmodel and HealthMonitorFragment
             healthMonitorFragment = this@HealthMonitorFragment
-            viewModel = mainViewModel
         }
     }
 

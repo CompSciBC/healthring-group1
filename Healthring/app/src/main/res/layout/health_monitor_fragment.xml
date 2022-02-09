@@ -5,11 +5,8 @@
 
     <data>
         <variable
-            name="viewModel"
-            type="com.example.healthring.ui.main.MainViewModel" />
-        <variable
             name="healthMonitorFragment"
-            type="com.example.healthring.ui.main.HealthMonitorFragment" />
+            type="com.example.healthring.healthmonitor.HealthMonitorFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

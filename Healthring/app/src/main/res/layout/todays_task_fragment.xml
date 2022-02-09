@@ -7,9 +7,6 @@
         <variable
             name="todaysTasksFragment"
             type="com.example.healthring.todaytasks.TodaysTasksFragment" />
-        <variable
-            name="viewModel"
-            type="com.example.healthring.ui.main.MainViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

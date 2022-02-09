@@ -6,10 +6,7 @@
     <data>
         <variable
             name="fitnessTrackerFragment"
-            type="com.example.healthring.ui.main.FitnessTrackerFragment" />
-        <variable
-            name="viewModel"
-            type="com.example.healthring.ui.main.MainViewModel" />
+            type="com.example.healthring.fitnesstracker.FitnessTrackerFragment" />
     </data>
 
 
@@ -59,7 +56,7 @@
             app:srcCompat="@android:drawable/ic_menu_gallery"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:onClick="@{() -> fitnessTrackerFragment.goToProfileFragment()}" />/>
+            android:onClick="@{() -> fitnessTrackerFragment.goToProfileFragment()}" />
 
         <ScrollView
             android:layout_width="match_parent"

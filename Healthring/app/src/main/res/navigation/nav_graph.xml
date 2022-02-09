@@ -5,7 +5,7 @@
     app:startDestination="@id/loginFragment">
     <fragment
         android:id="@+id/healthMonitorFragment"
-        android:name="com.example.healthring.ui.main.HealthMonitorFragment"
+        android:name="com.example.healthring.healthmonitor.HealthMonitorFragment"
         android:label="HealthMonitorFragment" >
         <action
             android:id="@+id/action_healthMonitorFragment_to_todaysTasksFragment2"
@@ -35,7 +35,7 @@
     </fragment>
     <fragment
         android:id="@+id/fitnessTrackerFragment"
-        android:name="com.example.healthring.ui.main.FitnessTrackerFragment"
+        android:name="com.example.healthring.fitnesstracker.FitnessTrackerFragment"
         android:label="FitnessTrackerFragment" >
         <action
             android:id="@+id/action_fitnessTrackerFragment_to_healthMonitorFragment"
@@ -49,7 +49,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.healthring.ui.main.ProfileFragment"
+        android:name="com.example.healthring.profile.ProfileFragment"
         android:label="ProfileFragment" >
         <action
             android:id="@+id/action_profileFragment_to_healthMonitorFragment"
@@ -57,7 +57,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.healthring.ui.main.LoginFragment"
+        android:name="com.example.healthring.auth.LoginFragment"
         android:label="LoginFragment" >
         <action
             android:id="@+id/action_loginFragment_to_healthMonitorFragment"
@@ -68,7 +68,7 @@
     </fragment>
     <fragment
         android:id="@+id/signupFragment"
-        android:name="com.example.healthring.ui.main.SignupFragment"
+        android:name="com.example.healthring.auth.SignupFragment"
         android:label="SignupFragment" >
         <action
             android:id="@+id/action_signupFragment_to_healthMonitorFragment"

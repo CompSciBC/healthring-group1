@@ -5,16 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.healthring.R
 import com.example.healthring.databinding.TodaysTaskFragmentBinding
-import com.example.healthring.ui.main.MainViewModel
 
 class TodaysTasksFragment : Fragment(R.layout.todays_task_fragment) {
 
     private var binding : TodaysTaskFragmentBinding? = null
-    private val mainViewModel : MainViewModel by viewModels()
     // private val todaysTasksViewModel : TodaysTasksViewModel by viewModels()
 
     override fun onCreateView(
@@ -32,7 +29,6 @@ class TodaysTasksFragment : Fragment(R.layout.todays_task_fragment) {
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
             todaysTasksFragment = this@TodaysTasksFragment
-            viewModel = MainViewModel()
         }
     }
 

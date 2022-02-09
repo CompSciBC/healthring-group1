@@ -6,10 +6,10 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.healthring.ui.main.MainViewModel" />
+            type="com.example.healthring.auth.AuthViewModel" />
         <variable
             name="signupFragment"
-            type="com.example.healthring.ui.main.SignupFragment" />
+            type="com.example.healthring.auth.SignupFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

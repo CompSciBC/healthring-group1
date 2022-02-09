@@ -1,11 +1,11 @@
-package com.example.healthring.ui.main
+package com.example.healthring.auth
 
 import android.text.Editable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class MainViewModel : ViewModel() {
+class AuthViewModel : ViewModel() {
 
     private val _email = MutableLiveData<String>()
     val email : LiveData<String>

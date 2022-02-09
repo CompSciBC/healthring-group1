@@ -1,4 +1,4 @@
-package com.example.healthring.ui.main
+package com.example.healthring.auth
 
 import android.text.Editable
 import androidx.lifecycle.LiveData

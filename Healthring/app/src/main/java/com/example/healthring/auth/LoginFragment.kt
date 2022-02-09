@@ -1,28 +1,23 @@
-package com.example.healthring.ui.main
+package com.example.healthring.auth
 
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.amplifyframework.auth.AuthException
 import com.amplifyframework.core.Amplify
 import com.example.healthring.R
-import com.example.healthring.databinding.FitnessTrackerFragmentBinding
-import com.example.healthring.databinding.HealthMonitorFragmentBinding
 import com.example.healthring.databinding.LoginFragmentBinding
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.*
-import java.lang.Exception
 
 class LoginFragment : Fragment(R.layout.fitness_tracker_fragment) {
 
     private var binding: LoginFragmentBinding? = null
-    private val mainViewModel: MainViewModel by viewModels()
+    private val authViewModel: AuthViewModel by viewModels()
     private val loginViewModel: LoginViewModel by viewModels()
 
     override fun onCreateView(
@@ -41,7 +36,7 @@ class LoginFragment : Fragment(R.layout.fitness_tracker_fragment) {
             lifecycleOwner = viewLifecycleOwner
             loginFragment = this@LoginFragment
             loginVM = loginViewModel
-            viewModel = mainViewModel
+            viewModel = authViewModel
         }
     }
 

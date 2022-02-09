@@ -5,11 +5,8 @@
 
     <data>
         <variable
-            name="viewModel"
-            type="com.example.healthring.ui.main.MainViewModel" />
-        <variable
             name="profileFragment"
-            type="com.example.healthring.ui.main.ProfileFragment" />
+            type="com.example.healthring.profile.ProfileFragment" />
     </data>
 
     <ScrollView
