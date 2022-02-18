@@ -15,11 +15,19 @@ class LoginViewModel : ViewModel(){
     val password : LiveData<String>
         get() = _password
 
+    private val _isSignedIn = MutableLiveData<Boolean>()
+    val isSignedIn : LiveData<Boolean>
+        get() = _isSignedIn
+
     fun afterUserChangeEmail(s: Editable) {
         _email.value = s.toString()
     }
 
     fun afterUserChangePassword(s: Editable) {
         _password.value = s.toString()
+    }
+
+    fun checkSignInStatus(b: Boolean) {
+        _isSignedIn.value = b
     }
 }

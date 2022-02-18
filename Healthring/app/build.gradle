@@ -59,4 +59,13 @@ dependencies {
     implementation 'com.amplifyframework:core:1.31.3'
     // cognito
     implementation 'com.amplifyframework:aws-auth-cognito:1.31.3'
+
+    // cognito SDK and Android SDK
+    implementation 'com.amazonaws:aws-android-sdk-cognitoidentityprovider:2.40.0'
+    implementation 'com.amazonaws:aws-android-sdk-core:2.40.0'
+
+    // Okhttp3 for the POST requests
+    implementation 'com.squareup.okhttp3:okhttp:4.9.3'
+
+    implementation ('com.amazonaws:aws-android-sdk-mobile-client:2.40.0@aar') { transitive = true; }
 }
