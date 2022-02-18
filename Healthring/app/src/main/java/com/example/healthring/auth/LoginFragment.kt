@@ -71,7 +71,7 @@ class LoginFragment : Fragment(R.layout.fitness_tracker_fragment) {
         val token: String? = session.userPoolTokens.value?.idToken
         if (token != null) {
             setToken(token)
-            goToHealthMonitorFragment()
+//            goToHealthMonitorFragment()
         } else {
             Log.e("Token ERROR", "Signed in failed, could not get user Id Token")
         }
@@ -138,7 +138,6 @@ class LoginFragment : Fragment(R.layout.fitness_tracker_fragment) {
             val message = response.body?.string()
             Log.i("DYNAMODB REQUEST", "SUCCESS Message: $message")
             Log.i("DYNAMODB REQUEST", "SUCCESS Receive Response At Millis: ${response.receivedResponseAtMillis - response.sentRequestAtMillis}")
-
             Log.i("DYNAMODB REQUEST", "SUCCESS: " + response.code)
         } catch (e: Exception) {
             Log.i("DYNAMODB REQUEST", "Something went horribly wrong...$e")

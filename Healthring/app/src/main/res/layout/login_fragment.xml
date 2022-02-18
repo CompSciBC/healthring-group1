@@ -125,7 +125,7 @@
             app:backgroundTint="#4A148C"
             android:textColor="#FFFFFF"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:onClick="@{() -> loginFragment.goToHealthMonitorFragment()}" />
+            android:onClick="@{() -> loginFragment.runCallDatabase()}" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
