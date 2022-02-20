@@ -68,4 +68,6 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.9.3'
 
     implementation ('com.amazonaws:aws-android-sdk-mobile-client:2.40.0@aar') { transitive = true; }
+
+    implementation 'com.google.code.gson:gson:2.8.9'
 }

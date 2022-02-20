@@ -21,6 +21,8 @@ import com.example.healthring.R
 import com.example.healthring.databinding.LoginFragmentBinding
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.*
+import okhttp3.HttpUrl
+import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.internal.wait
@@ -61,7 +63,6 @@ class LoginFragment : Fragment(R.layout.fitness_tracker_fragment) {
                     AuthSessionResult.Type.FAILURE ->
                         Log.w("AuthQuickStart", "Not signed in.", session.identityId.error)
                 }
-
             },
             { Log.e("AuthQuickStart", "Failed to fetch session", it) }
         )
@@ -124,8 +125,13 @@ class LoginFragment : Fragment(R.layout.fitness_tracker_fragment) {
     }
 
     private fun callDatabase() {
-        val url = "https://vu102pm7vg.execute-api.us-west-2.amazonaws.com/prod/sensors/"
+        val endpoint = "https://vu102pm7vg.execute-api.us-west-2.amazonaws.com/prod/sensors"
         val client = OkHttpClient()
+
+        val url: HttpUrl = endpoint.toHttpUrl().newBuilder()
+            .addQueryParameter("email", "alex@filbert.com")
+            .build()
+
         val request = Request.Builder()
             .url(url)
             .header("Authorization", tokenId)

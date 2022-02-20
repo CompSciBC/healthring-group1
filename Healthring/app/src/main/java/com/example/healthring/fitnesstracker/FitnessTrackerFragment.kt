@@ -5,13 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.healthring.R
 import com.example.healthring.databinding.FitnessTrackerFragmentBinding
+import com.example.healthring.model.DataViewModel
 
 class FitnessTrackerFragment : Fragment(R.layout.fitness_tracker_fragment) {
 
     private var binding : FitnessTrackerFragmentBinding? = null
+    private val dataVM: DataViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,6 +31,7 @@ class FitnessTrackerFragment : Fragment(R.layout.fitness_tracker_fragment) {
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
             fitnessTrackerFragment = this@FitnessTrackerFragment
+            dataViewModel = dataVM
         }
     }
 
@@ -42,5 +46,4 @@ class FitnessTrackerFragment : Fragment(R.layout.fitness_tracker_fragment) {
     fun goToProfileFragment() {
         findNavController().navigate(R.id.action_fitnessTrackerFragment_to_profileFragment)
     }
-
 }

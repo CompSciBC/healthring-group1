@@ -7,6 +7,9 @@
         <variable
             name="healthMonitorFragment"
             type="com.example.healthring.healthmonitor.HealthMonitorFragment" />
+        <variable
+            name="dataViewModel"
+            type="com.example.healthring.model.DataViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -77,10 +80,10 @@
                     android:layout_height="120dp"
                     android:layout_marginTop="32dp"
                     android:background="@drawable/amber_border"
-                    android:text="140 bpm"
+                    android:text="@{dataViewModel.heart_rate.toString() + ` bpm`}"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="75sp"
+                    android:textSize="65sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -101,10 +104,10 @@
                     android:layout_height="120dp"
                     android:layout_marginTop="32dp"
                     android:background="@drawable/green_border"
-                    android:text="118-78"
+                    android:text="@{dataViewModel.blood_pressure.toString()}"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="75sp"
+                    android:textSize="65sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -125,10 +128,10 @@
                     android:layout_height="120dp"
                     android:layout_marginTop="32dp"
                     android:background="@drawable/green_border"
-                    android:text="96 %"
+                    android:text="@{dataViewModel.blood_oxygen.toString() + ` %`}"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="75sp"
+                    android:textSize="65sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
