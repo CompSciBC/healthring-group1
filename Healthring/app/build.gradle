@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -68,6 +69,9 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.9.3'
 
     implementation ('com.amazonaws:aws-android-sdk-mobile-client:2.40.0@aar') { transitive = true; }
-
+    // json parsing library
     implementation 'com.google.code.gson:gson:2.8.9'
+
+    // graphing library
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }

@@ -65,6 +65,9 @@
         <action
             android:id="@+id/action_loginFragment_to_signupFragment"
             app:destination="@id/signupFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_graphFragment"
+            app:destination="@id/graphFragment" />
     </fragment>
     <fragment
         android:id="@+id/signupFragment"
@@ -77,4 +80,8 @@
             android:id="@+id/action_signupFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/graphFragment"
+        android:name="com.example.healthring.analytics.GraphFragment"
+        android:label="GraphFragment" />
 </navigation>

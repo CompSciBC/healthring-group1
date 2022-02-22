@@ -169,4 +169,8 @@ class LoginFragment : Fragment(R.layout.fitness_tracker_fragment) {
     fun goToSignupFragment() {
         findNavController().navigate(R.id.action_loginFragment_to_signupFragment)
     }
+
+    fun goToGraphFragment() {
+        findNavController().navigate(R.id.action_loginFragment_to_graphFragment)
+    }
 }
