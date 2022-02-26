@@ -162,6 +162,5 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:onClick="@{() -> signupFragment.goToLoginFragment()}"/>
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
