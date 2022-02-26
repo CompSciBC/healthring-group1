@@ -151,7 +151,7 @@ class DataViewModel: ViewModel() {
         val sensorData = Gson().fromJson(response, SensorData::class.java)
         Log.i("DATAVIEWMODEL", "Sensor Data: ${sensorData}}")
         // update sensor values
-        _blood_pressure.postValue(sensorData.blood_oxygen)
+        _blood_pressure.postValue(sensorData.blood_pressure)
         _blood_oxygen.postValue(sensorData.blood_oxygen)
         _calories.postValue(sensorData.calories_burnt.toInt())
         _distance.postValue(sensorData.distance)
