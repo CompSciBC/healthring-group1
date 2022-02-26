@@ -2,7 +2,7 @@ package com.example.healthring.model
 
 data class SensorData(
     val email: String,
-    val date: String,
+    var date: String,
     val blood_oxygen: Double,
     val blood_pressure: Double,
     val calories_burnt: Double,

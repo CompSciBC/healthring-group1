@@ -15,6 +15,8 @@ import com.amazonaws.mobile.auth.core.internal.util.ThreadUtils.runOnUiThread
 import com.example.healthring.R
 import com.example.healthring.databinding.HealthMonitorFragmentBinding
 import com.example.healthring.model.DataViewModel
+import com.example.healthring.model.Sensors
+import java.lang.Thread.sleep
 
 
 class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
@@ -41,13 +43,14 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
             dataViewModel = dataVM
         }
 
+        // grabs the latest sensor data from the database every time delta
         val thread: Thread = object : Thread() {
             override fun run() {
                 try {
                     while (!this.isInterrupted) {
                         sleep(1000)
                         runOnUiThread {
-                            dataVM.runCallDatabase()
+                            dataVM.runCallDatabase("sensors", true)
                         }
                     }
                 } catch (e: InterruptedException) {
@@ -67,5 +70,10 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
 
     fun goToProfileFragment() {
         findNavController().navigate(R.id.action_healthMonitorFragment_to_profileFragment)
+    }
+
+    fun goToGraphFragment() {
+        dataVM.getReportData(Sensors.H_RATE)
+        findNavController().navigate(R.id.action_healthMonitorFragment_to_graphFragment)
     }
 }

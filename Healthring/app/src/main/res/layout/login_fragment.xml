@@ -127,23 +127,23 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:onClick="@{() -> loginFragment.goToHealthMonitorFragment()}" />
 
-        <Button
-            android:id="@+id/login_open_graph_button"
-            android:layout_width="match_parent"
-            android:layout_marginLeft="100dp"
-            android:layout_marginRight="100dp"
-            android:layout_height="64dp"
-            android:layout_marginBottom="24dp"
-            android:layout_marginTop="12dp"
-            app:layout_constraintTop_toBottomOf="@id/login_lambda_trigger_button"
-            android:textSize="16sp"
-            android:fontFamily="@font/roboto"
-            tools:text="Open Graph"
-            android:text="Open Graph"
-            app:backgroundTint="#4A148C"
-            android:textColor="#FFFFFF"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:onClick="@{() -> loginFragment.goToGraphFragment()}" />
+<!--        <Button-->
+<!--            android:id="@+id/login_open_graph_button"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_marginLeft="100dp"-->
+<!--            android:layout_marginRight="100dp"-->
+<!--            android:layout_height="64dp"-->
+<!--            android:layout_marginBottom="24dp"-->
+<!--            android:layout_marginTop="12dp"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/login_lambda_trigger_button"-->
+<!--            android:textSize="16sp"-->
+<!--            android:fontFamily="@font/roboto"-->
+<!--            tools:text="Open Graph"-->
+<!--            android:text="Open Graph"-->
+<!--            app:backgroundTint="#4A148C"-->
+<!--            android:textColor="#FFFFFF"-->
+<!--            style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
+<!--            android:onClick="@{() -> loginFragment.goToGraphFragment()}" />-->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

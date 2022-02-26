@@ -39,4 +39,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment){
     fun navigateBack() {
         findNavController().navigateUp()
     }
+
+
+
 }
