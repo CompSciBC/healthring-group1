@@ -10,6 +10,10 @@
         <variable
             name="dataViewModel"
             type="com.example.healthring.model.DataViewModel" />
+        <variable
+            name="healthMonitorViewModel"
+            type="com.example.healthring.healthmonitor.HealthMonitorViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -80,8 +84,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
                     android:layout_marginTop="32dp"
-                    android:background="@{dataViewModel.heart_rate > 125 ? @drawable/amber_border : @drawable/green_border}"
+                    android:background="@{healthMonitorViewModel.hRateColor}"
                     android:text="@{dataViewModel.heart_rate.toString() + ` bpm`}"
+                    android:afterTextChanged="@{() -> healthMonitorFragment.updateHeartRateColor()}"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="65sp"
