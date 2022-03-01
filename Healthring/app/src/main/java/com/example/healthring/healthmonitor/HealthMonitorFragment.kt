@@ -112,10 +112,36 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
     fun updateHeartRateColor() {
         if (dataVM.heart_rate.value!! < 100) {
             viewModel.hRateColor.value = ContextCompat.getDrawable(requireContext(), R.drawable.blue_border)
-        } else if ((dataVM.heart_rate.value!! < 130)) {
+        } else if ((dataVM.heart_rate.value!! < 125)) {
             viewModel.hRateColor.value = ContextCompat.getDrawable(requireContext(), R.drawable.green_border)
-        } else {
+        } else if ((dataVM.heart_rate.value!! < 150)) {
             viewModel.hRateColor.value = ContextCompat.getDrawable(requireContext(), R.drawable.amber_border)
+        } else {
+            viewModel.hRateColor.value = ContextCompat.getDrawable(requireContext(), R.drawable.red_border)
+        }
+    }
+
+    fun updateBloodPressureColor() {
+        if (dataVM.blood_pressure.value!! < 120) {
+            viewModel.bPressureColor.value = ContextCompat.getDrawable(requireContext(), R.drawable.blue_border)
+        } else if ((dataVM.blood_pressure.value!! < 135)) {
+            viewModel.bPressureColor.value = ContextCompat.getDrawable(requireContext(), R.drawable.green_border)
+        } else if ((dataVM.blood_pressure.value!! < 150)) {
+            viewModel.bPressureColor.value = ContextCompat.getDrawable(requireContext(), R.drawable.amber_border)
+        } else {
+            viewModel.bPressureColor.value = ContextCompat.getDrawable(requireContext(), R.drawable.red_border)
+        }
+    }
+
+    fun updateBloodOxygenColor() {
+        if (dataVM.blood_oxygen.value!! < 70) {
+            viewModel.bOxygenColor.value = ContextCompat.getDrawable(requireContext(), R.drawable.red_border)
+        } else if ((dataVM.blood_oxygen.value!! < 80)) {
+            viewModel.bOxygenColor.value = ContextCompat.getDrawable(requireContext(), R.drawable.amber_border)
+        } else if ((dataVM.blood_oxygen.value!! < 90)) {
+                viewModel.bOxygenColor.value = ContextCompat.getDrawable(requireContext(), R.drawable.green_border)
+        } else {
+            viewModel.bOxygenColor.value = ContextCompat.getDrawable(requireContext(), R.drawable.blue_border)
         }
     }
 }
