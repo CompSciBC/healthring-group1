@@ -16,12 +16,14 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.amazonaws.mobile.auth.core.internal.util.ThreadUtils.runOnUiThread
 import com.example.healthring.R
 import com.example.healthring.databinding.HealthMonitorFragmentBinding
 import com.example.healthring.model.DataViewModel
 import com.example.healthring.model.Sensors
+import kotlinx.coroutines.*
 import java.lang.Thread.sleep
 
 
@@ -52,20 +54,30 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
         }
 
         // grabs the latest sensor data from the database every time delta
-        val thread: Thread = object : Thread() {
-            override fun run() {
-                try {
-                    while (!this.isInterrupted) {
-                        sleep(1000)
-                        runOnUiThread {
-                            dataVM.runCallDatabase("sensors", true)
-                        }
-                    }
-                } catch (e: InterruptedException) {
-                }
-            }
+//        val thread: Thread = object : Thread() {
+//            override fun run() {
+//                try {
+//                    while (!this.isInterrupted) {
+//                        sleep(1000)
+//                        runOnUiThread {
+//                            dataVM.runCallDatabase("sensors", true)
+//                        }
+//                    }
+//                } catch (e: InterruptedException) {
+//                }
+//            }
+//        }
+//        thread.start()
+        val coroutineExceptionHandler = CoroutineExceptionHandler{_, throwable ->
+            throwable.printStackTrace()
         }
-        thread.start()
+        GlobalScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
+//            while (true) {
+//                sleep(500)
+//                updateSensorValues()
+//            }
+            updateSensorValues()
+        }
     }
 
     fun goToFitnessFragment() {
@@ -83,6 +95,18 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
     fun goToGraphFragment() {
         dataVM.getReportData(Sensors.H_RATE)
         findNavController().navigate(R.id.action_healthMonitorFragment_to_graphFragment)
+    }
+
+    private suspend fun updateSensorValues() {
+        suspend fun fetchData() =
+            coroutineScope {
+                while(true) {
+                    sleep(500)
+                    val grabData = async { dataVM.callDatabase("sensors", true) }
+                    grabData.await()
+                }
+            }
+        fetchData()
     }
 
     fun updateHeartRateColor() {

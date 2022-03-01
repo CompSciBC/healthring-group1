@@ -11,5 +11,5 @@ class HealthMonitorViewModel: ViewModel() {
 
     val hRateColor = MutableLiveData<Drawable>()
     val bOxygenColor = MutableLiveData<Drawable>()
-    val _bPressureColor = MutableLiveData<Drawable>()
+    val bPressureColor = MutableLiveData<Drawable>()
 }
