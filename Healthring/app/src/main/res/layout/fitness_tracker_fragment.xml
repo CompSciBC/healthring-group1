@@ -87,7 +87,7 @@
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/health_monitor_header" />
+                    app:layout_constraintTop_toBottomOf="parent" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -97,7 +97,7 @@
                     android:textSize="24sp"
                     android:textColor="@color/white"
                     app:layout_constraintTop_toBottomOf="@id/heart_rate_tracker" />
-
+S
                 <TextView
                     android:id="@+id/fitness_distance_tracker"
                     android:layout_width="match_parent"
