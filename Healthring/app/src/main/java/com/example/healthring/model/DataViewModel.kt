@@ -56,6 +56,7 @@ class DataViewModel: ViewModel() {
     var graphStartingSensor: Sensors = Sensors.H_RATE
 
     private var _token: String? = null
+    private var responseCount = 0
 
     private fun updateIdToken() {
         Amplify.Auth.fetchAuthSession(
@@ -80,8 +81,10 @@ class DataViewModel: ViewModel() {
         }
     }
 
-    private fun callDatabase(endPath: String, isSensorUpdate: Boolean) {
+    fun callDatabase(endPath: String, isSensorUpdate: Boolean) {
         // TODO: make less calls to updateIdToken
+        Log.i("RESPONSECOUNT", "Count: $responseCount")
+        responseCount++
         updateIdToken()
         val endpoint = "https://vu102pm7vg.execute-api.us-west-2.amazonaws.com/prod/${endPath}"
         val client = OkHttpClient()
@@ -91,21 +94,27 @@ class DataViewModel: ViewModel() {
             .build()
 
         val request = requestBuilder(url)
-        val response = client.newCall(request).execute()
-        if (response.code == 200) {
-            var message = response.body?.string()
-            message = message?.substring(1, message.length - 1)
 
-            if (isSensorUpdate) {
-                updateSensorValues(message)
+        try {
+            val response = client.newCall(request).execute()
+
+            if (response.code == 200) {
+                var message = response.body?.string()
+                message = message?.substring(1, message.length - 1)
+
+                if (isSensorUpdate) {
+                    updateSensorValues(message)
+                } else {
+                    processReportData(message)
+                }
+                Log.i("DATAVIEWMODEL", "SUCCESS response message: $message")
+                Log.i("DATAVIEWMODEL", "SUCCESS Receive Response At Millis: ${response.receivedResponseAtMillis - response.sentRequestAtMillis}")
+                Log.i("DATAVIEWMODEL", "Response Status Code: " + response.code)
             } else {
-                processReportData(message)
+                Log.e("DATAVIEWMODEL", "Data retrieval error. Status code: ${response.code}")
             }
-            Log.i("DATAVIEWMODEL", "SUCCESS response message: $message")
-            Log.i("DATAVIEWMODEL", "SUCCESS Receive Response At Millis: ${response.receivedResponseAtMillis - response.sentRequestAtMillis}")
-            Log.i("DATAVIEWMODEL", "Response Status Code: " + response.code)
-        } else {
-            Log.e("DATAVIEWMODEL", "Data retrieval error. Status code: ${response.code}")
+        } catch (e: java.net.UnknownHostException) {
+            Log.e("DATAVIEWMODEL", "$e")
         }
     }
 
@@ -151,7 +160,7 @@ class DataViewModel: ViewModel() {
         val sensorData = Gson().fromJson(response, SensorData::class.java)
         Log.i("DATAVIEWMODEL", "Sensor Data: ${sensorData}}")
         // update sensor values
-        _blood_pressure.postValue(sensorData.blood_oxygen)
+        _blood_pressure.postValue(sensorData.blood_pressure)
         _blood_oxygen.postValue(sensorData.blood_oxygen)
         _calories.postValue(sensorData.calories_burnt.toInt())
         _distance.postValue(sensorData.distance)

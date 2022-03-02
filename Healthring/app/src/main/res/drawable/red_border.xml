@@ -8,6 +8,7 @@
     </solid>
 
     <!-- View border color and width -->
+
     <!--    <stroke-->
     <!--        android:width="5dp"-->
     <!--        android:color="@color/black" >-->
@@ -16,6 +17,7 @@
     <!-- The radius makes the corners rounded -->
     <corners
         android:radius="60dp"   >
+
     </corners>
 
 </shape>

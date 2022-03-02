@@ -10,6 +10,10 @@
         <variable
             name="dataViewModel"
             type="com.example.healthring.model.DataViewModel" />
+        <variable
+            name="healthMonitorViewModel"
+            type="com.example.healthring.healthmonitor.HealthMonitorViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -99,8 +103,6 @@
                 android:layout_height="120dp"
                 android:layout_marginTop="32dp"
                 android:background="@drawable/green_border"
-
-
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="65sp"
@@ -125,15 +127,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/heart_rate_tracker" />
 
-            <!--                <TextView-->
-            <!--                    android:layout_width="match_parent"-->
-            <!--                    android:layout_height="wrap_content"-->
-            <!--                    android:fontFamily="@font/roboto_black"-->
-            <!--                    android:text="Blood Pressure"-->
-            <!--                    android:textAlignment="center"-->
-            <!--                    android:textColor="@color/mild_purple"-->
-            <!--                    android:textSize="24sp"-->
-            <!--                    app:layout_constraintTop_toBottomOf="@id/blood_pressure_tracker" />-->
 
             <TextView
                 android:id="@+id/blood_oxygen_tracker"
@@ -219,22 +212,9 @@
 <!--            app:layout_constraintBottom_toBottomOf="parent"-->
 <!--            app:layout_constraintEnd_toEndOf="parent" />-->
 
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/mild_purple"
-            app:srcCompat="@drawable/ic_graph"
-            tools:layout_editor_absoluteX="261dp"
-            tools:layout_editor_absoluteY="2dp" />
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            tools:layout_editor_absoluteX="211dp"
-            tools:layout_editor_absoluteY="79dp" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

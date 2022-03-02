@@ -11,6 +11,7 @@
     <color name="green">#FF4CAF50</color>
     <color name="blue">#5a79ba</color>
     <color name="amber">#ffbf00</color>
+
     <color name="light_silver">#D8D8D8</color>
     <color name="silver_sand">#BFC1C2</color>
     <color name="silver_chalice">#ACACAC</color>
@@ -27,7 +28,6 @@
     <color name="red">#FF0000</color>
 
     <color name="yellow_orange">#FFAE42</color>
-
 
 
 
