@@ -79,7 +79,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
                     android:layout_marginTop="32dp"
-                    android:background="@drawable/amber_border"
+                    android:background="@drawable/yellow_orange_border"
                     android:text="@{dataViewModel.steps.toString()}"
                     android:textAlignment="center"
                     android:textColor="@color/black"

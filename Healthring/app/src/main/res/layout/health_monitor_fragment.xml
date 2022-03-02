@@ -15,7 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/main_background_selector"
+        android:background="@color/white"
         android:padding="24dp">
 
         <TextView
@@ -23,13 +23,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="HealthRing"
-            android:textColor="@color/white"
+            android:textColor="@color/mild_purple"
             android:textSize="24sp"
             android:textStyle="normal"
+            android:fontFamily="@font/roboto_black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- ImageView for HealthRing Logo, update later with transparent one -->
+         ImageView for HealthRing Logo, update later with transparent one
         <ImageView
             android:id="@+id/health_ring_logo"
             android:layout_width="32dp"
@@ -39,19 +40,19 @@
             app:layout_constraintTop_toTopOf="parent"
             android:src="@drawable/logo_transparent" />
 
-        <TextView
-            android:id="@+id/health_monitor_header"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Health Monitor"
-            android:textColor="@color/white"
-            android:textSize="48sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.494"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/health_ring" />
+<!--        <TextView-->
+<!--            android:id="@+id/health_monitor_header"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:text="Health Monitor"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="48sp"-->
+<!--            android:textStyle="bold"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.494"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/health_ring" />-->
 
         <ImageButton
             android:id="@+id/profile_picture_button"
@@ -60,95 +61,108 @@
             app:srcCompat="@android:drawable/ic_menu_gallery"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:onClick="@{() -> healthMonitorFragment.goToProfileFragment()}" />
+            android:onClick="@{() -> healthMonitorFragment.goToProfileFragment()}" /><![CDATA[
 
-        <ScrollView
+
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginBottom="48dp"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@id/fitness_tracker_button"
             app:layout_constraintTop_toBottomOf="@id/health_monitor_header"
-            app:layout_constraintBottom_toTopOf="@id/fitness_tracker_button">
+            tools:layout_editor_absoluteX="24dp">
 
-            <LinearLayout
+
+        ]]>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="24dp"
+            tools:layout_editor_absoluteY="126dp">
+
+            <!--                <TextView-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:text="Heart Rate"-->
+            <!--                    android:textAlignment="center"-->
+            <!--                    android:textSize="24sp"-->
+            <!--                    android:textColor="@color/mild_purple"-->
+            <!--                    android:fontFamily="@font/roboto_black"-->
+            <!--                    app:layout_constraintTop_toBottomOf="@id/heart_rate_tracker" />-->
+
+            <TextView
+                android:id="@+id/heart_rate_tracker"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="120dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/green_border"
 
-                <TextView
-                    android:id="@+id/heart_rate_tracker"
-                    android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:layout_marginTop="32dp"
-                    android:background="@drawable/amber_border"
-                    android:text="@{dataViewModel.heart_rate.toString() + ` bpm`}"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="65sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/health_monitor_header" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Heart Rate"
-                    android:textAlignment="center"
-                    android:textSize="24sp"
-                    android:textColor="@color/white"
-                    app:layout_constraintTop_toBottomOf="@id/heart_rate_tracker" />
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="65sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/health_monitor_header" />
 
-                <TextView
-                    android:id="@+id/blood_pressure_tracker"
-                    android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:layout_marginTop="32dp"
-                    android:background="@drawable/green_border"
-                    android:text="@{dataViewModel.blood_pressure.toString()}"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="65sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/heart_rate_tracker" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Blood Pressure"
-                    android:textAlignment="center"
-                    android:textSize="24sp"
-                    android:textColor="@color/white"
-                    app:layout_constraintTop_toBottomOf="@id/blood_pressure_tracker" />
+            <TextView
+                android:id="@+id/blood_pressure_tracker"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/yellow_orange_border"
+                android:text="@{dataViewModel.blood_pressure.toString()}"
+                android:textAlignment="center"
+                android:textColor="@color/mild_purple"
+                android:textSize="65sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/heart_rate_tracker" />
 
-                <TextView
-                    android:id="@+id/blood_oxygen_tracker"
-                    android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:layout_marginTop="32dp"
-                    android:background="@drawable/green_border"
-                    android:text="@{dataViewModel.blood_oxygen.toString() + ` %`}"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="65sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/blood_pressure_tracker" />
+            <!--                <TextView-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:fontFamily="@font/roboto_black"-->
+            <!--                    android:text="Blood Pressure"-->
+            <!--                    android:textAlignment="center"-->
+            <!--                    android:textColor="@color/mild_purple"-->
+            <!--                    android:textSize="24sp"-->
+            <!--                    app:layout_constraintTop_toBottomOf="@id/blood_pressure_tracker" />-->
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Blood Oxygen"
-                    android:textAlignment="center"
-                    android:textSize="24sp"
-                    android:textColor="@color/white"
-                    app:layout_constraintTop_toBottomOf="@id/blood_pressure_tracker" />
+            <TextView
+                android:id="@+id/blood_oxygen_tracker"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/red_border"
+                android:text="@{dataViewModel.blood_oxygen.toString() + ` %`}"
+                android:textAlignment="center"
+                android:textColor="@color/mild_purple"
+                android:textSize="65sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/blood_pressure_tracker" />
 
-            </LinearLayout>
-        </ScrollView>
+            <!--                <TextView-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:text="Blood Oxygen"-->
+            <!--                    android:textAlignment="center"-->
+            <!--                    android:textColor="@color/mild_purple"-->
+            <!--                    android:fontFamily="@font/roboto_black"-->
+            <!--                    android:textSize="24sp"-->
+
+
+            <!--                    app:layout_constraintTop_toBottomOf="@id/blood_pressure_tracker" />-->
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/health_monitor_button"
@@ -157,6 +171,9 @@
             android:layout_marginTop="32dp"
             android:text="Health Moniter"
             android:textSize="15sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/roboto_black"
+            android:backgroundTint="@color/mild_purple"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -166,6 +183,8 @@
             android:layout_height="wrap_content"
             android:text="Fitness Tracker"
             android:textSize="15sp"
+            android:fontFamily="@font/roboto_black"
+            android:backgroundTint="@color/mild_purple"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/todays_task_button"
             app:layout_constraintHorizontal_bias="0.5"
@@ -180,21 +199,42 @@
             android:layout_marginTop="32dp"
             android:text="Today's Task"
             android:textSize="15sp"
+            android:fontFamily="@font/roboto_black"
+            android:backgroundTint="@color/mild_purple"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:onClick="@{() -> healthMonitorFragment.goToTaskFragment()}"/>
 
-        <Button
-            android:id="@+id/open_graph_button"
-            android:layout_width="80dp"
+<!--        <Button-->
+<!--            android:id="@+id/open_graph_button"-->
+<!--            android:layout_width="80dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginEnd="76dp"-->
+<!--            android:layout_marginBottom="632dp"-->
+<!--            android:backgroundTint="@color/mild_purple"-->
+<!--            android:text="Graph"-->
+<!--            android:drawableLeft="@drawable/ic_graph"-->
+<!--            android:onClick="@{() -> healthMonitorFragment.goToGraphFragment()}"-->
+<!--            android:textSize="10sp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent" />-->
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="76dp"
-            android:layout_marginBottom="632dp"
-            android:onClick="@{() -> healthMonitorFragment.goToGraphFragment()}"
-            android:text="Graph"
-            android:textSize="10sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:backgroundTint="@color/mild_purple"
+            app:srcCompat="@drawable/ic_graph"
+            tools:layout_editor_absoluteX="261dp"
+            tools:layout_editor_absoluteY="2dp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            tools:layout_editor_absoluteX="211dp"
+            tools:layout_editor_absoluteY="79dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
