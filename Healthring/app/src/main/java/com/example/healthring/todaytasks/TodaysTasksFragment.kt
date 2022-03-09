@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.healthring.R
 import com.example.healthring.databinding.TodaysTaskFragmentBinding
@@ -13,6 +14,7 @@ class TodaysTasksFragment : Fragment(R.layout.todays_task_fragment) {
 
     private var binding : TodaysTaskFragmentBinding? = null
     // private val todaysTasksViewModel : TodaysTasksViewModel by viewModels()
+    private val taskViewModel: TodaysTasksViewModel by activityViewModels() // milan added
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,6 +31,7 @@ class TodaysTasksFragment : Fragment(R.layout.todays_task_fragment) {
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
             todaysTasksFragment = this@TodaysTasksFragment
+            todaysTasksViewModel = taskViewModel // milan added
         }
     }
 
@@ -42,6 +45,10 @@ class TodaysTasksFragment : Fragment(R.layout.todays_task_fragment) {
 
     fun goToProfileFragment() {
         findNavController().navigate(R.id.action_todaysTasksFragment2_to_profileFragment)
+    }
+
+    fun goToAddTaskFragment() {
+        findNavController().navigate(R.id.action_todaysTasksFragment2_to_addTaskFragment)
     }
 
 }

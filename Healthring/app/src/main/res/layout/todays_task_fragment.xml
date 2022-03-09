@@ -7,14 +7,15 @@
         <variable
             name="todaysTasksFragment"
             type="com.example.healthring.todaytasks.TodaysTasksFragment" />
+        <variable
+            name="todaysTasksViewModel"
+            type="com.example.healthring.todaytasks.TodaysTasksViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/main_background_selector"
         android:padding="24dp">
-
-
 
     <TextView
         android:id="@+id/health_ring"
@@ -71,80 +72,70 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/todays_tasks_alarm"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_marginTop="32dp"
-                android:background="@drawable/yellow_orange_border"
-                android:text="6:00 AM"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="75sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="parent" />
-
-            <TextView
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Alarm"
-                android:textAlignment="center"
-                android:textSize="24sp"
-                android:textColor="@color/white"
-                app:layout_constraintTop_toBottomOf="@id/heart_rate_tracker" />
+                android:layout_margin="8dp"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="8dp">
 
-            <TextView
-                android:id="@+id/todays_tasks_reminder"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_marginTop="32dp"
-                android:background="@drawable/blue_border"
-                android:text="Doctor visit"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="60sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/heart_rate_tracker" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Reminder"
-                android:textAlignment="center"
-                android:textSize="24sp"
-                android:textColor="@color/white"
-                app:layout_constraintTop_toBottomOf="@id/blood_pressure_tracker" />
+                    <TextView
+                        android:id="@+id/item_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:hint="Title"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
 
-            <TextView
-                android:id="@+id/todays_tasks_notes"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_marginTop="32dp"
-                android:background="@drawable/green_border"
-                android:text="Bring Meds"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="60sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/blood_pressure_tracker" />
+                    <TextView
+                        android:id="@+id/item_notes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:hint="Description"
+                        app:layout_constraintTop_toBottomOf="@id/item_title"
+                        app:layout_constraintStart_toStartOf="parent"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Notes"
-                android:textAlignment="center"
-                android:textSize="24sp"
-                android:textColor="@color/white"
-                app:layout_constraintTop_toBottomOf="@id/blood_pressure_tracker" />
+                    <TextView
+                        android:id="@+id/item_date"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:hint="Date"
+                        app:layout_constraintTop_toBottomOf="@id/item_notes"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/item_time"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:hint="Time"
+                        app:layout_constraintTop_toBottomOf="@id/item_notes"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
 
         </LinearLayout>
     </ScrollView>
+
+    <ImageButton
+        android:id="@+id/new_task_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toTopOf="@id/todays_task_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_baseline_add_alarm_24"
+        android:onClick="@{() -> todaysTasksFragment.goToAddTaskFragment()}"/>
 
     <Button
         android:id="@+id/health_monitor_button"
