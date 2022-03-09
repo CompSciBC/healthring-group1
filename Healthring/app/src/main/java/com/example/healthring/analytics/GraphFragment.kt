@@ -55,6 +55,14 @@ class GraphFragment: Fragment(R.layout.graph_fragment) {
             graphFragment = this@GraphFragment
             dataViewModel = dataVM
         }
+        _plotTitle.value = when (dataVM.graphStartingSensor) {
+            Sensors.STEPS -> "Steps"
+            Sensors.B_OXYGEN -> "Blood Oxygen"
+            Sensors.B_PRESSURE -> "Blood Pressure"
+            Sensors.DISTANCE -> "Distance"
+            Sensors.CALORIES -> "Calories"
+            Sensors.H_RATE -> "Heart Rate"
+        }
         sensorDataList = dataVM.sensorDataList
         graphStartingSensor = dataVM.graphStartingSensor
     }
@@ -96,7 +104,7 @@ class GraphFragment: Fragment(R.layout.graph_fragment) {
     }
 
     fun refreshGraph() {
-        barChart?.data = getBarChartData()
+        barChart?.data = getBarChartData(graphStartingSensor)
         barChart?.notifyDataSetChanged()
         barChart?.invalidate();
         barChart?.animateY(500)
@@ -106,10 +114,9 @@ class GraphFragment: Fragment(R.layout.graph_fragment) {
 // a guarentee must be made before this binding adapter function is called: SensorDataList must not be
 // null, and dataVM's graphStartingSensor must not be null
 @BindingAdapter("android:setBarData")
-fun setLineGraphData(chart: BarChart, string: String) {
+fun setLineGraphData(chart: BarChart, sensor: Sensors) {
     // bar chart properties
     barChart = chart
-    Log.i("GRAPHFRAG", string)
     chart.setDrawBarShadow(false);
     chart.setDrawValueAboveBar(true);
     chart.description.isEnabled = false;
@@ -122,7 +129,7 @@ fun setLineGraphData(chart: BarChart, string: String) {
     chart.animateY(500)
 
     // must specify which type of data the bar chart should open with
-    chart.data = getBarChartData()
+    chart.data = getBarChartData(sensor)
     // setting the x-axis values
     val xAxis = chart.xAxis
     val currentDateTime = LocalDateTime.now()
@@ -152,11 +159,12 @@ fun setLineGraphData(chart: BarChart, string: String) {
     rightAxis.textColor = Color.WHITE
 }
 
-private fun getBarChartData(): BarData {
+private fun getBarChartData(sensor: Sensors): BarData {
     val values = ArrayList<BarEntry>()
     val currentDateTime = LocalDateTime.now()
     // comparison date, starting from the oldest day. In this case, the day from one week ago
-    var comparisonDate = currentDateTime.with(TemporalAdjusters.previous(DayOfWeek.of(currentDateTime.dayOfWeek.value)))
+    var comparisonDate =
+        currentDateTime.with(TemporalAdjusters.previous(DayOfWeek.of(currentDateTime.dayOfWeek.value)))
     for (i in 0..6) {
         var sumOfData = 0
         var numOfDataPoints = 0
@@ -164,9 +172,10 @@ private fun getBarChartData(): BarData {
         for (sData in 0 until sensorDataList?.size!!) {
             val sDate = sensorDataList!![sData].date
             // string date needs to be converted to a LocalDateTime
-            val date: LocalDateTime = LocalDateTime.parse(sDate, DateTimeFormatter.ISO_LOCAL_DATE_TIME)
-            if(comparisonDate.dayOfMonth == date.dayOfMonth && comparisonDate.monthValue == date.monthValue) {
-                sumOfData += when (graphStartingSensor) {
+            val date: LocalDateTime =
+                LocalDateTime.parse(sDate, DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+            if (comparisonDate.dayOfMonth == date.dayOfMonth && comparisonDate.monthValue == date.monthValue) {
+                sumOfData += when (sensor) {
                     Sensors.STEPS -> sensorDataList!![sData].steps.toInt()
                     Sensors.B_OXYGEN -> sensorDataList!![sData].blood_oxygen.toInt()
                     Sensors.B_PRESSURE -> sensorDataList!![sData].blood_pressure.toInt()

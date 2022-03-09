@@ -51,8 +51,18 @@ class FitnessTrackerFragment : Fragment(R.layout.fitness_tracker_fragment) {
         findNavController().navigate(R.id.action_fitnessTrackerFragment_to_profileFragment)
     }
 
-    fun goToGraphFragment() {
-        dataVM.getReportData(Sensors.H_RATE)
+    fun goToStepsGraph() {
+        dataVM.getReportData(Sensors.STEPS)
+        findNavController().navigate(R.id.action_fitnessTrackerFragment_to_graphFragment)
+    }
+
+    fun goToDistanceGraph() {
+        dataVM.getReportData(Sensors.DISTANCE)
+        findNavController().navigate(R.id.action_fitnessTrackerFragment_to_graphFragment)
+    }
+
+    fun goToCaloriesGraph() {
+        dataVM.getReportData(Sensors.CALORIES)
         findNavController().navigate(R.id.action_fitnessTrackerFragment_to_graphFragment)
     }
 

@@ -93,27 +93,18 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
         findNavController().navigate(R.id.action_healthMonitorFragment_to_profileFragment)
     }
 
-    fun goToGraphFragment() {
-        dataVM.getReportData(Sensors.H_RATE)
-        dataVM.graphStartingSensor = Sensors.H_RATE
-        findNavController().navigate(R.id.action_healthMonitorFragment_to_graphFragment)
-    }
-
     fun goToHeartRateGraph() {
         dataVM.getReportData(Sensors.H_RATE)
-        dataVM.graphStartingSensor = Sensors.H_RATE
         findNavController().navigate(R.id.action_healthMonitorFragment_to_graphFragment)
     }
 
     fun goToBloodPressureGraph() {
         dataVM.getReportData(Sensors.B_PRESSURE)
-        dataVM.graphStartingSensor = Sensors.B_PRESSURE
         findNavController().navigate(R.id.action_healthMonitorFragment_to_graphFragment)
     }
 
     fun goToBloodOxygenGraph() {
         dataVM.getReportData(Sensors.B_OXYGEN)
-        dataVM.graphStartingSensor = Sensors.B_OXYGEN
         findNavController().navigate(R.id.action_healthMonitorFragment_to_graphFragment)
     }
 

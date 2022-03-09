@@ -13,7 +13,6 @@
         <variable
             name="healthMonitorViewModel"
             type="com.example.healthring.healthmonitor.HealthMonitorViewModel" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

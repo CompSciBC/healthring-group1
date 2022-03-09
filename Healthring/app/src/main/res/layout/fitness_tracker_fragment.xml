@@ -106,7 +106,7 @@
                         android:layout_alignTop="@id/fitness_steps_tracker"
                         android:layout_alignParentEnd="true"
                         android:background="@null"
-                        android:onClick="@{() -> fitnessTrackerFragment.goToGraphFragment()}"
+                        android:onClick="@{() -> fitnessTrackerFragment.goToStepsGraph()}"
                         app:srcCompat="@drawable/graph_icon"
                         app:tint="@color/black" />
 
@@ -154,7 +154,7 @@
                         android:layout_alignTop="@id/fitness_distance_tracker"
                         android:layout_alignParentEnd="true"
                         android:background="@null"
-                        android:onClick="@{() -> fitnessTrackerFragment.goToGraphFragment()}"
+                        android:onClick="@{() -> fitnessTrackerFragment.goToDistanceGraph()}"
                         android:src="@drawable/graph_icon" />
 
                 </RelativeLayout>
@@ -200,7 +200,7 @@
                         android:layout_alignTop="@id/fitness_calories_tracker"
                         android:layout_alignParentEnd="true"
                         android:background="@null"
-                        android:onClick="@{() -> fitnessTrackerFragment.goToGraphFragment()}"
+                        android:onClick="@{() -> fitnessTrackerFragment.goToCaloriesGraph()}"
                         android:src="@drawable/graph_icon" />
 
                 </RelativeLayout>
