@@ -49,6 +49,9 @@
         <action
             android:id="@+id/action_fitnessTrackerFragment_to_todaysTasksFragment2"
             app:destination="@id/todaysTasksFragment2" />
+        <action
+            android:id="@+id/action_fitnessTrackerFragment_to_graphFragment"
+            app:destination="@id/graphFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"

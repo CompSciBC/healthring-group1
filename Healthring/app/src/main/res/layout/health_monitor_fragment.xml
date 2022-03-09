@@ -88,8 +88,6 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginTop="32dp"
-                    app:layout_constraintTop_toBottomOf="@id/blood_pressure_tracker"
                     android:background="@{healthMonitorViewModel.hRateColor}"
                     tools:background="@drawable/green_border">
 
@@ -100,9 +98,9 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:layout_toStartOf="@id/heart_rate_graph_btn"
-                        android:textAlignment="center"
                         android:afterTextChanged="@{() -> healthMonitorFragment.updateHeartRateColor()}"
                         android:text="@{dataViewModel.heart_rate.toString() + ` bpm`}"
+                        android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="55sp"
                         android:textStyle="bold"
@@ -114,7 +112,9 @@
                         android:layout_height="wrap_content"
                         android:layout_alignTop="@id/heart_rate_tracker"
                         android:layout_alignParentEnd="true"
-                        android:background="@drawable/graph_icon" />
+                        android:backgroundTint="@{healthMonitorFragment.getGraphBgColorHeartRate()}"
+                        android:onClick="@{() -> healthMonitorFragment.goToHeartRateGraph()}"
+                        android:src="@drawable/graph_icon" />
 
                 </RelativeLayout>
 
@@ -160,7 +160,9 @@
                         android:layout_height="wrap_content"
                         android:layout_alignTop="@id/blood_pressure_tracker"
                         android:layout_alignParentEnd="true"
-                        android:background="@drawable/graph_icon" />
+                        android:backgroundTint="@{healthMonitorFragment.getGraphBgColorBloodOxygen()}"
+                        android:onClick="@{() -> healthMonitorFragment.goToBloodPressureGraph()}"
+                        android:src="@drawable/graph_icon" />
 
 
                 </RelativeLayout>
@@ -207,7 +209,9 @@
                         android:layout_height="wrap_content"
                         android:layout_alignTop="@id/blood_oxygen_tracker"
                         android:layout_alignParentEnd="true"
-                        android:background="@drawable/graph_icon" />
+                        android:backgroundTint="@{healthMonitorFragment.getGraphBgColorBloodPressure()}"
+                        android:onClick="@{() -> healthMonitorFragment.goToBloodOxygenGraph()}"
+                        android:src="@drawable/graph_icon" />
 
                 </RelativeLayout>
 

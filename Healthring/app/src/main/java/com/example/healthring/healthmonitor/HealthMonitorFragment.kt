@@ -1,5 +1,6 @@
 package com.example.healthring.healthmonitor
 
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.text.Editable
@@ -94,6 +95,25 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
 
     fun goToGraphFragment() {
         dataVM.getReportData(Sensors.H_RATE)
+        dataVM.graphStartingSensor = Sensors.H_RATE
+        findNavController().navigate(R.id.action_healthMonitorFragment_to_graphFragment)
+    }
+
+    fun goToHeartRateGraph() {
+        dataVM.getReportData(Sensors.H_RATE)
+        dataVM.graphStartingSensor = Sensors.H_RATE
+        findNavController().navigate(R.id.action_healthMonitorFragment_to_graphFragment)
+    }
+
+    fun goToBloodPressureGraph() {
+        dataVM.getReportData(Sensors.B_PRESSURE)
+        dataVM.graphStartingSensor = Sensors.B_PRESSURE
+        findNavController().navigate(R.id.action_healthMonitorFragment_to_graphFragment)
+    }
+
+    fun goToBloodOxygenGraph() {
+        dataVM.getReportData(Sensors.B_OXYGEN)
+        dataVM.graphStartingSensor = Sensors.B_OXYGEN
         findNavController().navigate(R.id.action_healthMonitorFragment_to_graphFragment)
     }
 
@@ -143,5 +163,47 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
         } else {
             viewModel.bOxygenColor.value = ContextCompat.getDrawable(requireContext(), R.drawable.blue_border)
         }
+    }
+
+    fun getGraphBgColorHeartRate(): Int {
+        when (viewModel.hRateColor.value) {
+            ContextCompat.getDrawable(requireContext(), R.drawable.blue_border) ->
+                return resources.getColor(R.color.blue)
+            ContextCompat.getDrawable(requireContext(), R.drawable.green_border) ->
+                return resources.getColor(R.color.green)
+            ContextCompat.getDrawable(requireContext(), R.drawable.amber_border) ->
+                return resources.getColor(R.color.amber)
+            ContextCompat.getDrawable(requireContext(), R.drawable.red_border) ->
+                return resources.getColor(R.color.red)
+        }
+        return 0
+    }
+
+    fun getGraphBgColorBloodPressure(): Int {
+        when (viewModel.bPressureColor.value) {
+            ContextCompat.getDrawable(requireContext(), R.drawable.blue_border) ->
+                return resources.getColor(R.color.blue)
+            ContextCompat.getDrawable(requireContext(), R.drawable.green_border) ->
+                return resources.getColor(R.color.green)
+            ContextCompat.getDrawable(requireContext(), R.drawable.amber_border) ->
+                return resources.getColor(R.color.amber)
+            ContextCompat.getDrawable(requireContext(), R.drawable.red_border) ->
+                return resources.getColor(R.color.red)
+        }
+        return 0
+    }
+
+    fun getGraphBgColorBloodOxygen(): Int {
+        when (viewModel.bOxygenColor.value) {
+            ContextCompat.getDrawable(requireContext(), R.drawable.blue_border) ->
+                return resources.getColor(R.color.blue)
+            ContextCompat.getDrawable(requireContext(), R.drawable.green_border) ->
+                return resources.getColor(R.color.green)
+            ContextCompat.getDrawable(requireContext(), R.drawable.amber_border) ->
+                return resources.getColor(R.color.amber)
+            ContextCompat.getDrawable(requireContext(), R.drawable.red_border) ->
+                return resources.getColor(R.color.red)
+        }
+        return 0
     }
 }
