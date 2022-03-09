@@ -18,7 +18,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/main_background_selector"
+        android:background="@color/white"
         android:padding="24dp">
 
         <TextView
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="72dp"
             android:text="HEALTHRING"
-            android:textColor="@color/white"
+            android:textColor="@color/hot_purple"
             android:textSize="48sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -86,7 +86,7 @@
             android:fontFamily="@font/roboto"
             tools:text="login"
             android:text="login"
-            app:backgroundTint="#4A148C"
+            app:backgroundTint="@color/hot_purple"
             android:textColor="#FFFFFF"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:onClick="@{() -> loginFragment.signIn()}"/>
@@ -104,7 +104,7 @@
             android:fontFamily="@font/roboto"
             tools:text="create account"
             android:text="create account"
-            app:backgroundTint="#4A148C"
+            app:backgroundTint="@color/hot_purple"
             android:textColor="#FFFFFF"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:onClick="@{() -> loginFragment.goToSignupFragment()}" />
@@ -122,7 +122,7 @@
             android:fontFamily="@font/roboto"
             tools:text="Open Sesame"
             android:text="Open Sesame"
-            app:backgroundTint="#4A148C"
+            app:backgroundTint="@color/hot_purple"
             android:textColor="#FFFFFF"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:onClick="@{() -> loginFragment.goToHealthMonitorFragment()}" />
