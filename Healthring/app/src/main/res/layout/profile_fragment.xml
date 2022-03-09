@@ -17,7 +17,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/main_background_selector">
+            android:background="@color/white">
 
             <com.mikhaellopez.circularimageview.CircularImageView
                 android:id="@+id/profileImage"
@@ -48,15 +48,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Male"
-                    android:textColor="@color/white"
-                    style="?attr/materialButtonOutlinedStyle"/>
+                    android:textColor="@color/black"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:outlineSpotShadowColor="@color/black"
+                    android:outlineAmbientShadowColor="@color/black" />
 
                 <Button
                     android:id="@+id/profileGenderFemaleButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Female"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     style="?attr/materialButtonOutlinedStyle"/>
 
             </com.google.android.material.button.MaterialButtonToggleGroup>
@@ -161,7 +163,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Standard"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     style="?attr/materialButtonOutlinedStyle"/>
 
                 <Button
@@ -169,7 +171,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Metric"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     style="?attr/materialButtonOutlinedStyle"/>
 
             </com.google.android.material.button.MaterialButtonToggleGroup>
@@ -187,7 +189,7 @@
                 android:fontFamily="@font/roboto"
                 tools:text="Save"
                 android:text="Save"
-                app:backgroundTint="#4A148C"
+                app:backgroundTint="@color/hot_purple"
                 android:textColor="#FFFFFF"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:onClick="@{() -> profileFragment.navigateBack()}"/>

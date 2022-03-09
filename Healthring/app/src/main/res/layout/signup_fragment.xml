@@ -15,7 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/main_background_selector"
+        android:background="@color/white">
         android:padding="24dp">
 
         <TextView
@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="72dp"
             android:text="Create an Account"
-            android:textColor="@color/white"
+            android:textColor="@color/hot_purple"
             android:textSize="40sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -121,7 +121,7 @@
             android:fontFamily="@font/roboto"
             tools:text="Confirm"
             android:text="Confirm"
-            app:backgroundTint="#4A148C"
+            app:backgroundTint="@color/hot_purple"
             android:textColor="#FFFFFF"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:onClick="@{() -> signupFragment.confirmNewUser()}"/>
@@ -139,7 +139,7 @@
             android:fontFamily="@font/roboto"
             tools:text="Sign up"
             android:text="Sign up"
-            app:backgroundTint="#4A148C"
+            app:backgroundTint="@color/hot_purple"
             android:textColor="#FFFFFF"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:onClick="@{() -> signupFragment.registerNewUser()}"/>
@@ -157,7 +157,7 @@
             android:fontFamily="@font/roboto"
             tools:text="Back to login"
             android:text="Back to login"
-            app:backgroundTint="#4A148C"
+            app:backgroundTint="@color/hot_purple"
             android:textColor="#FFFFFF"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:onClick="@{() -> signupFragment.goToLoginFragment()}"/>
