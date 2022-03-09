@@ -1,5 +1,6 @@
 package com.example.healthring.todaytasks
 
+import android.content.ClipData
 import androidx.lifecycle.*
 import com.example.healthring.taskdata.Task
 import com.example.healthring.taskdata.TaskDao
@@ -50,6 +51,49 @@ class TodaysTasksViewModel(private val taskDao: TaskDao) : ViewModel() {
             return false
         }
         return true
+    }
+
+    fun retrieveTask(id: Int): LiveData<Task> {
+        return taskDao.getTask(id).asLiveData()
+    }
+
+    private fun updateTask(task: Task) {
+        viewModelScope.launch {
+            taskDao.update(task)
+        }
+    }
+
+    fun deleteTask(task: Task) {
+        viewModelScope.launch {
+            taskDao.delete(task)
+        }
+    }
+
+    private fun getUpdatedTaskEntry(
+        id: Int,
+        taskTitle: String,
+        taskDate: String,
+        taskTime: String,
+        taskNotes: String
+    ): Task {
+        return Task(
+            id = id,
+            taskTitle = taskTitle,
+            taskDate = taskDate,
+            taskTime = taskTime,
+            taskNotes = taskNotes
+        )
+    }
+
+    fun updateTask(
+        id: Int,
+        taskTitle: String,
+        taskDate: String,
+        taskTime: String,
+        taskNotes: String
+    ) {
+        val updatedItem = getUpdatedTaskEntry(id, taskTitle, taskDate, taskTime, taskNotes)
+        updateTask(updatedItem)
     }
 
 }

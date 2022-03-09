@@ -94,11 +94,8 @@
     <fragment
         android:id="@+id/addTaskFragment"
         android:name="com.example.healthring.todaytasks.AddTaskFragment"
-        android:label="{title}"
+        android:label="Add/Edit"
         tools:layout="@layout/add_task_fragment">
-        <argument
-            android:name="title"
-            app:argType="string" />
         <argument
             android:name="task_id"
             android:defaultValue="-1"

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -57,21 +58,54 @@ class AddTaskFragment : Fragment() {
                 binding.taskTime.text.toString(),
                 binding.taskNotes.text.toString(),
             )
-            findNavController().navigate(R.id.action_todaysTasksFragment2_to_addTaskFragment)
+//            findNavController().navigate(R.id.action_todaysTasksFragment2_to_addTaskFragment)
+            val action = AddItemFragmentDirections.actionAddTaskFragmentToTodaysTasksFragment2()
+            findNavController().navigate(action)
+        }
+    }
+
+    private fun updateItem() {
+        if (isEntryValid()) {
+            taskViewModel.updateTask(
+                this.navigationArgs.taskId,
+                this.binding.taskTitle.text.toString(),
+                this.binding.taskDate.text.toString(),
+                this.binding.taskTime.text.toString(),
+                this.binding.taskNotes.text.toString()
+            )
+            val action = AddItemFragmentDirections.actionAddItemFragmentToItemListFragment()
+            findNavController().navigate(action)
+        }
+    }
+
+    private fun bind(task: Task) {
+        bindng.apply{
+            taskTitle.setText(task.taskTitle, TextView.BufferType.SPANNABLE)
+            taskDate.setText(task.taskDate, TextView.BufferType.SPANNABLE)
+            taskTime.setText(task.taskTime, TextView.BufferType.SPANNABLE)
+            taskNotes.setText(task.taskNotes, TextView.BufferType.SPANNABLE)
+            saveAction.setOnClickListener { updateTask() }
         }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.apply {
-            lifecycleOwner = viewLifecycleOwner
-            addTaskFragment = this@AddTaskFragment
-            todaysTasksViewModel = taskViewModel
-        }
+//        binding?.apply {
+//            lifecycleOwner = viewLifecycleOwner
+//            addTaskFragment = this@AddTaskFragment
+//            todaysTasksViewModel = taskViewModel
+//        }
+        val id = navigationArgs.taskId
+        if (id > 0) {
+            taskViewModel.retrieveTask(id).observe(this.viewLifecycleOwner) { selectedItem ->
+                task = selectedItem
+                bind(task)
+            }
+        } else {
             binding.saveAction.setOnClickListener {
                 addNewTask()
+            }
         }
-
     }
 
     override fun onDestroyView() {
