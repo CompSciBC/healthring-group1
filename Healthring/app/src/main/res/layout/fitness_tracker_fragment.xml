@@ -82,8 +82,6 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginTop="32dp"
-                    app:layout_constraintTop_toBottomOf="@id/blood_pressure_tracker"
                     android:background="@drawable/green_border"
                     tools:background="@drawable/green_border">
 
@@ -96,10 +94,10 @@
                         android:layout_toStartOf="@id/steps_graph_btn"
                         android:text="@{dataViewModel.steps.toString()}"
                         android:textAlignment="center"
-                        tools:text="5000"
                         android:textColor="@color/black"
                         android:textSize="55sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        tools:text="5000" />
 
                     <ImageButton
                         android:id="@+id/steps_graph_btn"
@@ -109,7 +107,8 @@
                         android:layout_alignParentEnd="true"
                         android:backgroundTint="@{fitnessTrackerFragment.getGraphBgColorSteps()}"
                         android:onClick="@{() -> fitnessTrackerFragment.goToGraphFragment()}"
-                        android:src="@drawable/graph_icon" />
+                        app:srcCompat="@drawable/graph_icon"
+                        app:tint="@color/black" />
 
                 </RelativeLayout>
 
@@ -144,9 +143,9 @@
                         android:text="@{dataViewModel.distance.toString() + ` Miles`}"
                         android:textAlignment="center"
                         android:textColor="@color/black"
-                        tools:text="12"
-                        android:textSize="55sp"
-                        android:textStyle="bold" />
+                        android:textSize="45sp"
+                        android:textStyle="bold"
+                        tools:text="12" />
 
                     <ImageButton
                         android:id="@+id/distance_graph_btn"
