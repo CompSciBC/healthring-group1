@@ -112,7 +112,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignTop="@id/heart_rate_tracker"
                         android:layout_alignParentEnd="true"
-                        android:backgroundTint="@{healthMonitorFragment.getGraphBgColorHeartRate()}"
+                        android:background="@null"
                         android:onClick="@{() -> healthMonitorFragment.goToHeartRateGraph()}"
                         android:src="@drawable/graph_icon" />
 
@@ -160,7 +160,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignTop="@id/blood_pressure_tracker"
                         android:layout_alignParentEnd="true"
-                        android:backgroundTint="@{healthMonitorFragment.getGraphBgColorBloodOxygen()}"
+                        android:background="@null"
                         android:onClick="@{() -> healthMonitorFragment.goToBloodPressureGraph()}"
                         android:src="@drawable/graph_icon" />
 
@@ -209,7 +209,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignTop="@id/blood_oxygen_tracker"
                         android:layout_alignParentEnd="true"
-                        android:backgroundTint="@{healthMonitorFragment.getGraphBgColorBloodPressure()}"
+                        android:background="@null"
                         android:onClick="@{() -> healthMonitorFragment.goToBloodOxygenGraph()}"
                         android:src="@drawable/graph_icon" />
 

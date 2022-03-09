@@ -56,46 +56,4 @@ class FitnessTrackerFragment : Fragment(R.layout.fitness_tracker_fragment) {
         findNavController().navigate(R.id.action_fitnessTrackerFragment_to_graphFragment)
     }
 
-    fun getGraphBgColorSteps(): Int {
-        when (viewModel.stepsColor.value) {
-            ContextCompat.getDrawable(requireContext(), R.drawable.blue_border) ->
-                return resources.getColor(R.color.blue)
-            ContextCompat.getDrawable(requireContext(), R.drawable.green_border) ->
-                return resources.getColor(R.color.green)
-            ContextCompat.getDrawable(requireContext(), R.drawable.amber_border) ->
-                return resources.getColor(R.color.amber)
-            ContextCompat.getDrawable(requireContext(), R.drawable.red_border) ->
-                return resources.getColor(R.color.red)
-        }
-        return 0
-    }
-
-    fun getGraphBgColorDistance(): Int {
-        when (viewModel.distanceColor.value) {
-            ContextCompat.getDrawable(requireContext(), R.drawable.blue_border) ->
-                return resources.getColor(R.color.blue)
-            ContextCompat.getDrawable(requireContext(), R.drawable.green_border) ->
-                return resources.getColor(R.color.green)
-            ContextCompat.getDrawable(requireContext(), R.drawable.amber_border) ->
-                return resources.getColor(R.color.amber)
-            ContextCompat.getDrawable(requireContext(), R.drawable.red_border) ->
-                return resources.getColor(R.color.red)
-        }
-        return 0
-    }
-
-    fun getGraphBgColorCalories(): Int {
-        when (viewModel.caloriesColor.value) {
-            ContextCompat.getDrawable(requireContext(), R.drawable.blue_border) ->
-                return resources.getColor(R.color.blue)
-            ContextCompat.getDrawable(requireContext(), R.drawable.green_border) ->
-                return resources.getColor(R.color.green)
-            ContextCompat.getDrawable(requireContext(), R.drawable.amber_border) ->
-                return resources.getColor(R.color.amber)
-            ContextCompat.getDrawable(requireContext(), R.drawable.red_border) ->
-                return resources.getColor(R.color.red)
-        }
-        return 0
-    }
-
 }
