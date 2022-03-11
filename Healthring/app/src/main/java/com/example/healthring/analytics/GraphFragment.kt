@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.CoreComponentFactory
 import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -24,6 +25,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.temporal.TemporalAdjusters
 import java.util.*
+import kotlin.math.absoluteValue
 
 var sensorDataList: MutableList<SensorData>? = null
 var graphStartingSensor: Sensors = Sensors.H_RATE
@@ -124,9 +126,9 @@ fun setLineGraphData(chart: BarChart, sensor: Sensors) {
     chart.setPinchZoom(false)
     chart.setDrawGridBackground(false);
     chart.legend.isEnabled = false
-    chart.setDrawGridBackground(false)
     chart.invalidate()
     chart.animateY(500)
+
 
     // must specify which type of data the bar chart should open with
     chart.data = getBarChartData(sensor)
@@ -149,14 +151,14 @@ fun setLineGraphData(chart: BarChart, sensor: Sensors) {
         }
     }
     xAxis.valueFormatter = IndexAxisValueFormatter(weekdays)
-    xAxis.textColor = Color.WHITE
+    xAxis.textColor = Color.BLACK
     xAxis.position = XAxis.XAxisPosition.BOTTOM
     // y-axis left side
     val leftAxis = chart.axisLeft
-    leftAxis.textColor = Color.WHITE
+    leftAxis.textColor = Color.BLACK
     // y-axis right side
     val rightAxis = chart.axisRight
-    rightAxis.textColor = Color.WHITE
+    rightAxis.textColor = Color.BLACK
 }
 
 private fun getBarChartData(sensor: Sensors): BarData {
@@ -195,10 +197,11 @@ private fun getBarChartData(sensor: Sensors): BarData {
     }
 
     val set1 = BarDataSet(values, "DataSet 1")
+    set1.color = Color.rgb(20, 204, 201)
     val data = BarData(set1)
     data.setValueTextSize(10f);
     data.barWidth = 0.9f;
-    data.setValueTextColor(Color.WHITE)
+    data.setValueTextColor(Color.BLACK)
     return data
 }
 
