@@ -60,7 +60,7 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
         if(!dataVM.updatingSensors) {
             Log.i("HEALTHFRAGMENT", "launching new updateSensorValues")
             GlobalScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
-                updateSensorValues()
+                dataVM.updateSensorValues()
             }
             dataVM.updatingSensors = true
         }
@@ -83,54 +83,24 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
     }
 
     fun goToHeartRateGraph() {
-        GlobalScope.launch(Dispatchers.IO) {
-            asyncGrabReportData("week")
-            GlobalScope.launch(Dispatchers.Main) {
-                findNavController().navigate(R.id.action_healthMonitorFragment_to_graphFragment)
-            }
-        }
+        getReportAndGoToGraph(Sensors.H_RATE)
     }
 
     fun goToBloodPressureGraph() {
-        GlobalScope.launch(Dispatchers.IO) {
-            asyncGrabReportData("week")
-            GlobalScope.launch(Dispatchers.Main) {
-                findNavController().navigate(R.id.action_healthMonitorFragment_to_graphFragment)
-            }
-        }
+        getReportAndGoToGraph(Sensors.B_PRESSURE)
     }
 
     fun goToBloodOxygenGraph() {
+        getReportAndGoToGraph(Sensors.B_OXYGEN)
+    }
+
+    private fun getReportAndGoToGraph(sensor: Sensors) {
         GlobalScope.launch(Dispatchers.IO) {
-            asyncGrabReportData("week")
+            dataVM.asyncGrabReportData(sensor,"week")
             GlobalScope.launch(Dispatchers.Main) {
                 findNavController().navigate(R.id.action_healthMonitorFragment_to_graphFragment)
             }
         }
-    }
-
-    private suspend fun updateSensorValues() {
-        suspend fun fetchData() =
-            coroutineScope {
-                while(true) {
-                    sleep(500)
-                    val grabData = async { dataVM.callDatabaseSensorData() }
-                    grabData.await()
-                }
-            }
-        fetchData()
-    }
-
-    private suspend fun asyncGrabReportData(time_scale: String) {
-        // need to be wait until runCallDatabase completes before creating/resuming the graph fragment
-        suspend fun fetchData() =
-            coroutineScope {
-                val grabData = async { dataVM.callDatabaseReportData(time_scale) }
-                Log.i("HEALTHFRAGMENT", "Started grabbing report data")
-                grabData.await()
-                Log.i("HEALTHFRAGMENT", "Finished grabbing report data")
-            }
-        fetchData()
     }
 
     override fun onDestroy() {

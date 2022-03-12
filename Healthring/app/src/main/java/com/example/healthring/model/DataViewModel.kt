@@ -101,7 +101,8 @@ class DataViewModel: ViewModel() {
         }
     }
 
-    fun callDatabaseReportData(time_scale: String = "week") {
+    fun callDatabaseReportData(startingSensor: Sensors, time_scale: String = "week") {
+        graphStartingSensor = startingSensor
         Log.i("RESPONSECOUNT", "Count: $responseCount")
         responseCount++
         updateIdToken()
@@ -270,6 +271,30 @@ class DataViewModel: ViewModel() {
         }
         sensorDataList.sortBy { it.date }
         return sensorDataList
+    }
+
+    suspend fun updateSensorValues() {
+        suspend fun fetchData() =
+            coroutineScope {
+                while(true) {
+                    Thread.sleep(500)
+                    val grabData = async { callDatabaseSensorData() }
+                    grabData.await()
+                }
+            }
+        fetchData()
+    }
+
+    suspend fun asyncGrabReportData(startingSensor: Sensors, time_scale: String) {
+        // need to be wait until runCallDatabase completes before creating/resuming the graph fragment
+        suspend fun fetchData() =
+            coroutineScope {
+                val grabData = async { callDatabaseReportData(startingSensor, time_scale) }
+                Log.i("HEALTHFRAGMENT", "Started grabbing report data")
+                grabData.await()
+                Log.i("HEALTHFRAGMENT", "Finished grabbing report data")
+            }
+        fetchData()
     }
 
 //    private suspend fun asyncGrabReportData(time_scale: String) {

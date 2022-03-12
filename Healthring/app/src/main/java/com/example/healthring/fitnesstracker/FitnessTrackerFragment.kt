@@ -53,18 +53,24 @@ class FitnessTrackerFragment : Fragment(R.layout.fitness_tracker_fragment) {
     }
 
     fun goToStepsGraph() {
-//        dataVM.getReportData(Sensors.STEPS)
-        findNavController().navigate(R.id.action_fitnessTrackerFragment_to_graphFragment)
+        getReportAndGoToGraph(Sensors.STEPS)
     }
 
     fun goToDistanceGraph() {
-//        dataVM.getReportData(Sensors.DISTANCE)
-        findNavController().navigate(R.id.action_fitnessTrackerFragment_to_graphFragment)
+        getReportAndGoToGraph(Sensors.DISTANCE)
     }
 
     fun goToCaloriesGraph() {
-//        dataVM.getReportData(Sensors.CALORIES)
-        findNavController().navigate(R.id.action_fitnessTrackerFragment_to_graphFragment)
+        getReportAndGoToGraph(Sensors.CALORIES)
+    }
+
+    private fun getReportAndGoToGraph(sensor: Sensors) {
+        GlobalScope.launch(Dispatchers.IO) {
+            dataVM.asyncGrabReportData(sensor,"week")
+            GlobalScope.launch(Dispatchers.Main) {
+                findNavController().navigate(R.id.action_fitnessTrackerFragment_to_graphFragment)
+            }
+        }
     }
 
 }
