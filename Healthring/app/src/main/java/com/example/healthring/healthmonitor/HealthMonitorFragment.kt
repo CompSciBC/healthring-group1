@@ -85,18 +85,28 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
     fun goToHeartRateGraph() {
         GlobalScope.launch(Dispatchers.IO) {
             asyncGrabReportData("week")
+            GlobalScope.launch(Dispatchers.Main) {
+                findNavController().navigate(R.id.action_healthMonitorFragment_to_graphFragment)
+            }
         }
-        findNavController().navigate(R.id.action_healthMonitorFragment_to_graphFragment)
     }
 
     fun goToBloodPressureGraph() {
-//        dataVM.getReportData(Sensors.B_PRESSURE)
-        findNavController().navigate(R.id.action_healthMonitorFragment_to_graphFragment)
+        GlobalScope.launch(Dispatchers.IO) {
+            asyncGrabReportData("week")
+            GlobalScope.launch(Dispatchers.Main) {
+                findNavController().navigate(R.id.action_healthMonitorFragment_to_graphFragment)
+            }
+        }
     }
 
     fun goToBloodOxygenGraph() {
-//        dataVM.getReportData(Sensors.B_OXYGEN)
-        findNavController().navigate(R.id.action_healthMonitorFragment_to_graphFragment)
+        GlobalScope.launch(Dispatchers.IO) {
+            asyncGrabReportData("week")
+            GlobalScope.launch(Dispatchers.Main) {
+                findNavController().navigate(R.id.action_healthMonitorFragment_to_graphFragment)
+            }
+        }
     }
 
     private suspend fun updateSensorValues() {
