@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import androidx.core.app.CoreComponentFactory
 import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment

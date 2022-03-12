@@ -13,6 +13,7 @@ import com.example.healthring.R
 import com.example.healthring.databinding.FitnessTrackerFragmentBinding
 import com.example.healthring.model.DataViewModel
 import com.example.healthring.model.Sensors
+import kotlinx.coroutines.*
 
 class FitnessTrackerFragment : Fragment(R.layout.fitness_tracker_fragment) {
 

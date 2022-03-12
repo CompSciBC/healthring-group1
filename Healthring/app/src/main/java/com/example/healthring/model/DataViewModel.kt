@@ -11,9 +11,7 @@ import com.amplifyframework.auth.cognito.AWSCognitoAuthSession
 import com.amplifyframework.auth.result.AuthSessionResult
 import com.amplifyframework.core.Amplify
 import com.google.gson.Gson
-import kotlinx.coroutines.async
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import okhttp3.*
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import java.lang.Exception
@@ -54,6 +52,7 @@ class DataViewModel: ViewModel() {
     var sensorDataList: MutableList<SensorData>? = null
     // default graph sensor
     var graphStartingSensor: Sensors = Sensors.H_RATE
+    var updatingSensors: Boolean = false
 
     private var _token: String? = null
     private var responseCount = 0
@@ -81,63 +80,103 @@ class DataViewModel: ViewModel() {
         }
     }
 
-    fun callDatabase(endPath: String, isSensorUpdate: Boolean) {
-        // TODO: make less calls to updateIdToken
+    fun callDatabaseSensorData() {
         Log.i("RESPONSECOUNT", "Count: $responseCount")
         responseCount++
         updateIdToken()
-        val endpoint = "https://vu102pm7vg.execute-api.us-west-2.amazonaws.com/prod/${endPath}"
+
+        val endPath = "sensors"
+
+        val url = urlBuilder(endPath)
         val client = OkHttpClient()
-
-        val url: HttpUrl = endpoint.toHttpUrl().newBuilder()
-            .addQueryParameter("email", Amplify.Auth.currentUser.username)
-            .build()
-
         val request = requestBuilder(url)
-
         try {
             val response = client.newCall(request).execute()
-
-            if (response.code == 200) {
-                var message = response.body?.string()
-                message = message?.substring(1, message.length - 1)
-
-                if (isSensorUpdate) {
-                    updateSensorValues(message)
-                } else {
-                    processReportData(message)
-                }
-                Log.i("DATAVIEWMODEL", "SUCCESS response message: $message")
-                Log.i("DATAVIEWMODEL", "SUCCESS Receive Response At Millis: ${response.receivedResponseAtMillis - response.sentRequestAtMillis}")
-                Log.i("DATAVIEWMODEL", "Response Status Code: " + response.code)
-            } else {
-                Log.e("DATAVIEWMODEL", "Data retrieval error. Status code: ${response.code}")
+            val message = requestSuccess(response)
+            if(message != null) {
+                updateSensorValues(message)
             }
         } catch (e: java.net.UnknownHostException) {
             Log.e("DATAVIEWMODEL", "$e")
         }
     }
 
-    fun runCallDatabase(endPath: String, isSensorUpdate: Boolean): Boolean {
-        // database call can't happen in the main thread
-        val thread: Thread = object : Thread() {
-            override fun run() {
-                try {
-                    callDatabase(endPath, isSensorUpdate)
-                } catch (e: InterruptedException) {
-                    Log.e("DATAVIEWMODEL", "Thread went haywire, ${e.message}")
-                }
+    fun callDatabaseReportData(time_scale: String = "week") {
+        Log.i("RESPONSECOUNT", "Count: $responseCount")
+        responseCount++
+        updateIdToken()
+        val endPath = "reports"
+        val client = OkHttpClient()
+
+        val url = urlBuilder(endPath, time_scale)
+
+        val request = requestBuilder(url)
+        try {
+            val response = client.newCall(request).execute()
+            val message = requestSuccess(response)
+            if(message != null) {
+                processReportData(message)
             }
+        } catch (e: java.net.UnknownHostException) {
+            Log.e("DATAVIEWMODEL", "$e")
         }
-        thread.start()
-        // don't have to wait for database calls for sensor updates
-//        if (!isSensorUpdate) {
-//            thread.join()
-//        }
-        thread.join()
-        Log.i("DATAVIEWMODEL", "Thread-${thread.id} Finished.")
-        return true
     }
+
+//    fun callDatabase(endPath: String, isSensorUpdate: Boolean, time_scale: String = "week") {
+//        // TODO: make less calls to updateIdToken
+//        Log.i("RESPONSECOUNT", "Count: $responseCount")
+//        responseCount++
+//        updateIdToken()
+//        val endpoint = "https://vu102pm7vg.execute-api.us-west-2.amazonaws.com/prod/${endPath}"
+//        val client = OkHttpClient()
+//
+//        val url: HttpUrl = endpoint.toHttpUrl().newBuilder()
+//            .addQueryParameter("email", Amplify.Auth.currentUser.username)
+//            .addQueryParameter("time_scale", time_scale)
+//            .build()
+//
+//        val request = requestBuilder(url)
+//
+//        try {
+//            val response = client.newCall(request).execute()
+//
+//            if (response.code == 200) {
+//                var message = response.body?.string()
+//                message = message?.substring(1, message.length - 1)
+//
+//                if (isSensorUpdate) {
+//                    updateSensorValues(message)
+//                } else {
+//                    // graph data
+//                    processReportData(message)
+//                }
+//                Log.i("DATAVIEWMODEL", "SUCCESS response message: $message")
+//                Log.i("DATAVIEWMODEL", "SUCCESS Receive Response At Millis: ${response.receivedResponseAtMillis - response.sentRequestAtMillis}")
+//                Log.i("DATAVIEWMODEL", "Response Status Code: " + response.code)
+//            } else {
+//                Log.e("DATAVIEWMODEL", "Data retrieval error. Status code: ${response.code}")
+//            }
+//        } catch (e: java.net.UnknownHostException) {
+//            Log.e("DATAVIEWMODEL", "$e")
+//        }
+//    }
+
+//    fun runCallDatabase(endPath: String, isSensorUpdate: Boolean, time_scale: String = "week"): Boolean {
+//        // database call can't happen in the main thread
+//        val thread: Thread = object : Thread() {
+//            override fun run() {
+//                try {
+//                    callDatabase(endPath, isSensorUpdate, time_scale)
+//                } catch (e: InterruptedException) {
+//                    Log.e("DATAVIEWMODEL", "Thread went haywire, ${e.message}")
+//                }
+//            }
+//        }
+//        thread.start()
+//        thread.join()
+//        Log.i("DATAVIEWMODEL", "Thread-${thread.id} Finished.")
+//        return true
+//    }
 
     private fun requestBuilder(url: HttpUrl): Request {
         try {
@@ -153,6 +192,28 @@ class DataViewModel: ViewModel() {
         }
         // this request will always failed
         return Request.Builder().url(url).build()
+    }
+
+    fun urlBuilder(endPath: String, time_scale: String = "week"): HttpUrl {
+        val endpoint = "https://vu102pm7vg.execute-api.us-west-2.amazonaws.com/prod/${endPath}"
+        return endpoint.toHttpUrl().newBuilder()
+            .addQueryParameter("email", Amplify.Auth.currentUser.username)
+            .addQueryParameter("time_scale", time_scale)
+            .build()
+    }
+
+    fun requestSuccess(response: Response): String? {
+        if (response.code == 200) {
+            var message = response.body?.string()
+            message = message?.substring(1, message.length - 1)
+            Log.i("DATAVIEWMODEL", "SUCCESS response message: $message")
+            Log.i("DATAVIEWMODEL", "SUCCESS Receive Response At Millis: ${response.receivedResponseAtMillis - response.sentRequestAtMillis}")
+            Log.i("DATAVIEWMODEL", "Response Status Code: " + response.code)
+            return message
+        } else {
+            Log.e("DATAVIEWMODEL", "Data retrieval error. Status code: ${response.code}")
+        }
+        return null
     }
 
     private fun updateSensorValues(response: String?) {
@@ -211,22 +272,22 @@ class DataViewModel: ViewModel() {
         return sensorDataList
     }
 
-    private suspend fun asyncGrabReportData() {
-        // need to be wait until runCallDatabase completes before creating/resuming the graph fragment
-        suspend fun fetchData() =
-            coroutineScope {
-                val grabData = async { runCallDatabase("reports", false) }
-                grabData.await()
-            }
-        fetchData()
-    }
-
-    fun getReportData(startingSensor: Sensors) {
-        graphStartingSensor = startingSensor
-        // call the suspend function that runs a DynamoDB scan operation for report data
-        viewModelScope.launch {
-            asyncGrabReportData()
-        }
-    }
+//    private suspend fun asyncGrabReportData(time_scale: String) {
+//        // need to be wait until runCallDatabase completes before creating/resuming the graph fragment
+//        suspend fun fetchData() =
+//            GlobalScope.launch(Dispatchers.IO) {
+//                val grabData = async { callDatabaseReportData(time_scale) }
+//                grabData.await()
+//            }
+//        fetchData()
+//    }
+//
+//    fun getReportData(startingSensor: Sensors, time_scale: String = "week") {
+//        graphStartingSensor = startingSensor
+//        // call the suspend function that runs a DynamoDB scan operation for report data
+//        viewModelScope.launch {
+//            asyncGrabReportData(time_scale)
+//        }
+//    }
 
 }

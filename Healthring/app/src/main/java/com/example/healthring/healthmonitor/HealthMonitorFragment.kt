@@ -3,6 +3,7 @@ package com.example.healthring.healthmonitor
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.provider.Settings
 import android.text.Editable
 import android.util.Log
 import android.view.LayoutInflater
@@ -53,32 +54,20 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
             dataViewModel = dataVM
             healthMonitorViewModel = viewModel
         }
-
-        // grabs the latest sensor data from the database every time delta
-//        val thread: Thread = object : Thread() {
-//            override fun run() {
-//                try {
-//                    while (!this.isInterrupted) {
-//                        sleep(1000)
-//                        runOnUiThread {
-//                            dataVM.runCallDatabase("sensors", true)
-//                        }
-//                    }
-//                } catch (e: InterruptedException) {
-//                }
-//            }
-//        }
-//        thread.start()
         val coroutineExceptionHandler = CoroutineExceptionHandler{_, throwable ->
             throwable.printStackTrace()
         }
-        GlobalScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
-//            while (true) {
-//                sleep(500)
-//                updateSensorValues()
-//            }
-            updateSensorValues()
+        if(!dataVM.updatingSensors) {
+            Log.i("HEALTHFRAGMENT", "launching new updateSensorValues")
+            GlobalScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
+                updateSensorValues()
+            }
+            dataVM.updatingSensors = true
         }
+
+//        GlobalScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
+//            dataVM.getReportData(Sensors.H_RATE)
+//        }
     }
 
     fun goToFitnessFragment() {
@@ -94,17 +83,19 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
     }
 
     fun goToHeartRateGraph() {
-        dataVM.getReportData(Sensors.H_RATE)
+        GlobalScope.launch(Dispatchers.IO) {
+            asyncGrabReportData("week")
+        }
         findNavController().navigate(R.id.action_healthMonitorFragment_to_graphFragment)
     }
 
     fun goToBloodPressureGraph() {
-        dataVM.getReportData(Sensors.B_PRESSURE)
+//        dataVM.getReportData(Sensors.B_PRESSURE)
         findNavController().navigate(R.id.action_healthMonitorFragment_to_graphFragment)
     }
 
     fun goToBloodOxygenGraph() {
-        dataVM.getReportData(Sensors.B_OXYGEN)
+//        dataVM.getReportData(Sensors.B_OXYGEN)
         findNavController().navigate(R.id.action_healthMonitorFragment_to_graphFragment)
     }
 
@@ -113,11 +104,38 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
             coroutineScope {
                 while(true) {
                     sleep(500)
-                    val grabData = async { dataVM.callDatabase("sensors", true) }
+                    val grabData = async { dataVM.callDatabaseSensorData() }
                     grabData.await()
                 }
             }
         fetchData()
+    }
+
+    private suspend fun asyncGrabReportData(time_scale: String) {
+        // need to be wait until runCallDatabase completes before creating/resuming the graph fragment
+        suspend fun fetchData() =
+            coroutineScope {
+                val grabData = async { dataVM.callDatabaseReportData(time_scale) }
+                Log.i("HEALTHFRAGMENT", "Started grabbing report data")
+                grabData.await()
+                Log.i("HEALTHFRAGMENT", "Finished grabbing report data")
+            }
+        fetchData()
+    }
+
+    override fun onDestroy() {
+        Log.i("HEALTHFRAGMENT", "Fragment Destroyed.")
+        super.onDestroy()
+    }
+
+    override fun onPause() {
+        Log.i("HEALTHFRAGMENT", "Fragment paused.")
+        super.onPause()
+    }
+
+    override fun onResume() {
+        Log.i("HEALTHFRAGMENT", "Fragment Resumed.")
+        super.onResume()
     }
 
     fun updateHeartRateColor() {

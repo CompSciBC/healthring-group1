@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="sensors">
+        <item>Steps</item>
+        <item>Blood pressure</item>
+        <item>Blood oxygen</item>
+        <item>Distance</item>
+        <item>Calories</item>
+        <item>Heart Rate</item>
+    </array>
+</resources>
