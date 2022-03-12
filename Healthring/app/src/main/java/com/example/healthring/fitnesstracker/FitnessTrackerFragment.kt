@@ -66,7 +66,7 @@ class FitnessTrackerFragment : Fragment(R.layout.fitness_tracker_fragment) {
 
     private fun getReportAndGoToGraph(sensor: Sensors) {
         GlobalScope.launch(Dispatchers.IO) {
-            dataVM.asyncGrabReportData(sensor,"week")
+            dataVM.asyncGrabReportData(sensor,"day")
             GlobalScope.launch(Dispatchers.Main) {
                 findNavController().navigate(R.id.action_fitnessTrackerFragment_to_graphFragment)
             }

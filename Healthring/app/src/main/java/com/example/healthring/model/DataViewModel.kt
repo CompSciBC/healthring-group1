@@ -53,6 +53,7 @@ class DataViewModel: ViewModel() {
     // default graph sensor
     var graphStartingSensor: Sensors = Sensors.H_RATE
     var updatingSensors: Boolean = false
+    var grabbedWeeklyData: Boolean = false
 
     private var _token: String? = null
     private var responseCount = 0
@@ -123,62 +124,6 @@ class DataViewModel: ViewModel() {
         }
     }
 
-//    fun callDatabase(endPath: String, isSensorUpdate: Boolean, time_scale: String = "week") {
-//        // TODO: make less calls to updateIdToken
-//        Log.i("RESPONSECOUNT", "Count: $responseCount")
-//        responseCount++
-//        updateIdToken()
-//        val endpoint = "https://vu102pm7vg.execute-api.us-west-2.amazonaws.com/prod/${endPath}"
-//        val client = OkHttpClient()
-//
-//        val url: HttpUrl = endpoint.toHttpUrl().newBuilder()
-//            .addQueryParameter("email", Amplify.Auth.currentUser.username)
-//            .addQueryParameter("time_scale", time_scale)
-//            .build()
-//
-//        val request = requestBuilder(url)
-//
-//        try {
-//            val response = client.newCall(request).execute()
-//
-//            if (response.code == 200) {
-//                var message = response.body?.string()
-//                message = message?.substring(1, message.length - 1)
-//
-//                if (isSensorUpdate) {
-//                    updateSensorValues(message)
-//                } else {
-//                    // graph data
-//                    processReportData(message)
-//                }
-//                Log.i("DATAVIEWMODEL", "SUCCESS response message: $message")
-//                Log.i("DATAVIEWMODEL", "SUCCESS Receive Response At Millis: ${response.receivedResponseAtMillis - response.sentRequestAtMillis}")
-//                Log.i("DATAVIEWMODEL", "Response Status Code: " + response.code)
-//            } else {
-//                Log.e("DATAVIEWMODEL", "Data retrieval error. Status code: ${response.code}")
-//            }
-//        } catch (e: java.net.UnknownHostException) {
-//            Log.e("DATAVIEWMODEL", "$e")
-//        }
-//    }
-
-//    fun runCallDatabase(endPath: String, isSensorUpdate: Boolean, time_scale: String = "week"): Boolean {
-//        // database call can't happen in the main thread
-//        val thread: Thread = object : Thread() {
-//            override fun run() {
-//                try {
-//                    callDatabase(endPath, isSensorUpdate, time_scale)
-//                } catch (e: InterruptedException) {
-//                    Log.e("DATAVIEWMODEL", "Thread went haywire, ${e.message}")
-//                }
-//            }
-//        }
-//        thread.start()
-//        thread.join()
-//        Log.i("DATAVIEWMODEL", "Thread-${thread.id} Finished.")
-//        return true
-//    }
-
     private fun requestBuilder(url: HttpUrl): Request {
         try {
             val request = Request.Builder()
@@ -248,15 +193,17 @@ class DataViewModel: ViewModel() {
                 sensorDataArray[i] = sensorDataArray[i] + "}"
             }
         }
-
-        sensorDataList = createReportDataList(sensorDataArray)
+        // fills the sensorDataList with new records
+        createReportDataList(sensorDataArray)
 //        Log.i("DATAVIEWMODEL", "${sensorDataList.size} data points collected.")
 //        Log.i("DATAVIEWMODEL", "${sensorDataList.slice(1..100).map { it.date }} ")
     }
 
     // returns a list of SensorData objects pertaining to the requested report
-    private fun createReportDataList(data: List<String>): MutableList<SensorData> {
-        val sensorDataList = emptyList<SensorData>().toMutableList()
+    private fun createReportDataList(data: List<String>) {
+        if (sensorDataList == null) {
+            sensorDataList = emptyList<SensorData>().toMutableList()
+        }
         // convert String JSON to SensorData type
         for (i in data.indices) {
             val sensorData = Gson().fromJson(data[i], SensorData::class.java)
@@ -267,10 +214,11 @@ class DataViewModel: ViewModel() {
                 ZoneId.systemDefault()
             )
             sensorData.date = localDateTime.toString()
-            sensorDataList.add(sensorData)
+            sensorDataList!!.add(sensorData)
         }
-        sensorDataList.sortBy { it.date }
-        return sensorDataList
+        sensorDataList?.sortBy { it.date }
+        // get rid of duplicates
+        sensorDataList?.distinctBy { it.date }
     }
 
     suspend fun updateSensorValues() {
@@ -296,23 +244,5 @@ class DataViewModel: ViewModel() {
             }
         fetchData()
     }
-
-//    private suspend fun asyncGrabReportData(time_scale: String) {
-//        // need to be wait until runCallDatabase completes before creating/resuming the graph fragment
-//        suspend fun fetchData() =
-//            GlobalScope.launch(Dispatchers.IO) {
-//                val grabData = async { callDatabaseReportData(time_scale) }
-//                grabData.await()
-//            }
-//        fetchData()
-//    }
-//
-//    fun getReportData(startingSensor: Sensors, time_scale: String = "week") {
-//        graphStartingSensor = startingSensor
-//        // call the suspend function that runs a DynamoDB scan operation for report data
-//        viewModelScope.launch {
-//            asyncGrabReportData(time_scale)
-//        }
-//    }
 
 }

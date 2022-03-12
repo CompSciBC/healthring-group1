@@ -58,16 +58,17 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
             throwable.printStackTrace()
         }
         if(!dataVM.updatingSensors) {
-            Log.i("HEALTHFRAGMENT", "launching new updateSensorValues")
             GlobalScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
                 dataVM.updateSensorValues()
             }
             dataVM.updatingSensors = true
         }
-
-//        GlobalScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
-//            dataVM.getReportData(Sensors.H_RATE)
-//        }
+        if(!dataVM.grabbedWeeklyData) {
+            GlobalScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
+                dataVM.asyncGrabReportData(Sensors.H_RATE,"week")
+            }
+            dataVM.grabbedWeeklyData = true
+        }
     }
 
     fun goToFitnessFragment() {
@@ -96,7 +97,7 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
 
     private fun getReportAndGoToGraph(sensor: Sensors) {
         GlobalScope.launch(Dispatchers.IO) {
-            dataVM.asyncGrabReportData(sensor,"week")
+            dataVM.asyncGrabReportData(sensor,"day")
             GlobalScope.launch(Dispatchers.Main) {
                 findNavController().navigate(R.id.action_healthMonitorFragment_to_graphFragment)
             }
