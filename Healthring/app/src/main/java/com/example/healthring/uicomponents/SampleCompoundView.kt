@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.healthring.R
 
-class SampleCompoundView : ConstraintLayout {
+class SampleCompoundView: ConstraintLayout {
 
     private val button : Button;
     private val textView: TextView;
