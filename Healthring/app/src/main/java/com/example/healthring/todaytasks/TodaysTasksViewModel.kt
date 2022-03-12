@@ -1,6 +1,5 @@
 package com.example.healthring.todaytasks
 
-import android.content.ClipData
 import androidx.lifecycle.*
 import com.example.healthring.taskdata.Task
 import com.example.healthring.taskdata.TaskDao
@@ -25,6 +24,8 @@ class TodaysTasksViewModel(private val taskDao: TaskDao) : ViewModel() {
 //        get() = _task_notes
 
 //    var sensorDataList: MutableList<TaskData>? = null
+
+    val allTasks: LiveData<List<Task>> = taskDao.getTasks().asLiveData()
 
     private fun insertTask(task: Task) {
         viewModelScope.launch {
@@ -92,13 +93,13 @@ class TodaysTasksViewModel(private val taskDao: TaskDao) : ViewModel() {
         taskTime: String,
         taskNotes: String
     ) {
-        val updatedItem = getUpdatedTaskEntry(id, taskTitle, taskDate, taskTime, taskNotes)
-        updateTask(updatedItem)
+        val updatedTask = getUpdatedTaskEntry(id, taskTitle, taskDate, taskTime, taskNotes)
+        updateTask(updatedTask)
     }
 
 }
 
-class InventoryViewModelFactory(private val taskDao: TaskDao) : ViewModelProvider.Factory {
+class TasksViewModelFactory(private val taskDao: TaskDao) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(TodaysTasksViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")

@@ -11,11 +11,12 @@ import androidx.navigation.fragment.findNavController
 import com.example.healthring.R
 import com.example.healthring.databinding.TaskDetailFragmentBinding
 import com.example.healthring.taskdata.Task
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class TaskDetailFragment : Fragment() {
 
     private val taskViewModel: TodaysTasksViewModel by activityViewModels {
-        InventoryViewModelFactory(
+        TasksViewModelFactory(
             (activity?.application as TaskApplication).database
                 .taskDao()
         )
@@ -37,13 +38,45 @@ class TaskDetailFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val id = navigationArgs.taskId
+        taskViewModel.retrieveTask(id).observe(this.viewLifecycleOwner) { selectedItem ->
+            task = selectedItem
+            bind(task)
+        }
+    }
+
+    private fun showConfirmationDialog() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(getString(android.R.string.dialog_alert_title))
+            .setMessage("Are you sure you want to delete?")
+            .setCancelable(false)
+            .setNegativeButton("No") { _, _ -> }
+            .setPositiveButton("Yes") { _, _ ->
+                deleteTask()
+            }
+            .show()
+    }
+
+    private fun bind(task: Task) {
+        binding.apply {
+            binding.taskTitle.text = task.taskTitle
+            binding.taskDate.text = task.taskDate
+            binding.taskTime.text = task.taskTime
+            binding.taskNotes.text = task.taskNotes
+            deleteTask.setOnClickListener { showConfirmationDialog() }
+            editTask.setOnClickListener { editTask() }
+        }
+    }
+
     private fun deleteTask() {
         taskViewModel.deleteTask(task)
         findNavController().navigateUp()
     }
 
-    private fun editItem() {
-        val action = TaskDetailFragmentDirections.actionTaskDetailFragmentToAddItemFragment(
+    private fun editTask() {
+        val action = TaskDetailFragmentDirections.actionTaskDetailFragmentToAddTaskFragment(
             task.id
         )
         this.findNavController().navigate(action)

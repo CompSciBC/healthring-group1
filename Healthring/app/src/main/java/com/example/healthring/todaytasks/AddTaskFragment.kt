@@ -19,7 +19,7 @@ import com.example.healthring.taskdata.Task
 class AddTaskFragment : Fragment() {
 
     private val taskViewModel: TodaysTasksViewModel by activityViewModels {
-        InventoryViewModelFactory(
+        TasksViewModelFactory(
             (activity?.application as TaskApplication).database
                 .taskDao()
         )
@@ -59,12 +59,12 @@ class AddTaskFragment : Fragment() {
                 binding.taskNotes.text.toString(),
             )
 //            findNavController().navigate(R.id.action_todaysTasksFragment2_to_addTaskFragment)
-            val action = AddItemFragmentDirections.actionAddTaskFragmentToTodaysTasksFragment2()
+            val action = AddTaskFragmentDirections.actionAddTaskFragmentToTodaysTasksFragment2()
             findNavController().navigate(action)
         }
     }
 
-    private fun updateItem() {
+    private fun updateTask() {
         if (isEntryValid()) {
             taskViewModel.updateTask(
                 this.navigationArgs.taskId,
@@ -73,13 +73,13 @@ class AddTaskFragment : Fragment() {
                 this.binding.taskTime.text.toString(),
                 this.binding.taskNotes.text.toString()
             )
-            val action = AddItemFragmentDirections.actionAddItemFragmentToItemListFragment()
+            val action = AddTaskFragmentDirections.actionAddTaskFragmentToTodaysTasksFragment2()
             findNavController().navigate(action)
         }
     }
 
     private fun bind(task: Task) {
-        bindng.apply{
+        bindng.apply {
             taskTitle.setText(task.taskTitle, TextView.BufferType.SPANNABLE)
             taskDate.setText(task.taskDate, TextView.BufferType.SPANNABLE)
             taskTime.setText(task.taskTime, TextView.BufferType.SPANNABLE)

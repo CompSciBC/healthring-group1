@@ -3,6 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="taskdetailFragment"
+            type="com.example.healthring.todaytasks.TaskDetailFragment" />
+        <variable
+            name="todaysTasksViewModel"
+            type="com.example.healthring.todaytasks.TodaysTasksViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -10,7 +19,7 @@
         tools:context=".TaskDetailFragment">
 
         <TextView
-            android:id="@+id/item_name"
+            android:id="@+id/task_title"
             style="@style/Widget.Task.TextView"
             android:layout_width="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
@@ -18,30 +27,30 @@
             tools:text="Title" />
 
         <TextView
-            android:id="@+id/item_price"
+            android:id="@+id/task_date"
             style="@style/Widget.Task.TextView"
             android:layout_width="wrap_content"
             android:layout_marginTop="@dimen/margin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_name"
+            app:layout_constraintTop_toBottomOf="@+id/task_title"
             tools:text="Date" />
 
         <TextView
-            android:id="@+id/item_count_label"
+            android:id="@+id/task_time"
             style="@style/Widget.Task.TextView"
             android:layout_width="wrap_content"
             android:text="Time"
-            app:layout_constraintTop_toBottomOf="@+id/item_price"
+            app:layout_constraintTop_toBottomOf="@+id/task_date"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/item_count"
+            android:id="@+id/task_notes"
             style="@style/Widget.Task.TextView"
             android:layout_width="wrap_content"
             android:layout_marginStart="@dimen/margin_between_elements"
             android:layout_marginTop="@dimen/margin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/item_count_label"
+            app:layout_constraintTop_toBottomOf="@id/task_time"
             tools:text="Notes" />
 
         <Button
@@ -53,7 +62,7 @@
             android:text="Delete"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/item_count" />
+            app:layout_constraintTop_toBottomOf="@id/task_notes" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/edit_item"

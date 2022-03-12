@@ -6,13 +6,13 @@ import androidx.recyclerview.widget.DiffUtil
 import com.example.healthring.taskdata.Task
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.healthring.databinding.TodaysTasksFragmentBinding
+import com.example.healthring.databinding.TodaysTaskFragmentBinding
 
 class TaskListAdapter(private val onItemClicked: (Task) -> Unit) :
-    ListAdpater<Task, TaskListAdapter.ItemViewHolder>(DiffCallback) {
+    ListAdapter<Task, TaskListAdapter.ItemViewHolder>(DiffCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         return ItemViewHolder(
-            TodaysTasksFragmentBinding.inflate(
+            TodaysTaskFragmentBinding.inflate(
                 LayoutInflater.from(
                     parent.context
                 )
@@ -28,7 +28,7 @@ class TaskListAdapter(private val onItemClicked: (Task) -> Unit) :
         holder.bind(current)
     }
 
-    class ItemViewHolder(private var binding: TodaysTasksFragmentBinding) :
+    class ItemViewHolder(private var binding: TodaysTaskFragmentBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(task: Task) {
@@ -38,7 +38,6 @@ class TaskListAdapter(private val onItemClicked: (Task) -> Unit) :
                 taskTime.text = task.taskTime
                 taskNotes.text = task.taskNotes
             }
-
         }
     }
 
