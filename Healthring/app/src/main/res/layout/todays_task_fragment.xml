@@ -7,7 +7,11 @@
         <variable
             name="todaysTasksFragment"
             type="com.example.healthring.todaytasks.TodaysTasksFragment" />
+        <variable
+            name="todaysTasksViewModel"
+            type="com.example.healthring.todaytasks.TodaysTasksViewModel" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -68,7 +72,7 @@
     <ScrollView
         android:id="@+id/tasks_sensor_scrollview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/tasks_header"
         app:layout_constraintBottom_toTopOf="@id/tasks_nav_container">
 
@@ -78,82 +82,134 @@
             android:orientation="vertical"
             android:padding="24dp">
 
-            <TextView
-                android:id="@+id/todays_tasks_alarm"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:background="@drawable/amber_border"
-                android:text="6:00 AM"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="65sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/health_ring_logo" />
-
-            <TextView
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Alarm"
-                android:textAlignment="center"
-                android:textSize="24sp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/roboto_regular"
-                app:layout_constraintTop_toBottomOf="@id/heart_rate_tracker" />
+                android:layout_margin="8dp"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="8dp">
 
-            <TextView
-                android:id="@+id/todays_tasks_reminder"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_marginTop="32dp"
-                android:background="@drawable/blue_border"
-                android:text="Doctor visit"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="65sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/heart_rate_tracker" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <TextView
+                    <TextView
+                        android:id="@+id/item_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:hint="Medication"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/item_date"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:textSize="16sp"
+                        android:hint="03/12/2022"
+                        app:layout_constraintTop_toBottomOf="@id/item_title"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/item_time"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:textSize="16sp"
+                        android:hint="07:15 PM"
+                        app:layout_constraintTop_toBottomOf="@id/item_title"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/item_notes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:textSize="16sp"
+                        android:hint="Take 2 tablets after food."
+                        app:layout_constraintTop_toBottomOf="@id/item_date"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Reminder"
-                android:textAlignment="center"
-                android:textSize="24sp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/roboto_regular"
-                app:layout_constraintTop_toBottomOf="@id/blood_pressure_tracker" />
+                android:layout_margin="8dp"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="8dp">
 
-            <TextView
-                android:id="@+id/todays_tasks_notes"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_marginTop="32dp"
-                android:background="@drawable/green_border"
-                android:text="Bring Meds"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="65sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/blood_pressure_tracker" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Notes"
-                android:textAlignment="center"
-                android:textSize="24sp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/roboto_regular"
-                app:layout_constraintTop_toBottomOf="@id/blood_pressure_tracker" />
+                    <TextView
+                        android:id="@+id/item_title2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:hint="Doctor's visit"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/item_date2"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:textSize="16sp"
+                        android:hint="04/01/2022"
+                        app:layout_constraintTop_toBottomOf="@id/item_title2"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/item_time2"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:textSize="16sp"
+                        android:hint="09:00 AM"
+                        app:layout_constraintTop_toBottomOf="@id/item_title2"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/item_notes2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:textSize="16sp"
+                        android:hint="Swedish Edmonds Campus."
+                        app:layout_constraintTop_toBottomOf="@id/item_date2"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
     </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:src="@android:drawable/ic_input_add"
+        android:backgroundTint="@color/hot_purple"
+        app:layout_constraintBottom_toTopOf="@id/tasks_nav_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@android:color/white"
+        app:borderWidth="0dp"
+        android:onClick="@{() -> todaysTasksFragment.goToAddTaskFragment()}"/>
 
     <LinearLayout
         android:id="@+id/tasks_nav_container"
@@ -201,11 +257,6 @@
             app:srcCompat="@drawable/tasks_icon"
             app:tint="@color/white"/>
 
-    </LinearLayout>
-
-
-
-
-
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-    </layout>
+</layout>

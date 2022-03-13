@@ -35,6 +35,9 @@
         <action
             android:id="@+id/action_todaysTasksFragment2_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_todaysTasksFragment2_to_addTaskFragment"
+            app:destination="@id/addTaskFragment" />
     </fragment>
     <fragment
         android:id="@+id/fitnessTrackerFragment"
@@ -87,4 +90,12 @@
         android:id="@+id/graphFragment"
         android:name="com.example.healthring.analytics.GraphFragment"
         android:label="GraphFragment" />
+    <fragment
+        android:id="@+id/addTaskFragment"
+        android:name="com.example.healthring.todaytasks.AddTaskFragment"
+        android:label="AddTaskFragment" >
+        <action
+            android:id="@+id/action_addTaskFragment_to_todaysTasksFragment2"
+            app:destination="@id/todaysTasksFragment2" />
+    </fragment>
 </navigation>

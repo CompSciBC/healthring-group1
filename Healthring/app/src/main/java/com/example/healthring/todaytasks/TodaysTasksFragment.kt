@@ -44,4 +44,8 @@ class TodaysTasksFragment : Fragment(R.layout.todays_task_fragment) {
         findNavController().navigate(R.id.action_todaysTasksFragment2_to_profileFragment)
     }
 
+    fun goToAddTaskFragment() {
+        findNavController().navigate(R.id.action_todaysTasksFragment2_to_addTaskFragment)
+    }
+
 }
