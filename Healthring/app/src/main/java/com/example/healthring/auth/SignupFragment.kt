@@ -52,7 +52,10 @@ class SignupFragment : Fragment(R.layout.fitness_tracker_fragment) {
             .userAttribute(AuthUserAttributeKey.email(), authViewModel.email.value!!)
             .build()
         Amplify.Auth.signUp(authViewModel.email.value!!, authViewModel.password.value!!, options,
+            // Sign up succeeded, go to sign up fragment
             { Log.i("AuthQuickStart", "Sign up succeeded: $it") },
+            // Implement that tells the user that sign up fails.
+            // use a toast
             { Log.e ("AuthQuickStart", "Sign up failed", it) }
         )
     }
