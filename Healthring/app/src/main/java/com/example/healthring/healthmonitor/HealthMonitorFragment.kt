@@ -124,7 +124,11 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
     }
 
     fun updateHeartRateColor() {
-        if (dataVM.heart_rate.value!! < 100) {
+        if(viewModel.disableSensorColor.value!!) {
+            viewModel.hRateColor.value = ContextCompat.getDrawable(requireContext(), R.drawable.secondary_sesnor_background)
+            return
+        }
+        if(dataVM.heart_rate.value!! < 100) {
             viewModel.hRateColor.value = ContextCompat.getDrawable(requireContext(), R.drawable.blue_border)
         } else if ((dataVM.heart_rate.value!! < 125)) {
             viewModel.hRateColor.value = ContextCompat.getDrawable(requireContext(), R.drawable.green_border)
@@ -136,6 +140,10 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
     }
 
     fun updateBloodPressureColor() {
+        if(viewModel.disableSensorColor.value!!) {
+            viewModel.hRateColor.value = ContextCompat.getDrawable(requireContext(), R.drawable.secondary_sesnor_background)
+            return
+        }
         if (dataVM.blood_pressure.value!! < 120) {
             viewModel.bPressureColor.value = ContextCompat.getDrawable(requireContext(), R.drawable.blue_border)
         } else if ((dataVM.blood_pressure.value!! < 135)) {
@@ -148,6 +156,10 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
     }
 
     fun updateBloodOxygenColor() {
+        if(viewModel.disableSensorColor.value!!) {
+            viewModel.hRateColor.value = ContextCompat.getDrawable(requireContext(), R.drawable.secondary_sesnor_background)
+            return
+        }
         if (dataVM.blood_oxygen.value!! < 70) {
             viewModel.bOxygenColor.value = ContextCompat.getDrawable(requireContext(), R.drawable.red_border)
         } else if ((dataVM.blood_oxygen.value!! < 80)) {

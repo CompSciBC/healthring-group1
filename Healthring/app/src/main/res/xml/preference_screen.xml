@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:key="asthetics_category"
+        app:title="Asthetics">
+
+        <SwitchPreferenceCompat
+            app:key="astheics_turnoff_sensor_colors"
+            app:title="Disable Sensor Colors"
+            app:summary="Health Monitor sensors will no longer change colors" />
+
+        <SeekBarPreference
+            app:key="sensor_font_size_seekbar"
+            app:title="Font Size for Sensors"
+            app:min="1"
+            android:max="10"
+            app:defaultValue="6"
+            app:showSeekBarValue="true"/>
+
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="notifications_category"
+        app:title="Notifications">
+
+        <SwitchPreferenceCompat
+            app:key="enable_email_notifications"
+            app:title="Enable email notifications"/>
+
+        <Preference
+            app:key="email_notifications"
+            app:title="Email Notifications"
+            app:summary="Send or receive emails regarding your health"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="account_category"
+        app:title="Account">
+
+        <Preference
+            app:key="reset_password"
+            app:title="Reset Password" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="advanced_category"
+        app:initialExpandedChildrenCount="0">
+
+        <Preference
+            app:key="reset_to_default_settings"
+            app:title="Reset to Default Settings"
+            app:summary="Restored to fresh install settings"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
