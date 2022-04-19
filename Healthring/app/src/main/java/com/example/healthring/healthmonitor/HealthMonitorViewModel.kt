@@ -1,6 +1,8 @@
 package com.example.healthring.healthmonitor
 
+import android.app.Application
 import android.graphics.drawable.Drawable
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,5 +14,5 @@ class HealthMonitorViewModel: ViewModel() {
     val hRateColor = MutableLiveData<Drawable>()
     val bOxygenColor = MutableLiveData<Drawable>()
     val bPressureColor = MutableLiveData<Drawable>()
-    val disableSensorColor = MutableLiveData<Boolean>(false)
+
 }

@@ -49,6 +49,8 @@ class DataViewModel: ViewModel() {
     val steps : LiveData<Int>
         get() = _steps
 
+    val disableSensorColors = MutableLiveData<Boolean>(false)
+
     var sensorDataList: MutableList<SensorData>? = null
     // default graph sensor
     var graphStartingSensor: Sensors = Sensors.H_RATE

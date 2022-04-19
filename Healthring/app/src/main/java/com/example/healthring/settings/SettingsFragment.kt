@@ -11,6 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.SwitchPreferenceCompat
 import com.example.healthring.R
 import com.example.healthring.healthmonitor.HealthMonitorViewModel
 import com.example.healthring.model.DataViewModel
@@ -26,10 +27,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
         (activity as AppCompatActivity).supportActionBar?.show()
         (activity as AppCompatActivity).supportActionBar?.setTitle("Settings")
 
-        val notificationPref = findPreference<Preference>("email_notifications")
+        val notificationPref = findPreference<SwitchPreferenceCompat>("astheics_turnoff_sensor_colors")
         notificationPref?.setOnPreferenceClickListener {
-            healthMonitorViewmodel.disableSensorColor.value = true
-            Log.i("SETTINGS", "Disabled Health Monitor Adaptive Sensor Colors.")
+            dataVM.disableSensorColors.value = notificationPref.isChecked
             true
         }
     }

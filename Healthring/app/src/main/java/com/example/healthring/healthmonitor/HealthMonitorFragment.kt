@@ -1,5 +1,6 @@
 package com.example.healthring.healthmonitor
 
+import android.app.Application
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -124,7 +125,7 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
     }
 
     fun updateHeartRateColor() {
-        if(viewModel.disableSensorColor.value!!) {
+        if(dataVM.disableSensorColors.value!!) {
             viewModel.hRateColor.value = ContextCompat.getDrawable(requireContext(), R.drawable.secondary_sesnor_background)
             return
         }
@@ -140,8 +141,8 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
     }
 
     fun updateBloodPressureColor() {
-        if(viewModel.disableSensorColor.value!!) {
-            viewModel.hRateColor.value = ContextCompat.getDrawable(requireContext(), R.drawable.secondary_sesnor_background)
+        if(dataVM.disableSensorColors.value!!) {
+            viewModel.bPressureColor.value = ContextCompat.getDrawable(requireContext(), R.drawable.secondary_sesnor_background)
             return
         }
         if (dataVM.blood_pressure.value!! < 120) {
@@ -156,8 +157,8 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
     }
 
     fun updateBloodOxygenColor() {
-        if(viewModel.disableSensorColor.value!!) {
-            viewModel.hRateColor.value = ContextCompat.getDrawable(requireContext(), R.drawable.secondary_sesnor_background)
+        if(dataVM.disableSensorColors.value!!) {
+            viewModel.bOxygenColor.value = ContextCompat.getDrawable(requireContext(), R.drawable.secondary_sesnor_background)
             return
         }
         if (dataVM.blood_oxygen.value!! < 70) {
