@@ -83,6 +83,10 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
         findNavController().navigate(R.id.action_healthMonitorFragment_to_profileFragment)
     }
 
+    fun goToSettingsFragment() {
+        findNavController().navigate(R.id.action_healthMonitorFragment_to_settingsFragment)
+    }
+
     fun goToHeartRateGraph() {
         getReportAndGoToGraph(Sensors.H_RATE)
     }

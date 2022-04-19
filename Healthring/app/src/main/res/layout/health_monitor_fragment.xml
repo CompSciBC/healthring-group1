@@ -56,7 +56,8 @@
             android:backgroundTint="@color/white"
             app:layout_constraintTop_toTopOf="@+id/profile_picture_button"
             app:layout_constraintBottom_toBottomOf="@+id/profile_picture_button"
-            app:layout_constraintEnd_toStartOf="@+id/profile_picture_button" />
+            app:layout_constraintEnd_toStartOf="@+id/profile_picture_button"
+            android:onClick="@{() -> healthMonitorFragment.goToSettingsFragment()}"/>
 
         <ImageButton
             android:id="@+id/profile_picture_button"

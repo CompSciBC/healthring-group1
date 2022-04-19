@@ -52,6 +52,10 @@ class FitnessTrackerFragment : Fragment(R.layout.fitness_tracker_fragment) {
         findNavController().navigate(R.id.action_fitnessTrackerFragment_to_profileFragment)
     }
 
+    fun goToSettingsFragment() {
+        findNavController().navigate(R.id.action_fitnessTrackerFragment_to_settingsFragment)
+    }
+
     fun goToStepsGraph() {
         getReportAndGoToGraph(Sensors.STEPS)
     }

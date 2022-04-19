@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_healthMonitorFragment_to_graphFragment"
             app:destination="@id/graphFragment" />
+        <action
+            android:id="@+id/action_healthMonitorFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
 
 
@@ -38,6 +41,9 @@
         <action
             android:id="@+id/action_todaysTasksFragment2_to_addTaskFragment"
             app:destination="@id/addTaskFragment" />
+        <action
+            android:id="@+id/action_todaysTasksFragment2_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/fitnessTrackerFragment"
@@ -55,6 +61,9 @@
         <action
             android:id="@+id/action_fitnessTrackerFragment_to_graphFragment"
             app:destination="@id/graphFragment" />
+        <action
+            android:id="@+id/action_fitnessTrackerFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -98,4 +107,8 @@
             android:id="@+id/action_addTaskFragment_to_todaysTasksFragment2"
             app:destination="@id/todaysTasksFragment2" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.healthring.settings.SettingsFragment"
+        android:label="SettingsFragment" />
 </navigation>

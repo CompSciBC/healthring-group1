@@ -42,6 +42,21 @@
             android:src="@drawable/logo_transparent" />
 
         <ImageButton
+            android:id="@+id/settings_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/settings_icon"
+            app:tint="@color/hot_purple"
+            android:layout_marginEnd="5dp"
+            android:scaleX="1.4"
+            android:scaleY="1.4"
+            android:backgroundTint="@color/white"
+            app:layout_constraintTop_toTopOf="@+id/profile_picture_button"
+            app:layout_constraintBottom_toBottomOf="@+id/profile_picture_button"
+            app:layout_constraintEnd_toStartOf="@+id/profile_picture_button"
+            android:onClick="@{() -> fitnessTrackerFragment.goToSettingsFragment()}"/>
+
+        <ImageButton
             android:id="@+id/profile_picture_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
