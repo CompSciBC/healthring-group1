@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -21,11 +22,20 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.preference_screen, rootKey)
+
+        (activity as AppCompatActivity).supportActionBar?.show()
+        (activity as AppCompatActivity).supportActionBar?.setTitle("Settings")
+
         val notificationPref = findPreference<Preference>("email_notifications")
         notificationPref?.setOnPreferenceClickListener {
             healthMonitorViewmodel.disableSensorColor.value = true
             Log.i("SETTINGS", "Disabled Health Monitor Adaptive Sensor Colors.")
             true
         }
+    }
+
+    override fun onPause() {
+        (activity as AppCompatActivity).supportActionBar?.hide()
+        super.onPause()
     }
 }
