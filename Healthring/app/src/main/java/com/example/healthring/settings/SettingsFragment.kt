@@ -13,6 +13,7 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SeekBarPreference
 import androidx.preference.SwitchPreferenceCompat
+import com.amplifyframework.core.Amplify
 import com.example.healthring.R
 import com.example.healthring.healthmonitor.HealthMonitorViewModel
 import com.example.healthring.model.DataViewModel
@@ -47,5 +48,18 @@ class SettingsFragment : PreferenceFragmentCompat() {
     override fun onPause() {
         (activity as AppCompatActivity).supportActionBar?.hide()
         super.onPause()
+    }
+
+    fun resetPassword(newPassword: String, confirmCode: String) {
+        Amplify.Auth.confirmResetPassword(newPassword, confirmCode,
+            {
+                // reset password was successful
+                Log.i("", "")
+            },
+            {
+                // reset password failed
+                Log.e("", "")
+            }
+        )
     }
 }
