@@ -79,7 +79,7 @@ class AddTaskFragment : Fragment() {
     }
 
     private fun bind(task: Task) {
-        bindng.apply {
+        binding.apply {
             taskTitle.setText(task.taskTitle, TextView.BufferType.SPANNABLE)
             taskDate.setText(task.taskDate, TextView.BufferType.SPANNABLE)
             taskTime.setText(task.taskTime, TextView.BufferType.SPANNABLE)
@@ -97,8 +97,8 @@ class AddTaskFragment : Fragment() {
 //        }
         val id = navigationArgs.taskId
         if (id > 0) {
-            taskViewModel.retrieveTask(id).observe(this.viewLifecycleOwner) { selectedItem ->
-                task = selectedItem
+            taskViewModel.retrieveTask(id).observe(this.viewLifecycleOwner) { selectedTask ->
+                task = selectedTask
                 bind(task)
             }
         } else {

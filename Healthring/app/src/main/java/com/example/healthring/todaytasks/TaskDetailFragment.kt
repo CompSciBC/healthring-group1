@@ -24,7 +24,7 @@ class TaskDetailFragment : Fragment() {
 
     private val navigationArgs: TaskDetailFragmentArgs by navArgs()
 
-    private var _binding: TaskDetailFragmentArgs? = null
+    private var _binding: TaskDetailFragmentBinding? = null
     private val binding get() = _binding!!
 
     lateinit var task: Task

@@ -7,12 +7,15 @@ import com.example.healthring.taskdata.Task
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.healthring.databinding.TodaysTaskFragmentBinding
+import com.example.healthring.databinding.TaskListItemBinding
+
 
 class TaskListAdapter(private val onItemClicked: (Task) -> Unit) :
-    ListAdapter<Task, TaskListAdapter.ItemViewHolder>(DiffCallback) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        return ItemViewHolder(
-            TodaysTaskFragmentBinding.inflate(
+    ListAdapter<Task, TaskListAdapter.TaskViewHolder>(DiffCallback) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
+        return TaskViewHolder(
+//            TodaysTaskFragmentBinding.inflate(
+            TaskListItemBinding.inflate(
                 LayoutInflater.from(
                     parent.context
                 )
@@ -20,7 +23,7 @@ class TaskListAdapter(private val onItemClicked: (Task) -> Unit) :
         )
     }
 
-    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val current = getItem(position)
         holder.itemView.setOnClickListener {
             onItemClicked(current)
@@ -28,7 +31,8 @@ class TaskListAdapter(private val onItemClicked: (Task) -> Unit) :
         holder.bind(current)
     }
 
-    class ItemViewHolder(private var binding: TodaysTaskFragmentBinding) :
+//    class TaskViewHolder(private var binding: TodaysTaskFragmentBinding) :
+    class TaskViewHolder(private var binding: TaskListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(task: Task) {

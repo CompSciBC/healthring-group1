@@ -1,18 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <data>
-        <variable
-            name="taskdetailFragment"
-            type="com.example.healthring.todaytasks.TaskDetailFragment" />
-        <variable
-            name="todaysTasksViewModel"
-            type="com.example.healthring.todaytasks.TodaysTasksViewModel" />
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/margin"
@@ -54,7 +44,7 @@
             tools:text="Notes" />
 
         <Button
-            android:id="@+id/delete_item"
+            android:id="@+id/delete_task"
             style="?attr/materialButtonOutlinedStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -65,7 +55,7 @@
             app:layout_constraintTop_toBottomOf="@id/task_notes" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/edit_item"
+            android:id="@+id/edit_task"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/margin_between_elements"
@@ -77,4 +67,3 @@
             app:tint="@android:color/white" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
