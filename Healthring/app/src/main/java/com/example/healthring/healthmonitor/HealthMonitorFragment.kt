@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
@@ -26,7 +27,9 @@ import com.example.healthring.R
 import com.example.healthring.databinding.HealthMonitorFragmentBinding
 import com.example.healthring.model.DataViewModel
 import com.example.healthring.model.Sensors
+import com.google.android.play.core.internal.t
 import kotlinx.coroutines.*
+import org.w3c.dom.Text
 import java.lang.Thread.sleep
 
 
@@ -35,6 +38,9 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
     private var binding : HealthMonitorFragmentBinding? = null
     private val dataVM: DataViewModel by activityViewModels()
     private val viewModel: HealthMonitorViewModel by viewModels()
+    private lateinit var heartRateTextView: TextView
+    private lateinit var bPressureTextView: TextView
+    private lateinit var bOxygenTextView: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,6 +48,9 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
         savedInstanceState: Bundle?
     ): View? {
         val fragmentBinding = HealthMonitorFragmentBinding.inflate(inflater, container, false)
+        heartRateTextView = fragmentBinding.heartRateTracker
+        bPressureTextView = fragmentBinding.bloodPressureTracker
+        bOxygenTextView = fragmentBinding.bloodOxygenTracker
         binding = fragmentBinding
         return fragmentBinding.root
     }
@@ -125,6 +134,7 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
     }
 
     fun updateHeartRateColor() {
+        heartRateTextView.textSize = dataVM.sensorsTextSize.value!!
         if(dataVM.disableSensorColors.value!!) {
             viewModel.hRateColor.value = ContextCompat.getDrawable(requireContext(), R.drawable.secondary_sesnor_background)
             return
@@ -141,6 +151,7 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
     }
 
     fun updateBloodPressureColor() {
+        bPressureTextView.textSize = dataVM.sensorsTextSize.value!!
         if(dataVM.disableSensorColors.value!!) {
             viewModel.bPressureColor.value = ContextCompat.getDrawable(requireContext(), R.drawable.secondary_sesnor_background)
             return
@@ -157,6 +168,7 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
     }
 
     fun updateBloodOxygenColor() {
+        bOxygenTextView.textSize = dataVM.sensorsTextSize.value!!
         if(dataVM.disableSensorColors.value!!) {
             viewModel.bOxygenColor.value = ContextCompat.getDrawable(requireContext(), R.drawable.secondary_sesnor_background)
             return

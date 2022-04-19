@@ -10,14 +10,15 @@
         <SwitchPreferenceCompat
             app:key="astheics_turnoff_sensor_colors"
             app:title="Disable Sensor Colors"
-            app:summary="Health Monitor sensors will no longer change colors" />
+            app:summary="Health Monitor sensors will no longer change colors"
+            app:defaultValue="false"/>
 
         <SeekBarPreference
-            app:key="sensor_font_size_seekbar"
-            app:title="Font Size for Sensors"
-            app:min="1"
-            android:max="10"
-            app:defaultValue="6"
+            app:key="sensor_text_size_seekbar"
+            app:title="Text Size for Sensors"
+            app:min="35"
+            android:max="60"
+            app:defaultValue="55"
             app:showSeekBarValue="true"/>
 
 

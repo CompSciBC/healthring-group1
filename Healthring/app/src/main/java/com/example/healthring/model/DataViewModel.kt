@@ -50,6 +50,7 @@ class DataViewModel: ViewModel() {
         get() = _steps
 
     val disableSensorColors = MutableLiveData<Boolean>(false)
+    val sensorsTextSize = MutableLiveData<Float>(55f)
 
     var sensorDataList: MutableList<SensorData>? = null
     // default graph sensor
