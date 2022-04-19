@@ -12,7 +12,7 @@ class SplashScreen : Fragment (R.layout.splash_screen_fragment) {
         
         setContentView(R.layout.activity_main)
 
-        support
+        
 
     }
 
