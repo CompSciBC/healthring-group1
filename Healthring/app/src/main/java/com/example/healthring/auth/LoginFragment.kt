@@ -98,13 +98,6 @@ class LoginFragment : Fragment(R.layout.fitness_tracker_fragment) {
         )
     }
 
-    fun signOut() {
-        Amplify.Auth.signOut(
-            { Log.i("LOGINFRAGMENT", "Sign out successful")},
-            { Log.e("LOGINFRAGMENT", "Sign out failed")}
-        )
-    }
-
     private fun handleResult(isSignedIn: Boolean) {
         GlobalScope.launch(Dispatchers.Main) {
             if (isSignedIn) {

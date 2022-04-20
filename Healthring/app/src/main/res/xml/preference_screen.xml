@@ -51,6 +51,10 @@
         app:title="Account">
 
         <Preference
+            app:key="sign_out"
+            app:title="Sign Out" />
+
+        <Preference
             app:key="reset_password"
             app:title="Reset Password" />
 

@@ -22,7 +22,6 @@ import com.example.healthring.model.DataViewModel
 class SettingsFragment : PreferenceFragmentCompat() {
 
     private val dataVM: DataViewModel by activityViewModels()
-    private val healthMonitorViewmodel: HealthMonitorViewModel by viewModels()
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.preference_screen, rootKey)
@@ -30,29 +29,51 @@ class SettingsFragment : PreferenceFragmentCompat() {
         (activity as AppCompatActivity).supportActionBar?.show()
         (activity as AppCompatActivity).supportActionBar?.setTitle("Settings")
 
-        val notificationPref = findPreference<SwitchPreferenceCompat>("astheics_turnoff_sensor_colors")!!
-        notificationPref.setOnPreferenceClickListener {
-            dataVM.disableSensorColors.value = notificationPref.isChecked
+        disableSensorColorsClickListener()
+        sensorTextSizeSliderChangeListener()
+        titlesTextSizeSliderChangeListener()
+        resetPasswordClickListener()
+        signOutClickListener()
+    }
+
+    private fun disableSensorColorsClickListener() {
+        val disableSensorColorsPref = findPreference<SwitchPreferenceCompat>("astheics_turnoff_sensor_colors")
+        disableSensorColorsPref?.setOnPreferenceClickListener {
+            dataVM.disableSensorColors.value = disableSensorColorsPref.isChecked
             true
         }
+    }
 
-        val sensorTextSizeSeekBar = findPreference<SeekBarPreference>("sensor_text_size_seekbar")!!
-        sensorTextSizeSeekBar.setOnPreferenceChangeListener { preference, newValue ->
+    private fun sensorTextSizeSliderChangeListener() {
+        val sensorTextSizeSeekBar = findPreference<SeekBarPreference>("sensor_text_size_seekbar")
+        sensorTextSizeSeekBar?.setOnPreferenceChangeListener { preference, newValue ->
             dataVM.sensorsTextSize.value = newValue.toString().toFloat()
             Log.i("SETTINGS", "newValue: ${dataVM.sensorsTextSize.value}")
             true
         }
+    }
 
-        val titlesTextSizeSeekBar = findPreference<SeekBarPreference>("sensor_title_text_size_seekbar")!!
+    private fun titlesTextSizeSliderChangeListener() {
+        val titlesTextSizeSeekBar = findPreference<SeekBarPreference>("sensor_title_text_size_seekbar")
         titlesTextSizeSeekBar?.setOnPreferenceChangeListener { preference, newValue ->
             dataVM.sensorTitlesTextSize.value = newValue.toString().toFloat()
             Log.i("SETTINGS", "newValue: ${dataVM.sensorTitlesTextSize.value}")
             true
         }
+    }
 
-        val resetPasswordPref = findPreference<Preference>("reset_password")!!
-        resetPasswordPref.setOnPreferenceClickListener {
+    private fun resetPasswordClickListener() {
+        val resetPasswordPref = findPreference<Preference>("reset_password")
+        resetPasswordPref?.setOnPreferenceClickListener {
             goToResetPasswordFragment()
+            true
+        }
+    }
+
+    private fun signOutClickListener() {
+        val signOutPrf = findPreference<Preference>("sign_out")
+        signOutPrf?.setOnPreferenceClickListener {
+            signOut()
             true
         }
     }
@@ -62,7 +83,14 @@ class SettingsFragment : PreferenceFragmentCompat() {
         super.onPause()
     }
 
-    fun goToResetPasswordFragment() {
+    private fun goToResetPasswordFragment() {
         findNavController().navigate(R.id.action_settingsFragment_to_resetPasswordConfirmcodeFragment)
+    }
+
+    private fun signOut() {
+        Amplify.Auth.signOut(
+            { Log.i("LOGINFRAGMENT", "Sign out successful")},
+            { Log.e("LOGINFRAGMENT", "Sign out failed")}
+        )
     }
 }
