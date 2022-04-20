@@ -87,6 +87,11 @@ class SettingsFragment : PreferenceFragmentCompat() {
         super.onPause()
     }
 
+    override fun onResume() {
+        (activity as AppCompatActivity).supportActionBar?.setTitle("Settings")
+        super.onResume()
+    }
+
     private fun goToResetPasswordFragment() {
         findNavController().navigate(R.id.action_settingsFragment_to_resetPasswordConfirmcodeFragment)
     }
