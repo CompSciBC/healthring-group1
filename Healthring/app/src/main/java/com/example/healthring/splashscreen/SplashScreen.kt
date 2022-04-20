@@ -10,7 +10,8 @@ class SplashScreen : Fragment (R.layout.splash_screen_fragment) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.splash_screen_fragment)
+
 
         
 
