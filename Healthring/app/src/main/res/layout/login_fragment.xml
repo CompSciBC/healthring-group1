@@ -125,7 +125,7 @@
             app:backgroundTint="@color/hot_purple"
             android:textColor="#FFFFFF"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:onClick="@{() -> loginFragment.goToHealthMonitorFragment()}" />
+            android:onClick="@{() -> loginFragment.openSesameSignIn()}" />
 
 <!--        <Button-->
 <!--            android:id="@+id/login_open_graph_button"-->

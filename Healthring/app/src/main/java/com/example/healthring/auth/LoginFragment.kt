@@ -98,6 +98,24 @@ class LoginFragment : Fragment(R.layout.fitness_tracker_fragment) {
         )
     }
 
+    fun openSesameSignIn() {
+        Amplify.Auth.signIn("alex@filbert.com", "Password",
+            { result ->
+                // goes to Health Monitor fragment if sign in succeeded
+                handleResult(result.isSignInComplete)
+                if (result.isSignInComplete) {
+                    Log.i("AuthQuickstart", "Sign in succeeded")
+                } else {
+                    Log.i("AuthQuickstart", "Sign in not complete")
+                }
+            },
+            {
+                Log.e("AuthQuickstart", "Failed to sign in", it)
+                Snackbar.make(binding?.root!!, "Username or password entered was not correct.", Snackbar.LENGTH_LONG).show()
+            }
+        )
+    }
+
     private fun handleResult(isSignedIn: Boolean) {
         GlobalScope.launch(Dispatchers.Main) {
             if (isSignedIn) {
