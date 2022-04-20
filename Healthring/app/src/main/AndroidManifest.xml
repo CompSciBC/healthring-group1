@@ -11,9 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Healthring">
-        <activity
-            android:name=".splashscreen.LoadingPage"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name="."-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".MainActivity"
             android:exported="true">

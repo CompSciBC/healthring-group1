@@ -1,7 +1,9 @@
 package com.example.healthring
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.navigation.NavController
@@ -15,6 +17,7 @@ import com.amazonaws.mobile.client.UserStateDetails
 import com.amplifyframework.AmplifyException
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin
 import com.amplifyframework.core.Amplify
+import com.example.healthring.auth.LoginFragment
 import com.example.healthring.model.DataViewModel
 import com.google.android.material.internal.ContextUtils.getActivity
 
@@ -46,6 +49,13 @@ class MainActivity : AppCompatActivity() {
         )
 
         setContentView(R.layout.activity_main)
+
+        //        setContentView(R.layout.loading_page)
+//
+//        Handler().postDelayed({
+//            val intent = Intent(this@MainActivity, LoginFragment::class.java)
+//            startActivity(intent)
+//        }, 3000)
 
         // Get the navigation host fragment from this Activity
         val navHostFragment = supportFragmentManager
