@@ -116,7 +116,8 @@
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="55sp"
-                        tools:text="5000" />
+                        tools:text="5000"
+                        android:afterTextChanged="@{() -> fitnessTrackerFragment.updateStepsTextSize()}"/>
 
                     <ImageButton
                         android:id="@+id/steps_graph_btn"
@@ -165,7 +166,8 @@
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="45sp"
-                        tools:text="12" />
+                        tools:text="12"
+                        android:afterTextChanged="@{() -> fitnessTrackerFragment.updateDistanceTextSize()}"/>
 
                     <ImageButton
                         android:id="@+id/distance_graph_btn"
@@ -207,12 +209,13 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:layout_toStartOf="@id/calories_graph_btn"
+                        android:fontFamily="@font/roboto_regular"
                         android:text="@{dataViewModel.calories.toString() + ` kCal`}"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="55sp"
-                        android:fontFamily="@font/roboto_regular"
-                        tools:text="1242" />
+                        tools:text="1242"
+                        android:afterTextChanged="@{() -> fitnessTrackerFragment.updateCaloriesTextSize()}"/>
 
                     <ImageButton
                         android:id="@+id/calories_graph_btn"

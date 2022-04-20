@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -75,6 +76,18 @@ class FitnessTrackerFragment : Fragment(R.layout.fitness_tracker_fragment) {
                 findNavController().navigate(R.id.action_fitnessTrackerFragment_to_graphFragment)
             }
         }
+    }
+
+    fun updateStepsTextSize() {
+        binding?.fitnessStepsTracker?.textSize = dataVM.sensorsTextSize.value!!
+    }
+
+    fun updateDistanceTextSize() {
+        binding?.fitnessDistanceTracker?.textSize = dataVM.sensorsTextSize.value!!
+    }
+
+    fun updateCaloriesTextSize() {
+        binding?.fitnessCaloriesTracker?.textSize = dataVM.sensorsTextSize.value!!
     }
 
 }
