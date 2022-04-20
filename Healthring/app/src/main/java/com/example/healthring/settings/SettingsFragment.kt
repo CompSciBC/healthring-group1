@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SeekBarPreference
@@ -48,6 +49,12 @@ class SettingsFragment : PreferenceFragmentCompat() {
             Log.i("SETTINGS", "newValue: ${dataVM.sensorTitlesTextSize.value}")
             true
         }
+
+        val resetPasswordPref = findPreference<Preference>("reset_password")!!
+        resetPasswordPref.setOnPreferenceClickListener {
+            goToResetPasswordFragment()
+            true
+        }
     }
 
     override fun onPause() {
@@ -55,16 +62,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         super.onPause()
     }
 
-    fun resetPassword(newPassword: String, confirmCode: String) {
-        Amplify.Auth.confirmResetPassword(newPassword, confirmCode,
-            {
-                // reset password was successful
-                Log.i("", "")
-            },
-            {
-                // reset password failed
-                Log.e("", "")
-            }
-        )
+    fun goToResetPasswordFragment() {
+        findNavController().navigate(R.id.action_settingsFragment_to_resetPasswordConfirmcodeFragment)
     }
 }

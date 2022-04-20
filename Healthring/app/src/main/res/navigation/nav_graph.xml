@@ -110,5 +110,13 @@
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.healthring.settings.SettingsFragment"
-        android:label="SettingsFragment" />
+        android:label="SettingsFragment" >
+        <action
+            android:id="@+id/action_settingsFragment_to_resetPasswordConfirmcodeFragment"
+            app:destination="@id/resetPasswordConfirmcodeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resetPasswordConfirmcodeFragment"
+        android:name="com.example.healthring.settings.ResetPasswordConfirmcodeFragment"
+        android:label="ResetPasswordConfirmcodeFragment" />
 </navigation>

@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.amplifyframework.core.Amplify
 import com.example.healthring.R
 import com.example.healthring.databinding.FitnessTrackerFragmentBinding
 import com.example.healthring.model.DataViewModel
