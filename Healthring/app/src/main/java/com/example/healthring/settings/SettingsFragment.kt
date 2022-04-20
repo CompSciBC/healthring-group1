@@ -22,8 +22,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     private val dataVM: DataViewModel by activityViewModels()
     private val healthMonitorViewmodel: HealthMonitorViewModel by viewModels()
-    private lateinit var notificationPref: SwitchPreferenceCompat
-    private lateinit var textSizeSeekBar: SeekBarPreference
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.preference_screen, rootKey)
@@ -31,16 +29,23 @@ class SettingsFragment : PreferenceFragmentCompat() {
         (activity as AppCompatActivity).supportActionBar?.show()
         (activity as AppCompatActivity).supportActionBar?.setTitle("Settings")
 
-        notificationPref = findPreference<SwitchPreferenceCompat>("astheics_turnoff_sensor_colors")!!
-        notificationPref?.setOnPreferenceClickListener {
+        val notificationPref = findPreference<SwitchPreferenceCompat>("astheics_turnoff_sensor_colors")!!
+        notificationPref.setOnPreferenceClickListener {
             dataVM.disableSensorColors.value = notificationPref.isChecked
             true
         }
 
-        textSizeSeekBar = findPreference<SeekBarPreference>("sensor_text_size_seekbar")!!
-        textSizeSeekBar?.setOnPreferenceChangeListener { preference, newValue ->
+        val sensorTextSizeSeekBar = findPreference<SeekBarPreference>("sensor_text_size_seekbar")!!
+        sensorTextSizeSeekBar.setOnPreferenceChangeListener { preference, newValue ->
             dataVM.sensorsTextSize.value = newValue.toString().toFloat()
             Log.i("SETTINGS", "newValue: ${dataVM.sensorsTextSize.value}")
+            true
+        }
+
+        val titlesTextSizeSeekBar = findPreference<SeekBarPreference>("sensor_title_text_size_seekbar")!!
+        titlesTextSizeSeekBar?.setOnPreferenceChangeListener { preference, newValue ->
+            dataVM.sensorTitlesTextSize.value = newValue.toString().toFloat()
+            Log.i("SETTINGS", "newValue: ${dataVM.sensorTitlesTextSize.value}")
             true
         }
     }

@@ -135,6 +135,7 @@
 
 
                 <TextView
+                    android:id="@+id/fitness_steps_tracker_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Steps"
@@ -183,6 +184,7 @@
 
 
                 <TextView
+                    android:id="@+id/fitness_distance_tracker_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Distance"
@@ -231,6 +233,7 @@
 
 
                 <TextView
+                    android:id="@+id/fitness_calories_tracker_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Calories"

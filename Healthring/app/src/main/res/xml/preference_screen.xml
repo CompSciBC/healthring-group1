@@ -21,6 +21,13 @@
             app:defaultValue="55"
             app:showSeekBarValue="true"/>
 
+        <SeekBarPreference
+            app:key="sensor_title_text_size_seekbar"
+            app:title="Text Size for Sensor Titles"
+            app:min="16"
+            android:max="32"
+            app:defaultValue="24"
+            app:showSeekBarValue="true"/>
 
     </PreferenceCategory>
 

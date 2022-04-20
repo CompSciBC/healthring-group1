@@ -80,14 +80,17 @@ class FitnessTrackerFragment : Fragment(R.layout.fitness_tracker_fragment) {
 
     fun updateStepsTextSize() {
         binding?.fitnessStepsTracker?.textSize = dataVM.sensorsTextSize.value!!
+        binding?.fitnessStepsTrackerTitle?.textSize = dataVM.sensorTitlesTextSize.value!!
     }
 
     fun updateDistanceTextSize() {
         binding?.fitnessDistanceTracker?.textSize = dataVM.sensorsTextSize.value!!
+        binding?.fitnessDistanceTrackerTitle?.textSize = dataVM.sensorTitlesTextSize.value!!
     }
 
     fun updateCaloriesTextSize() {
         binding?.fitnessCaloriesTracker?.textSize = dataVM.sensorsTextSize.value!!
+        binding?.fitnessCaloriesTrackerTitle?.textSize = dataVM.sensorTitlesTextSize.value!!
     }
 
 }
