@@ -249,6 +249,7 @@
                     app:layout_constraintTop_toBottomOf="@id/blood_pressure_tracker" />
 
                 <LinearLayout
+                    android:id="@+id/sensor_color_bubbles"
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
                     app:layout_constraintEnd_toEndOf="parent"

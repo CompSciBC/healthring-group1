@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
@@ -41,6 +42,7 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
     private lateinit var heartRateTextView: TextView
     private lateinit var bPressureTextView: TextView
     private lateinit var bOxygenTextView: TextView
+    private lateinit var sensorColorBubbles: LinearLayout
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,6 +53,7 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
         heartRateTextView = fragmentBinding.heartRateTracker
         bPressureTextView = fragmentBinding.bloodPressureTracker
         bOxygenTextView = fragmentBinding.bloodOxygenTracker
+        sensorColorBubbles = fragmentBinding.sensorColorBubbles
         binding = fragmentBinding
         return fragmentBinding.root
     }
@@ -130,6 +133,11 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
 
     override fun onResume() {
         Log.i("HEALTHFRAGMENT", "Fragment Resumed.")
+        if(dataVM.disableSensorColors.value!!) {
+            sensorColorBubbles.visibility = View.GONE
+        } else {
+            sensorColorBubbles.visibility = View.VISIBLE
+        }
         super.onResume()
     }
 

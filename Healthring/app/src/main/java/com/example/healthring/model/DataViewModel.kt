@@ -113,10 +113,9 @@ class DataViewModel: ViewModel() {
         val endPath = "reports"
         val client = OkHttpClient()
 
-        val url = urlBuilder(endPath, time_scale)
-
-        val request = requestBuilder(url)
         try {
+            val url = urlBuilder(endPath, time_scale)
+            val request = requestBuilder(url)
             val response = client.newCall(request).execute()
             val message = requestSuccess(response)
             if(message != null) {
@@ -124,6 +123,8 @@ class DataViewModel: ViewModel() {
             }
         } catch (e: java.net.UnknownHostException) {
             Log.e("DATAVIEWMODEL", "$e")
+        } catch (e: NullPointerException) {
+            Log.e("DATAVIEWMODEL", "No username found")
         }
     }
 

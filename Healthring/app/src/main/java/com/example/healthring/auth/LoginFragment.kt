@@ -15,6 +15,7 @@ import com.example.healthring.R
 import com.example.healthring.databinding.LoginFragmentBinding
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.*
+import okhttp3.internal.wait
 import java.lang.NullPointerException
 
 class LoginFragment : Fragment(R.layout.fitness_tracker_fragment) {
@@ -61,7 +62,6 @@ class LoginFragment : Fragment(R.layout.fitness_tracker_fragment) {
         val token: String? = session.userPoolTokens.value?.idToken
         if (token != null) {
             setToken(token)
-//            goToHealthMonitorFragment()
         } else {
             Log.e("Token ERROR", "Signed in failed, could not get user Id Token")
         }
@@ -95,6 +95,13 @@ class LoginFragment : Fragment(R.layout.fitness_tracker_fragment) {
                 Log.e("AuthQuickstart", "Failed to sign in", it)
                 Snackbar.make(binding?.root!!, "Username or password entered was not correct.", Snackbar.LENGTH_LONG).show()
             }
+        )
+    }
+
+    fun signOut() {
+        Amplify.Auth.signOut(
+            { Log.i("LOGINFRAGMENT", "Sign out successful")},
+            { Log.e("LOGINFRAGMENT", "Sign out failed")}
         )
     }
 
