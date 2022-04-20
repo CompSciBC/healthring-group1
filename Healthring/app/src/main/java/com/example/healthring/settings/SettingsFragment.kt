@@ -18,6 +18,10 @@ import com.amplifyframework.core.Amplify
 import com.example.healthring.R
 import com.example.healthring.healthmonitor.HealthMonitorViewModel
 import com.example.healthring.model.DataViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class SettingsFragment : PreferenceFragmentCompat() {
 
@@ -89,8 +93,17 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     private fun signOut() {
         Amplify.Auth.signOut(
-            { Log.i("LOGINFRAGMENT", "Sign out successful")},
-            { Log.e("LOGINFRAGMENT", "Sign out failed")}
+            {
+                Log.i("SETTINGS", "Sign out successful")
+                goToLoginFragment()
+            },
+            { Log.e("SETTINGS", "Sign out failed")}
         )
+    }
+
+    private fun goToLoginFragment() {
+        CoroutineScope(Dispatchers.Main).launch() {
+            findNavController().navigate(R.id.action_settingsFragment_to_loginFragment)
+        }
     }
 }

@@ -114,6 +114,9 @@
         <action
             android:id="@+id/action_settingsFragment_to_resetPasswordConfirmcodeFragment"
             app:destination="@id/resetPasswordConfirmcodeFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/resetPasswordConfirmcodeFragment"
