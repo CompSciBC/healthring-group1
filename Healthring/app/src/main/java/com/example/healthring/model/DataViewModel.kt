@@ -183,7 +183,6 @@ class DataViewModel: ViewModel() {
 
     private fun processReportData(response: String?) {
         // response will most likely be a string of comma-separated JSON objects
-        // TODO: get rid of assertion
         val sensorDataArray: MutableList<String> = response
             ?.split(Regex("\\}, \\{"))!!
             .map { it -> it.trim() }

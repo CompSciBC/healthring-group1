@@ -9,9 +9,12 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.core.app.CoreComponentFactory
+import androidx.core.view.get
+import androidx.core.view.size
 import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.healthring.R
@@ -39,6 +42,7 @@ class GraphFragment: Fragment(R.layout.graph_fragment), AdapterView.OnItemSelect
 
     private var binding : GraphFragmentBinding? = null
     private val dataVM: DataViewModel by activityViewModels()
+    private val viewmodel: GraphViewModel by viewModels()
     private val _plotTitle = MutableLiveData("Heart Rate")
     val plotTitle : LiveData<String>
         get() = _plotTitle
@@ -70,14 +74,23 @@ class GraphFragment: Fragment(R.layout.graph_fragment), AdapterView.OnItemSelect
         }
         sensorDataList = dataVM.sensorDataList
         graphStartingSensor = dataVM.graphStartingSensor
+        barChart = binding?.barChart
+        setBarData()
 
         // prepare the spinner
-        val spinner: Spinner = binding?.dataSelectSpinner!!
-        ArrayAdapter.createFromResource(requireContext(), R.array.sensor_names_array, android.R.layout.simple_spinner_item).also { adapter ->
+        val dataSelectSpinner: Spinner = binding?.dataSelectSpinner!!
+        ArrayAdapter.createFromResource(requireContext(), R.array.sensor_names_array, R.layout.custom_graph_sensor_spinner).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            spinner.adapter = adapter
+            dataSelectSpinner.adapter = adapter
         }
-        spinner.onItemSelectedListener = this
+        dataSelectSpinner.onItemSelectedListener = this
+
+        val timescaleSelectSpinner: Spinner = binding?.graphPlotTimescale!!
+        ArrayAdapter.createFromResource(requireContext(), R.array.graph_xaxis_timescale, R.layout.custom_graph_timescale_spinner).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            timescaleSelectSpinner.adapter = adapter
+        }
+        timescaleSelectSpinner.onItemSelectedListener = this
     }
 
     private fun plotBOxygen() {
@@ -117,7 +130,7 @@ class GraphFragment: Fragment(R.layout.graph_fragment), AdapterView.OnItemSelect
     }
 
     private fun refreshGraph() {
-        barChart?.data = getBarChartData(graphStartingSensor)
+        barChart?.data = viewmodel.getBarChartData(graphStartingSensor)
         barChart?.notifyDataSetChanged()
         barChart?.invalidate();
         barChart?.animateY(500)
@@ -126,21 +139,76 @@ class GraphFragment: Fragment(R.layout.graph_fragment), AdapterView.OnItemSelect
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         Log.i("GRAPHFRAG", "${parent?.getItemAtPosition(position)} was selected.")
         val itemSelected = parent?.getItemAtPosition(position)
-        when(itemSelected) {
-            "HEART RATE" -> plotHRate()
-            "BLOOD PRESSURE" -> plotBPressure()
-            "BLOOD OXYGEN" -> plotBOxygen()
-            "STEPS" -> plotSteps()
-            "DISTANCE" -> plotDistance()
-            "CALORIES" -> plotCalories()
-            else -> {
-                Log.e("GRAPHFRAG", "Error occurred during graph data spinner selection")
+        if(parent?.count == 3) {
+            when(itemSelected) {
+                "WEEKLY" -> return
+                "DAILY" -> return
+                "HOURLY" -> return
+                else -> Log.e("GRAPHFRAG", "Error occurred during graph data spinner selection")
+            }
+        } else {
+            when(itemSelected) {
+                "HEART RATE" -> plotHRate()
+                "BLOOD PRESSURE" -> plotBPressure()
+                "BLOOD OXYGEN" -> plotBOxygen()
+                "STEPS" -> plotSteps()
+                "DISTANCE" -> plotDistance()
+                "CALORIES" -> plotCalories()
+                else -> Log.e("GRAPHFRAG", "Error occurred during graph data spinner selection")
             }
         }
+
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
         Log.i("GRAPHFRAG", "Nothing was selected.")
+    }
+
+    fun setBarData() {
+        setBarChartProperties()
+        barChart?.data = viewmodel.getBarChartData(dataVM.graphStartingSensor)
+        setBarChartXAxis()
+    }
+
+    private fun setBarChartProperties() {
+        barChart?.setDrawBarShadow(false)
+        barChart?.setDrawValueAboveBar(true)
+        barChart?.description?.isEnabled = false
+        barChart?.setMaxVisibleValueCount(60)
+        barChart?.setPinchZoom(false)
+        barChart?.setDrawGridBackground(false)
+        barChart?.legend?.isEnabled = false
+        barChart?.invalidate()
+        barChart?.animateY(500)
+    }
+
+    private fun setBarChartXAxis() {
+        val xAxis = barChart?.xAxis
+        val currentDateTime = LocalDateTime.now()
+        var xAxisDayOfWeek = currentDateTime.with(TemporalAdjusters.previous(DayOfWeek.of(currentDateTime.dayOfWeek.value)))
+        // x-axis formatter needs a list of strings to represent the days of the week
+        val weekdays = ArrayList<String>()
+        for (i in 0..6) {
+            xAxisDayOfWeek = xAxisDayOfWeek.plusDays(1)
+            when (xAxisDayOfWeek.dayOfWeek.value) {
+                1 -> weekdays.add("Mon")
+                2 -> weekdays.add("Tue")
+                3 -> weekdays.add("Wed")
+                4 -> weekdays.add("Thu")
+                5 -> weekdays.add("Fri")
+                6 -> weekdays.add("Sat")
+                7 -> weekdays.add("Sun")
+            }
+        }
+        xAxis?.valueFormatter = IndexAxisValueFormatter(weekdays)
+        xAxis?.textColor = Color.BLACK
+        xAxis?.position = XAxis.XAxisPosition.BOTTOM
+        // y-axis left side
+        val leftAxis = barChart?.axisLeft
+        leftAxis?.textColor = Color.BLACK
+        // y-axis right side
+        val rightAxis = barChart?.axisRight
+        rightAxis?.textColor = Color.BLACK
     }
 }
 
@@ -162,7 +230,7 @@ fun setLineGraphData(chart: BarChart, sensor: Sensors) {
 
 
     // must specify which type of data the bar chart should open with
-    chart.data = getBarChartData(sensor)
+//    chart.data = getBarChartData(sensor)
     // setting the x-axis values
     val xAxis = chart.xAxis
     val currentDateTime = LocalDateTime.now()
@@ -192,47 +260,4 @@ fun setLineGraphData(chart: BarChart, sensor: Sensors) {
     rightAxis.textColor = Color.BLACK
 }
 
-private fun getBarChartData(sensor: Sensors): BarData {
-    val values = ArrayList<BarEntry>()
-    val currentDateTime = LocalDateTime.now()
-    // comparison date, starting from the oldest day. In this case, the day from one week ago
-    var comparisonDate =
-        currentDateTime.with(TemporalAdjusters.previous(DayOfWeek.of(currentDateTime.dayOfWeek.value)))
-    for (i in 0..6) {
-        var sumOfData = 0
-        var numOfDataPoints = 0
-        // looping through sensor data, summing sensor data grouped by day of the week
-        for (sData in 0 until sensorDataList?.size!!) {
-            val sDate = sensorDataList!![sData].date
-            // string date needs to be converted to a LocalDateTime
-            val date: LocalDateTime =
-                LocalDateTime.parse(sDate, DateTimeFormatter.ISO_LOCAL_DATE_TIME)
-            if (comparisonDate.dayOfMonth == date.dayOfMonth && comparisonDate.monthValue == date.monthValue) {
-                sumOfData += when (sensor) {
-                    Sensors.STEPS -> sensorDataList!![sData].steps.toInt()
-                    Sensors.B_OXYGEN -> sensorDataList!![sData].blood_oxygen.toInt()
-                    Sensors.B_PRESSURE -> sensorDataList!![sData].blood_pressure.toInt()
-                    Sensors.DISTANCE -> sensorDataList!![sData].distance.toInt()
-                    Sensors.CALORIES -> sensorDataList!![sData].calories_burnt.toInt()
-                    Sensors.H_RATE -> sensorDataList!![sData].heart_rate.toInt()
-                }
-                numOfDataPoints++
-            }
-        }
-        if (sumOfData != 0) {
-            values.add(BarEntry(i.toFloat(), (sumOfData / numOfDataPoints).toFloat()))
-        } else {
-            values.add(BarEntry(i.toFloat(), 0f))
-        }
-        comparisonDate = comparisonDate.plusDays(1)
-    }
-
-    val set1 = BarDataSet(values, "DataSet 1")
-    set1.color = Color.rgb(20, 204, 201)
-    val data = BarData(set1)
-    data.setValueTextSize(10f);
-    data.barWidth = 0.9f;
-    data.setValueTextColor(Color.BLACK)
-    return data
-}
 

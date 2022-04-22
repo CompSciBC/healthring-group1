@@ -8,4 +8,9 @@
         <item>DISTANCE</item>
         <item>CALORIES</item>
     </string-array>
+    <string-array name="graph_xaxis_timescale">
+        <item>WEEKLY</item>
+        <item>DAILY</item>
+        <item>HOURLY</item>
+    </string-array>
 </resources>
