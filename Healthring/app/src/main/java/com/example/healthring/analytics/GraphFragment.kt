@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.core.app.CoreComponentFactory
 import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment
@@ -33,7 +35,7 @@ var graphStartingSensor: Sensors = Sensors.H_RATE
 var barChart: BarChart? = null
 
 
-class GraphFragment: Fragment(R.layout.graph_fragment) {
+class GraphFragment: Fragment(R.layout.graph_fragment), AdapterView.OnItemSelectedListener {
 
     private var binding : GraphFragmentBinding? = null
     private val dataVM: DataViewModel by activityViewModels()
@@ -68,55 +70,78 @@ class GraphFragment: Fragment(R.layout.graph_fragment) {
         }
         sensorDataList = dataVM.sensorDataList
         graphStartingSensor = dataVM.graphStartingSensor
+
+        // prepare the spinner
+        val spinner: Spinner = binding?.dataSelectSpinner!!
+        ArrayAdapter.createFromResource(requireContext(), R.array.sensor_names_array, android.R.layout.simple_spinner_item).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinner.adapter = adapter
+        }
+        spinner.onItemSelectedListener = this
     }
 
-    fun plotBOxygen() {
+    private fun plotBOxygen() {
         graphStartingSensor = Sensors.B_OXYGEN
         _plotTitle.value = "Blood Oxygen"
         refreshGraph()
     }
 
-    fun plotBPressure() {
+    private fun plotBPressure() {
         graphStartingSensor = Sensors.B_PRESSURE
         _plotTitle.value = "Blood Pressure"
         refreshGraph()
     }
 
-    fun plotSteps() {
+    private fun plotSteps() {
         graphStartingSensor = Sensors.STEPS
         _plotTitle.value = "Steps"
         refreshGraph()
     }
 
-    fun plotDistance() {
+    private fun plotDistance() {
         graphStartingSensor = Sensors.DISTANCE
         _plotTitle.value = "Distance"
         refreshGraph()
     }
 
-    fun plotCalories() {
+    private fun plotCalories() {
         graphStartingSensor = Sensors.CALORIES
         _plotTitle.value = "Calories"
         refreshGraph()
     }
 
-    fun plotHRate() {
+    private fun plotHRate() {
         graphStartingSensor = Sensors.H_RATE
         _plotTitle.value = "Heart Rate"
         refreshGraph()
     }
 
-    fun refreshGraph() {
+    private fun refreshGraph() {
         barChart?.data = getBarChartData(graphStartingSensor)
         barChart?.notifyDataSetChanged()
         barChart?.invalidate();
         barChart?.animateY(500)
     }
 
-//    fun setSomething() {
-//        var barChart: BarChart = binding?.barChart!!
-//        barChart.background = resources.getDrawable(R.drawable.green_border)
-//    }
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        Log.i("GRAPHFRAG", "${parent?.getItemAtPosition(position)} was selected.")
+        val itemSelected = parent?.getItemAtPosition(position)
+        when(itemSelected) {
+            "HEART RATE" -> plotHRate()
+            "BLOOD PRESSURE" -> plotBPressure()
+            "BLOOD OXYGEN" -> plotBOxygen()
+            "STEPS" -> plotSteps()
+            "DISTANCE" -> plotDistance()
+            "CALORIES" -> plotCalories()
+            else -> {
+                Log.e("GRAPHFRAG", "Error occurred during graph data spinner selection")
+            }
+        }
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+        Log.i("GRAPHFRAG", "Nothing was selected.")
+    }
 }
 
 // a guarentee must be made before this binding adapter function is called: SensorDataList must not be

@@ -12,33 +12,38 @@
             type="com.example.healthring.model.DataViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="0dp">
+        android:padding="0dp"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/plot_title_textview"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:text="@{graphFragment.plotTitle}"
             android:textColor="@color/black"
             android:textAlignment="center"
             android:textSize="50sp"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end">
+
+            <Spinner
+                android:id="@+id/data_select_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="40sp">
+            </Spinner>
+        </LinearLayout>
+
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/bar_chart"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="70dp"
-            android:layout_marginBottom="150dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/plot_title_textview"
             android:setBarData="@{dataViewModel.graphStartingSensor}"
             />
 
@@ -71,82 +76,81 @@
 <!--        </com.google.android.material.textfield.TextInputLayout>-->
 
 
-        <Button
-            android:id="@+id/graph_steps_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bar_chart"
-            android:layout_marginHorizontal="40dp"
-            android:backgroundTint="@color/hot_purple"
-            android:text="Steps"
-            android:textSize="10sp"
-            android:onClick="@{() -> graphFragment.plotSteps()}"/>
-
-        <Button
-            android:id="@+id/graph_b_pressure_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@+id/graph_steps_button"
-            app:layout_constraintTop_toTopOf="@+id/graph_steps_button"
-            android:layout_marginHorizontal="40dp"
-            android:backgroundTint="@color/hot_purple"
-            android:text="blood\npressure"
-            android:textSize="10sp"
-            android:onClick="@{() -> graphFragment.plotBPressure()}"/>
-
-        <Button
-            android:id="@+id/graph_b_oxygen_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@+id/graph_b_pressure_button"
-            app:layout_constraintTop_toTopOf="@+id/graph_b_pressure_button"
-            android:layout_marginHorizontal="40dp"
-            android:backgroundTint="@color/hot_purple"
-            android:text="blood\noxygen"
-            android:textSize="10sp"
-            android:onClick="@{() -> graphFragment.plotBOxygen()}"/>
-
-        <Button
-            android:id="@+id/graph_distance_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/graph_steps_button"
-            android:layout_marginHorizontal="40dp"
-            android:backgroundTint="@color/hot_purple"
-            android:text="distance"
-            android:textSize="10sp"
-            android:onClick="@{() -> graphFragment.plotDistance()}"/>
-
-        <Button
-            android:id="@+id/graph_calories_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@+id/graph_distance_button"
-            app:layout_constraintTop_toTopOf="@+id/graph_distance_button"
-            android:layout_marginHorizontal="40dp"
-            android:backgroundTint="@color/hot_purple"
-            android:text="calories"
-            android:textSize="10sp"
-            android:onClick="@{() -> graphFragment.plotCalories()}"/>
-
-        <Button
-            android:id="@+id/graph_h_rate_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/graph_calories_button"
-            app:layout_constraintTop_toTopOf="@id/graph_calories_button"
-            app:layout_constraintTop_toBottomOf="@+id/bar_chart"
-            android:layout_marginHorizontal="40dp"
-            android:backgroundTint="@color/hot_purple"
-            android:text="heart\nrate"
-            android:textSize="10sp"
-            android:onClick="@{() -> graphFragment.setSomething()}"/>
 
 
+<!--        <Button-->
+<!--            android:id="@+id/graph_steps_button"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/bar_chart"-->
+<!--            android:layout_marginHorizontal="40dp"-->
+<!--            android:backgroundTint="@color/hot_purple"-->
+<!--            android:text="Steps"-->
+<!--            android:textSize="10sp"-->
+<!--            android:onClick="@{() -> graphFragment.plotSteps()}"/>-->
 
+<!--        <Button-->
+<!--            android:id="@+id/graph_b_pressure_button"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/graph_steps_button"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/graph_steps_button"-->
+<!--            android:layout_marginHorizontal="40dp"-->
+<!--            android:backgroundTint="@color/hot_purple"-->
+<!--            android:text="blood\npressure"-->
+<!--            android:textSize="10sp"-->
+<!--            android:onClick="@{() -> graphFragment.plotBPressure()}"/>-->
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+<!--        <Button-->
+<!--            android:id="@+id/graph_b_oxygen_button"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/graph_b_pressure_button"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/graph_b_pressure_button"-->
+<!--            android:layout_marginHorizontal="40dp"-->
+<!--            android:backgroundTint="@color/hot_purple"-->
+<!--            android:text="blood\noxygen"-->
+<!--            android:textSize="10sp"-->
+<!--            android:onClick="@{() -> graphFragment.plotBOxygen()}"/>-->
+
+<!--        <Button-->
+<!--            android:id="@+id/graph_distance_button"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/graph_steps_button"-->
+<!--            android:layout_marginHorizontal="40dp"-->
+<!--            android:backgroundTint="@color/hot_purple"-->
+<!--            android:text="distance"-->
+<!--            android:textSize="10sp"-->
+<!--            android:onClick="@{() -> graphFragment.plotDistance()}"/>-->
+
+<!--        <Button-->
+<!--            android:id="@+id/graph_calories_button"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/graph_distance_button"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/graph_distance_button"-->
+<!--            android:layout_marginHorizontal="40dp"-->
+<!--            android:backgroundTint="@color/hot_purple"-->
+<!--            android:text="calories"-->
+<!--            android:textSize="10sp"-->
+<!--            android:onClick="@{() -> graphFragment.plotCalories()}"/>-->
+
+<!--        <Button-->
+<!--            android:id="@+id/graph_h_rate_button"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintStart_toEndOf="@id/graph_calories_button"-->
+<!--            app:layout_constraintTop_toTopOf="@id/graph_calories_button"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/bar_chart"-->
+<!--            android:layout_marginHorizontal="40dp"-->
+<!--            android:backgroundTint="@color/hot_purple"-->
+<!--            android:text="heart\nrate"-->
+<!--            android:textSize="10sp"-->
+<!--            android:onClick="@{() -> graphFragment.setSomething()}"/>-->
+
+    </LinearLayout>
 </layout>

@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Healthring</string>
+    <string-array name="sensor_names_array">
+        <item>HEART RATE</item>
+        <item>BLOOD PRESSURE</item>
+        <item>BLOOD OXYGEN</item>
+        <item>STEPS</item>
+        <item>DISTANCE</item>
+        <item>CALORIES</item>
+    </string-array>
 </resources>
