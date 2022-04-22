@@ -35,10 +35,6 @@
         app:key="notifications_category"
         app:title="Notifications">
 
-        <SwitchPreferenceCompat
-            app:key="enable_email_notifications"
-            app:title="Enable email notifications"/>
-
         <Preference
             app:key="email_notifications"
             app:title="Email Notifications"

@@ -18,83 +18,96 @@
         android:layout_height="match_parent"
         android:background="@color/white">
 
-        <TextView
-            android:id="@+id/health_ring"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/header_container"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="HealthRing"
-            android:textColor="@color/hot_purple"
-            android:textSize="24sp"
-            android:layout_marginTop="18dp"
-            android:layout_marginLeft="18dp"
-            android:textStyle="normal"
-            android:fontFamily="@font/roboto_regular"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/health_ring_logo"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginStart="8dp"
-            app:layout_constraintStart_toEndOf="@id/health_ring"
-            app:layout_constraintTop_toTopOf="@id/health_ring"
-            android:src="@drawable/logo_transparent" />
-
-        <ImageButton
-            android:id="@+id/settings_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/settings_icon"
-            app:tint="@color/hot_purple"
-            android:layout_marginEnd="5dp"
-            android:scaleX="1.4"
-            android:scaleY="1.4"
-            android:backgroundTint="@color/white"
-            app:layout_constraintTop_toTopOf="@+id/profile_picture_button"
-            app:layout_constraintBottom_toBottomOf="@+id/profile_picture_button"
-            app:layout_constraintEnd_toStartOf="@+id/profile_picture_button"
-            android:onClick="@{() -> fitnessTrackerFragment.goToSettingsFragment()}"/>
-
-        <ImageButton
-            android:id="@+id/profile_picture_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/profile_icon"
-            android:layout_margin="6dp"
-            app:tint="@color/hot_purple"
-            android:backgroundTint="@color/white"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:onClick="@{() -> fitnessTrackerFragment.goToProfileFragment()}" />
-
-        <TextView
-            android:id="@+id/fitness_tracker_header"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Fitness Tracker"
-            android:textColor="@color/black"
-            android:textSize="36sp"
-            android:textStyle="bold"
-            android:fontFamily="@font/roboto_regular"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/health_ring"
-            app:layout_constraintBottom_toTopOf="@+id/fitness_sensor_scrollview"/>
+            android:orientation="horizontal"
+            android:background="@drawable/header_semicircle_background">
+
+            <TextView
+                android:id="@+id/health_ring"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="HealthRing"
+                android:layout_marginLeft="18dp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="normal"
+                android:fontFamily="@font/roboto_regular"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/profile_picture_button"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- ImageView for HealthRing Logo, update later with transparent one -->
+            <ImageView
+                android:id="@+id/health_ring_logo"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="10dp"
+                android:scaleX="1.4"
+                android:scaleY="1.4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:src="@drawable/logo_transparent" />
+
+            <ImageButton
+                android:id="@+id/profile_picture_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                app:srcCompat="@drawable/profile_icon"
+                app:tint="@color/black"
+                android:backgroundTint="@color/hot_purple"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:onClick="@{() -> fitnessTrackerFragment.goToProfileFragment()}" />
+
+            <ImageButton
+                android:id="@+id/settings_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/settings_icon"
+                app:tint="@color/black"
+                android:scaleX="0.8"
+                android:scaleY="0.8"
+                android:backgroundTint="@color/hot_purple"
+                app:layout_constraintTop_toTopOf="@+id/profile_picture_button"
+                app:layout_constraintBottom_toBottomOf="@+id/profile_picture_button"
+                app:layout_constraintStart_toEndOf="@+id/profile_picture_button"
+                android:onClick="@{() -> fitnessTrackerFragment.goToSettingsFragment()}"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ScrollView
             android:id="@+id/fitness_sensor_scrollview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/fitness_tracker_header"
+            app:layout_constraintTop_toBottomOf="@id/header_container"
             app:layout_constraintBottom_toTopOf="@id/fitness_nav_container">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="24dp">
+                android:paddingHorizontal="24dp">
+
+                <TextView
+                    android:id="@+id/fitness_tracker_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:text="Fitness Tracker"
+                    android:textColor="@color/hot_purple"
+                    android:textSize="36sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/roboto_regular" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -111,13 +124,13 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:layout_toStartOf="@id/steps_graph_btn"
+                        android:afterTextChanged="@{() -> fitnessTrackerFragment.updateStepsTextSize()}"
                         android:fontFamily="@font/roboto_regular"
                         android:text="@{dataViewModel.steps.toString()}"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="55sp"
-                        tools:text="5000"
-                        android:afterTextChanged="@{() -> fitnessTrackerFragment.updateStepsTextSize()}"/>
+                        tools:text="5000" />
 
                     <ImageButton
                         android:id="@+id/steps_graph_btn"
@@ -132,8 +145,6 @@
 
                 </RelativeLayout>
 
-
-
                 <TextView
                     android:id="@+id/fitness_steps_tracker_title"
                     android:layout_width="match_parent"
@@ -141,7 +152,7 @@
                     android:text="Steps"
                     android:textAlignment="center"
                     android:textSize="24sp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/hot_purple"
                     android:fontFamily="@font/roboto_regular"
                     app:layout_constraintTop_toBottomOf="@id/heart_rate_tracker" />
 
@@ -190,7 +201,7 @@
                     android:text="Distance"
                     android:textAlignment="center"
                     android:textSize="24sp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/hot_purple"
                     android:fontFamily="@font/roboto_regular"
                     app:layout_constraintTop_toBottomOf="@id/blood_pressure_tracker" />
 
@@ -239,7 +250,7 @@
                     android:text="Calories"
                     android:textAlignment="center"
                     android:textSize="24sp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/hot_purple"
                     android:fontFamily="@font/roboto_regular"
                     app:layout_constraintTop_toBottomOf="@id/blood_pressure_tracker" />
 
@@ -264,7 +275,7 @@
                 android:backgroundTint="@color/hot_purple"
                 android:textSize="18sp"
                 app:srcCompat="@drawable/health_icon"
-                app:tint="@color/white"
+                app:tint="@color/black"
                 android:onClick="@{() -> fitnessTrackerFragment.goToHealthMonitorFragment()}"/>
 
             <ImageButton
@@ -277,7 +288,7 @@
                 android:backgroundTint="@color/hot_purple"
                 android:textSize="18sp"
                 app:srcCompat="@drawable/fitness_icon"
-                app:tint="@color/white"
+                app:tint="@color/black"
                 />
 
             <ImageButton
@@ -290,7 +301,7 @@
                 android:backgroundTint="@color/hot_purple"
                 android:textSize="18sp"
                 app:srcCompat="@drawable/tasks_icon"
-                app:tint="@color/white"
+                app:tint="@color/black"
                 android:onClick="@{() -> fitnessTrackerFragment.goToTaskFragment()}"/>
         </LinearLayout>
 

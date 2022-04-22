@@ -1,5 +1,6 @@
 package com.example.healthring.settings
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -27,9 +28,11 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     private val dataVM: DataViewModel by activityViewModels()
 
+    @SuppressLint("RestrictedApi")
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.preference_screen, rootKey)
-
+        (activity as AppCompatActivity).supportActionBar?.setShowHideAnimationEnabled(false)
+        (activity as AppCompatActivity).supportActionBar?.setBackgroundDrawable(resources.getDrawable(R.drawable.hot_purple_drawable))
         (activity as AppCompatActivity).supportActionBar?.show()
         (activity as AppCompatActivity).supportActionBar?.setTitle("Settings")
 
@@ -38,6 +41,19 @@ class SettingsFragment : PreferenceFragmentCompat() {
         titlesTextSizeSliderChangeListener()
         resetPasswordClickListener()
         signOutClickListener()
+
+        val notificationPref = findPreference<Preference>("email_notifications")
+        notificationPref?.setOnPreferenceClickListener {
+            goToNotificationsScreen()
+            true
+        }
+
+//        val resetToDefaultPref = findPreference<Preference>("reset_to_default_settings")
+//        notificationPref?.setOnPreferenceClickListener {
+//            val notificationPref1 = findPreference<Preference>("notify_heart_rate")
+//            notificationPref.isEnabled = false
+//            true
+//        }
     }
 
     private fun disableSensorColorsClickListener() {
@@ -88,6 +104,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
 
     override fun onResume() {
+        (activity as AppCompatActivity).supportActionBar?.show()
         (activity as AppCompatActivity).supportActionBar?.setTitle("Settings")
         super.onResume()
     }
@@ -109,6 +126,12 @@ class SettingsFragment : PreferenceFragmentCompat() {
     private fun goToLoginFragment() {
         CoroutineScope(Dispatchers.Main).launch() {
             findNavController().navigate(R.id.action_settingsFragment_to_loginFragment)
+        }
+    }
+
+    private fun goToNotificationsScreen() {
+        CoroutineScope(Dispatchers.Main).launch() {
+            findNavController().navigate(R.id.action_settingsFragment_to_notificationsFragment)
         }
     }
 }

@@ -26,7 +26,6 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/health_sensor_scrollview"
             android:orientation="horizontal"
             android:background="@drawable/header_semicircle_background">
 
@@ -96,24 +95,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/header_container"
-            app:layout_constraintBottom_toTopOf="@id/health_nav_container">
+            app:layout_constraintBottom_toTopOf="@id/health_nav_container"
+            tools:layout_editor_absoluteX="-31dp">
 
             <LinearLayout
                 android:id="@+id/health_sensor_l_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingHorizontal="24dp"
-                android:paddingVertical="6dp">
+                android:paddingHorizontal="24dp">
 
                 <TextView
-                    android:id="@+id/health_monitor_header"
+                    android:id="@+id/sdfsdf"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="6dp"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="Health Monitor"
                     android:textAlignment="center"
-                    android:fontFamily="@font/roboto_regular"
                     android:textColor="@color/hot_purple"
                     android:textSize="36sp"
                     android:textStyle="bold" />
@@ -121,9 +119,9 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@{healthMonitorViewModel.hRateColor}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:background="@{healthMonitorViewModel.hRateColor}"
                     tools:background="@drawable/green_border">
 
                     <TextView
@@ -154,26 +152,25 @@
                 </RelativeLayout>
 
 
-
                 <TextView
                     android:id="@+id/heart_rate_tracker_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="Heart Rate"
                     android:textAlignment="center"
-                    android:textSize="24sp"
                     android:textColor="@color/hot_purple"
-                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="24sp"
                     app:layout_constraintTop_toBottomOf="@id/heart_rate_tracker" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:background="@{healthMonitorViewModel.bPressureColor}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginTop="32dp"
                     app:layout_constraintTop_toBottomOf="@id/blood_pressure_tracker"
-                    android:background="@{healthMonitorViewModel.bPressureColor}"
                     tools:background="@drawable/blue_border">
 
                     <TextView
@@ -208,23 +205,22 @@
                     android:id="@+id/blood_pressure_tracker_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="Blood Pressure"
                     android:textAlignment="center"
-                    android:textSize="24sp"
                     android:textColor="@color/hot_purple"
-                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="24sp"
                     app:layout_constraintTop_toBottomOf="@id/blood_pressure_tracker" />
-
 
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:background="@{healthMonitorViewModel.bOxygenColor}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginTop="32dp"
                     app:layout_constraintTop_toBottomOf="@id/blood_pressure_tracker"
-                    android:background="@{healthMonitorViewModel.bOxygenColor}"
                     tools:background="@drawable/red_border">
 
                     <TextView
@@ -258,24 +254,25 @@
                     android:id="@+id/blood_oxygen_tracker_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="Blood Oxygen"
                     android:textAlignment="center"
-                    android:textSize="24sp"
                     android:textColor="@color/hot_purple"
-                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="24sp"
                     app:layout_constraintTop_toBottomOf="@id/blood_pressure_tracker" />
 
                 <LinearLayout
                     android:id="@+id/sensor_color_bubbles"
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/blood_oxygen_tracker_title">
 
                     <TextView
+                        android:id="@+id/sensor_low_bubble"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -283,10 +280,10 @@
                         android:text="LOW"
                         android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
-                        />
+                        android:textSize="18sp" />
 
                     <TextView
+                        android:id="@+id/sensor_normal_bubble"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -294,10 +291,10 @@
                         android:text="NORMAL"
                         android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
-                        />
+                        android:textSize="18sp" />
 
                     <TextView
+                        android:id="@+id/sensor_high_bubble"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -305,10 +302,10 @@
                         android:text="HIGH"
                         android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
-                        />
+                        android:textSize="18sp" />
 
                     <TextView
+                        android:id="@+id/sensor_critical_bubble"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -316,8 +313,7 @@
                         android:text="CRITICAL"
                         android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
-                        />
+                        android:textSize="18sp" />
 
                 </LinearLayout>
 

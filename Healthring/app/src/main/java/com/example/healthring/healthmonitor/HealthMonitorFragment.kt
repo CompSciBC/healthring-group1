@@ -125,12 +125,16 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
 
     override fun onResume() {
         Log.i("HEALTHFRAGMENT", "Fragment Resumed.")
+        hideOrShowSensorColorBubble()
+        super.onResume()
+    }
+
+    private fun hideOrShowSensorColorBubble() {
         if(dataVM.disableSensorColors.value!!) {
-            binding?.sensorColorBubbles?.visibility = View.GONE
+            binding?.sensorColorBubbles?.visibility = View.INVISIBLE
         } else {
             binding?.sensorColorBubbles?.visibility = View.VISIBLE
         }
-        super.onResume()
     }
 
     fun updateHeartRateColor() {

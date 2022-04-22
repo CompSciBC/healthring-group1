@@ -112,6 +112,11 @@ class GraphFragment: Fragment(R.layout.graph_fragment) {
         barChart?.invalidate();
         barChart?.animateY(500)
     }
+
+//    fun setSomething() {
+//        var barChart: BarChart = binding?.barChart!!
+//        barChart.background = resources.getDrawable(R.drawable.green_border)
+//    }
 }
 
 // a guarentee must be made before this binding adapter function is called: SensorDataList must not be

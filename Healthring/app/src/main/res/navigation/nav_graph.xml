@@ -117,9 +117,16 @@
         <action
             android:id="@+id/action_settingsFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_notificationsFragment"
+            app:destination="@id/notificationsFragment" />
     </fragment>
     <fragment
         android:id="@+id/resetPasswordConfirmcodeFragment"
         android:name="com.example.healthring.settings.ResetPasswordConfirmcodeFragment"
         android:label="ResetPasswordConfirmcodeFragment" />
+    <fragment
+        android:id="@+id/notificationsFragment"
+        android:name="com.example.healthring.settings.NotificationsFragment"
+        android:label="NotificationsFragment" />
 </navigation>
