@@ -17,6 +17,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.navigation.fragment.findNavController
 import com.example.healthring.R
 import com.example.healthring.databinding.GraphFragmentBinding
 import com.example.healthring.model.DataViewModel
@@ -26,6 +27,9 @@ import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.time.DayOfWeek
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -34,16 +38,16 @@ import java.util.*
 import kotlin.math.absoluteValue
 
 var sensorDataList: MutableList<SensorData>? = null
-var graphStartingSensor: Sensors = Sensors.H_RATE
-var barChart: BarChart? = null
-
 
 class GraphFragment: Fragment(R.layout.graph_fragment), AdapterView.OnItemSelectedListener {
 
     private var binding : GraphFragmentBinding? = null
     private val dataVM: DataViewModel by activityViewModels()
     private val viewmodel: GraphViewModel by viewModels()
+
+    var barChart: BarChart? = null
     private val _plotTitle = MutableLiveData("Heart Rate")
+
     val plotTitle : LiveData<String>
         get() = _plotTitle
 
@@ -65,25 +69,26 @@ class GraphFragment: Fragment(R.layout.graph_fragment), AdapterView.OnItemSelect
             dataViewModel = dataVM
         }
         _plotTitle.value = when (dataVM.graphStartingSensor) {
-            Sensors.STEPS -> "Steps"
-            Sensors.B_OXYGEN -> "Blood Oxygen"
-            Sensors.B_PRESSURE -> "Blood Pressure"
-            Sensors.DISTANCE -> "Distance"
-            Sensors.CALORIES -> "Calories"
-            Sensors.H_RATE -> "Heart Rate"
+            Sensors.STEPS -> "STEPS"
+            Sensors.B_OXYGEN -> "BLOOD OXYGEN"
+            Sensors.B_PRESSURE -> "BLOOD PRESSURE"
+            Sensors.DISTANCE -> "DISTANCE"
+            Sensors.CALORIES -> "CALORIES"
+            Sensors.H_RATE -> "HEART RATE"
         }
         sensorDataList = dataVM.sensorDataList
-        graphStartingSensor = dataVM.graphStartingSensor
         barChart = binding?.barChart
         setBarData()
-
+        Log.i("GRAPHFRAGMENT", Sensors.B_PRESSURE.toString())
         // prepare the spinner
         val dataSelectSpinner: Spinner = binding?.dataSelectSpinner!!
         ArrayAdapter.createFromResource(requireContext(), R.array.sensor_names_array, R.layout.custom_graph_sensor_spinner).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             dataSelectSpinner.adapter = adapter
+            dataSelectSpinner.setSelection(adapter.getPosition(_plotTitle.value))
         }
         dataSelectSpinner.onItemSelectedListener = this
+
 
         val timescaleSelectSpinner: Spinner = binding?.graphPlotTimescale!!
         ArrayAdapter.createFromResource(requireContext(), R.array.graph_xaxis_timescale, R.layout.custom_graph_timescale_spinner).also { adapter ->
@@ -94,46 +99,44 @@ class GraphFragment: Fragment(R.layout.graph_fragment), AdapterView.OnItemSelect
     }
 
     private fun plotBOxygen() {
-        graphStartingSensor = Sensors.B_OXYGEN
         _plotTitle.value = "Blood Oxygen"
         refreshGraph()
     }
 
     private fun plotBPressure() {
-        graphStartingSensor = Sensors.B_PRESSURE
         _plotTitle.value = "Blood Pressure"
         refreshGraph()
     }
 
     private fun plotSteps() {
-        graphStartingSensor = Sensors.STEPS
         _plotTitle.value = "Steps"
         refreshGraph()
     }
 
     private fun plotDistance() {
-        graphStartingSensor = Sensors.DISTANCE
         _plotTitle.value = "Distance"
         refreshGraph()
     }
 
     private fun plotCalories() {
-        graphStartingSensor = Sensors.CALORIES
         _plotTitle.value = "Calories"
         refreshGraph()
     }
 
     private fun plotHRate() {
-        graphStartingSensor = Sensors.H_RATE
         _plotTitle.value = "Heart Rate"
         refreshGraph()
     }
 
     private fun refreshGraph() {
-        barChart?.data = viewmodel.getBarChartData(graphStartingSensor)
+        barChart?.data = viewmodel.getBarChartData(dataVM.graphStartingSensor)
         barChart?.notifyDataSetChanged()
         barChart?.invalidate();
         barChart?.animateY(500)
+    }
+
+    fun navigateUp() {
+        findNavController().navigateUp()
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -164,7 +167,7 @@ class GraphFragment: Fragment(R.layout.graph_fragment), AdapterView.OnItemSelect
         Log.i("GRAPHFRAG", "Nothing was selected.")
     }
 
-    fun setBarData() {
+    private fun setBarData() {
         setBarChartProperties()
         barChart?.data = viewmodel.getBarChartData(dataVM.graphStartingSensor)
         setBarChartXAxis()
@@ -214,50 +217,50 @@ class GraphFragment: Fragment(R.layout.graph_fragment), AdapterView.OnItemSelect
 
 // a guarentee must be made before this binding adapter function is called: SensorDataList must not be
 // null, and dataVM's graphStartingSensor must not be null
-@BindingAdapter("android:setBarData")
-fun setLineGraphData(chart: BarChart, sensor: Sensors) {
-    // bar chart properties
-    barChart = chart
-    chart.setDrawBarShadow(false);
-    chart.setDrawValueAboveBar(true);
-    chart.description.isEnabled = false;
-    chart.setMaxVisibleValueCount(60);
-    chart.setPinchZoom(false)
-    chart.setDrawGridBackground(false);
-    chart.legend.isEnabled = false
-    chart.invalidate()
-    chart.animateY(500)
-
-
-    // must specify which type of data the bar chart should open with
-//    chart.data = getBarChartData(sensor)
-    // setting the x-axis values
-    val xAxis = chart.xAxis
-    val currentDateTime = LocalDateTime.now()
-    var xAxisDayOfWeek = currentDateTime.with(TemporalAdjusters.previous(DayOfWeek.of(currentDateTime.dayOfWeek.value)))
-    // x-axis formatter needs a list of strings to represent the days of the week
-    val weekdays = ArrayList<String>()
-    for (i in 0..6) {
-        xAxisDayOfWeek = xAxisDayOfWeek.plusDays(1)
-        when (xAxisDayOfWeek.dayOfWeek.value) {
-            1 -> weekdays.add("Mon")
-            2 -> weekdays.add("Tue")
-            3 -> weekdays.add("Wed")
-            4 -> weekdays.add("Thu")
-            5 -> weekdays.add("Fri")
-            6 -> weekdays.add("Sat")
-            7 -> weekdays.add("Sun")
-        }
-    }
-    xAxis.valueFormatter = IndexAxisValueFormatter(weekdays)
-    xAxis.textColor = Color.BLACK
-    xAxis.position = XAxis.XAxisPosition.BOTTOM
-    // y-axis left side
-    val leftAxis = chart.axisLeft
-    leftAxis.textColor = Color.BLACK
-    // y-axis right side
-    val rightAxis = chart.axisRight
-    rightAxis.textColor = Color.BLACK
-}
-
+//@BindingAdapter("android:setBarData")
+//fun setLineGraphData(chart: BarChart, sensor: Sensors) {
+//    // bar chart properties
+//    barChart = chart
+//    chart.setDrawBarShadow(false);
+//    chart.setDrawValueAboveBar(true);
+//    chart.description.isEnabled = false;
+//    chart.setMaxVisibleValueCount(60);
+//    chart.setPinchZoom(false)
+//    chart.setDrawGridBackground(false);
+//    chart.legend.isEnabled = false
+//    chart.invalidate()
+//    chart.animateY(500)
+//
+//
+//    // must specify which type of data the bar chart should open with
+////    chart.data = getBarChartData(sensor)
+//    // setting the x-axis values
+//    val xAxis = chart.xAxis
+//    val currentDateTime = LocalDateTime.now()
+//    var xAxisDayOfWeek = currentDateTime.with(TemporalAdjusters.previous(DayOfWeek.of(currentDateTime.dayOfWeek.value)))
+//    // x-axis formatter needs a list of strings to represent the days of the week
+//    val weekdays = ArrayList<String>()
+//    for (i in 0..6) {
+//        xAxisDayOfWeek = xAxisDayOfWeek.plusDays(1)
+//        when (xAxisDayOfWeek.dayOfWeek.value) {
+//            1 -> weekdays.add("Mon")
+//            2 -> weekdays.add("Tue")
+//            3 -> weekdays.add("Wed")
+//            4 -> weekdays.add("Thu")
+//            5 -> weekdays.add("Fri")
+//            6 -> weekdays.add("Sat")
+//            7 -> weekdays.add("Sun")
+//        }
+//    }
+//    xAxis.valueFormatter = IndexAxisValueFormatter(weekdays)
+//    xAxis.textColor = Color.BLACK
+//    xAxis.position = XAxis.XAxisPosition.BOTTOM
+//    // y-axis left side
+//    val leftAxis = chart.axisLeft
+//    leftAxis.textColor = Color.BLACK
+//    // y-axis right side
+//    val rightAxis = chart.axisRight
+//    rightAxis.textColor = Color.BLACK
+//}
+//
 

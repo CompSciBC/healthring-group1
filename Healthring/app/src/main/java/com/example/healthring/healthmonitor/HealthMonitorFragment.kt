@@ -97,6 +97,7 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
     }
 
     fun goToBloodPressureGraph() {
+        dataVM.graphStartingSensor = Sensors.B_PRESSURE
         getReportAndGoToGraph(Sensors.B_PRESSURE)
     }
 

@@ -33,16 +33,26 @@
             android:gravity="center"
             android:background="@color/hot_purple">
 
-            <Spinner
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/back_arrow_image"
+                android:background="@color/hot_purple"
+                android:padding="5dp"
+                android:onClick="@{()-> graphFragment.navigateUp()}"/>
+
+
+            <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/data_select_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:gravity="center"
                 android:spinnerMode="dropdown"
+                android:overlapAnchor="false"
                 android:dropDownSelector="@color/design_default_color_on_primary"
                 tools:entries="@array/sensor_names_array">
-            </Spinner>
+            </androidx.appcompat.widget.AppCompatSpinner>
         </LinearLayout>
 
         <LinearLayout
@@ -55,6 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="40sp"
+                android:overlapAnchor="false"
                 tools:entries="@array/graph_xaxis_timescale">
             </Spinner>
         </LinearLayout>
