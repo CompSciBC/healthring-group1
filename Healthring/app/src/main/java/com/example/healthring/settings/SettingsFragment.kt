@@ -36,6 +36,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
         (activity as AppCompatActivity).supportActionBar?.show()
         (activity as AppCompatActivity).supportActionBar?.setTitle("Settings")
 
+        (activity as AppCompatActivity).window.setBackgroundDrawableResource(R.color.white)
+
         disableSensorColorsClickListener()
         sensorTextSizeSliderChangeListener()
         titlesTextSizeSliderChangeListener()

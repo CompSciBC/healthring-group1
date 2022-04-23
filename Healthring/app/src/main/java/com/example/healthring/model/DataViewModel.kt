@@ -2,14 +2,17 @@ package com.example.healthring.model
 
 import android.text.Editable
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.fragment.findNavController
 import com.amazonaws.mobile.auth.core.internal.util.ThreadUtils.runOnUiThread
 import com.amplifyframework.auth.cognito.AWSCognitoAuthSession
 import com.amplifyframework.auth.result.AuthSessionResult
 import com.amplifyframework.core.Amplify
+import com.example.healthring.R
 import com.google.gson.Gson
 import kotlinx.coroutines.*
 import okhttp3.*
@@ -50,6 +53,10 @@ class DataViewModel: ViewModel() {
     private val _steps = MutableLiveData<Int>(0)
     val steps : LiveData<Int>
         get() = _steps
+
+    private val _isLoadingGraphData = MutableLiveData(false)
+    val isLoadingGraphData : LiveData<Boolean>
+        get() = _isLoadingGraphData
 
     val disableSensorColors = MutableLiveData<Boolean>(false)
     val sensorsTextSize = MutableLiveData<Float>(55f)
@@ -184,6 +191,7 @@ class DataViewModel: ViewModel() {
     }
 
     private fun processReportData(response: String?) {
+        Log.i("DATAVIEWMODEL", "isLoading: ${isLoadingGraphData.value}")
         // response will most likely be a string of comma-separated JSON objects
         val sensorDataArray: MutableList<String> = response
             ?.split(Regex("\\}, \\{"))!!
@@ -227,6 +235,9 @@ class DataViewModel: ViewModel() {
         sensorDataList?.distinctBy { it.date }
         Log.i("DATAVIEWMODEL", "Graph Data Downloaded and Process, Time Elapsed: " +
                 "${(System.nanoTime() - startTime!!) / 1000000000f} seconds")
+        CoroutineScope(Dispatchers.Main).launch() {
+            _isLoadingGraphData.value = false
+        }
     }
 
     suspend fun updateSensorValues() {
@@ -252,6 +263,10 @@ class DataViewModel: ViewModel() {
                 Log.i("HEALTHFRAGMENT", "Finished grabbing report data")
             }
         fetchData()
+    }
+
+    fun setLoadingGraphAsTrue() {
+        _isLoadingGraphData.value = true
     }
 
 }

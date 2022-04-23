@@ -69,6 +69,7 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
             dataVM.updatingSensors = true
         }
         if(!dataVM.grabbedWeeklyData) {
+            dataVM.setLoadingGraphAsTrue()
             GlobalScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
                 dataVM.asyncGrabReportData(Sensors.H_RATE,"week")
             }

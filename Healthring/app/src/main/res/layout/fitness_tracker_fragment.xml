@@ -10,6 +10,7 @@
         <variable
             name="dataViewModel"
             type="com.example.healthring.model.DataViewModel" />
+        <import type="android.view.View"/>
     </data>
 
 
@@ -140,8 +141,19 @@
                         android:layout_alignParentEnd="true"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:onClick="@{() -> fitnessTrackerFragment.goToStepsGraph()}"
+                        android:visibility="@{dataViewModel.isLoadingGraphData ? View.INVISIBLE : View.VISIBLE}"
                         app:srcCompat="@drawable/graph_icon"
                         app:tint="@color/black" />
+
+                    <ProgressBar
+                        style="@android:style/Widget.Material.ProgressBar.Large"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentEnd="true"
+                        android:padding="11dp"
+                        android:indeterminateTint="@color/black"
+                        android:visibility="@{dataViewModel.isLoadingGraphData ? View.VISIBLE : View.INVISIBLE}"
+                        tools:visibility="gone"/>
 
                 </RelativeLayout>
 
@@ -189,7 +201,18 @@
                         android:layout_alignParentEnd="true"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:onClick="@{() -> fitnessTrackerFragment.goToDistanceGraph()}"
-                        android:src="@drawable/graph_icon" />
+                        android:src="@drawable/graph_icon"
+                        android:visibility="@{dataViewModel.isLoadingGraphData ? View.INVISIBLE : View.VISIBLE}" />
+
+                    <ProgressBar
+                        style="@android:style/Widget.Material.ProgressBar.Large"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentEnd="true"
+                        android:padding="11dp"
+                        android:indeterminateTint="@color/black"
+                        android:visibility="@{dataViewModel.isLoadingGraphData ? View.VISIBLE : View.INVISIBLE}"
+                        tools:visibility="gone"/>
 
                 </RelativeLayout>
 
@@ -238,7 +261,18 @@
                         android:layout_alignParentEnd="true"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:onClick="@{() -> fitnessTrackerFragment.goToCaloriesGraph()}"
-                        android:src="@drawable/graph_icon" />
+                        android:src="@drawable/graph_icon"
+                        android:visibility="@{dataViewModel.isLoadingGraphData ? View.INVISIBLE : View.VISIBLE}" />
+
+                    <ProgressBar
+                        style="@android:style/Widget.Material.ProgressBar.Large"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentEnd="true"
+                        android:padding="11dp"
+                        android:indeterminateTint="@color/black"
+                        android:visibility="@{dataViewModel.isLoadingGraphData ? View.VISIBLE : View.INVISIBLE}"
+                        tools:visibility="gone"/>
 
                 </RelativeLayout>
 

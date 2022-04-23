@@ -15,7 +15,6 @@
         <!-- Customize your theme here. -->
 
         <item name="android:windowBackground">@drawable/splash_screen_complete</item>
-<!--        <item name="android:windowSplashScreenBackground">@color/blue</item>-->
 
     </style>
 </resources>
