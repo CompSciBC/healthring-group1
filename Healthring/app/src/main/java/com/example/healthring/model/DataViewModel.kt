@@ -24,6 +24,8 @@ import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.*
 
+var startTime: Long? = null
+
 class DataViewModel: ViewModel() {
     private val _blood_oxygen = MutableLiveData<Double>(0.0)
     val blood_oxygen : LiveData<Double>
@@ -85,7 +87,7 @@ class DataViewModel: ViewModel() {
         }
     }
 
-    fun callDatabaseSensorData() {
+    private fun callDatabaseSensorData() {
         Log.i("RESPONSECOUNT", "Count: $responseCount")
         responseCount++
         updateIdToken()
@@ -106,7 +108,7 @@ class DataViewModel: ViewModel() {
         }
     }
 
-    fun callDatabaseReportData(startingSensor: Sensors, time_scale: String = "week") {
+    private fun callDatabaseReportData(startingSensor: Sensors, time_scale: String = "week") {
         graphStartingSensor = startingSensor
         Log.i("RESPONSECOUNT", "Count: $responseCount")
         responseCount++
@@ -145,7 +147,7 @@ class DataViewModel: ViewModel() {
         return Request.Builder().url(url).build()
     }
 
-    fun urlBuilder(endPath: String, time_scale: String = "week"): HttpUrl {
+    private fun urlBuilder(endPath: String, time_scale: String = "week"): HttpUrl {
         val endpoint = "https://vu102pm7vg.execute-api.us-west-2.amazonaws.com/prod/${endPath}"
         return endpoint.toHttpUrl().newBuilder()
             .addQueryParameter("email", Amplify.Auth.currentUser.username)
@@ -153,7 +155,7 @@ class DataViewModel: ViewModel() {
             .build()
     }
 
-    fun requestSuccess(response: Response): String? {
+    private fun requestSuccess(response: Response): String? {
         if (response.code == 200) {
             var message = response.body?.string()
             message = message?.substring(1, message.length - 1)
@@ -223,6 +225,8 @@ class DataViewModel: ViewModel() {
         sensorDataList?.sortBy { it.date }
         // get rid of duplicates
         sensorDataList?.distinctBy { it.date }
+        Log.i("DATAVIEWMODEL", "Graph Data Downloaded and Process, Time Elapsed: " +
+                "${(System.nanoTime() - startTime!!) / 1000000000f} seconds")
     }
 
     suspend fun updateSensorValues() {
@@ -239,6 +243,7 @@ class DataViewModel: ViewModel() {
 
     suspend fun asyncGrabReportData(startingSensor: Sensors, time_scale: String) {
         // need to be wait until runCallDatabase completes before creating/resuming the graph fragment
+        startTime = System.nanoTime()
         suspend fun fetchData() =
             coroutineScope {
                 val grabData = async { callDatabaseReportData(startingSensor, time_scale) }

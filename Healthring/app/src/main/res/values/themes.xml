@@ -13,5 +13,9 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <item name="colorAccent">@color/hot_purple</item>
         <!-- Customize your theme here. -->
+
+        <item name="android:windowBackground">@drawable/splash_screen_complete</item>
+<!--        <item name="android:windowSplashScreenBackground">@color/blue</item>-->
+
     </style>
 </resources>
