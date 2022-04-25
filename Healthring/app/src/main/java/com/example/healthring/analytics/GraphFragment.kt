@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.core.app.CoreComponentFactory
 import androidx.core.view.get
+import androidx.core.view.marginBottom
+import androidx.core.view.setPadding
 import androidx.core.view.size
 import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment
@@ -99,37 +101,47 @@ class GraphFragment: Fragment(R.layout.graph_fragment), AdapterView.OnItemSelect
     }
 
     private fun plotBOxygen() {
-        _plotTitle.value = "Blood Oxygen"
+        _plotTitle.value = "BLOOD OXYGEN"
+        dataVM.graphStartingSensor = Sensors.B_OXYGEN
         refreshGraph()
     }
 
     private fun plotBPressure() {
-        _plotTitle.value = "Blood Pressure"
+        _plotTitle.value = "BLOOD PRESSURE"
+        dataVM.graphStartingSensor = Sensors.B_PRESSURE
         refreshGraph()
     }
 
     private fun plotSteps() {
-        _plotTitle.value = "Steps"
+        _plotTitle.value = "STEPS"
+        dataVM.graphStartingSensor = Sensors.STEPS
         refreshGraph()
+        binding?.barChart?.data?.setValueTextSize(15f)
     }
 
     private fun plotDistance() {
-        _plotTitle.value = "Distance"
+        _plotTitle.value = "DISTANCE"
+        dataVM.graphStartingSensor = Sensors.DISTANCE
         refreshGraph()
     }
 
     private fun plotCalories() {
-        _plotTitle.value = "Calories"
+        _plotTitle.value = "CALORIES"
+        dataVM.graphStartingSensor = Sensors.CALORIES
         refreshGraph()
+        binding?.barChart?.data?.setValueTextSize(15f)
     }
 
     private fun plotHRate() {
-        _plotTitle.value = "Heart Rate"
+        _plotTitle.value = "HEART RATE"
+        dataVM.graphStartingSensor = Sensors.H_RATE
         refreshGraph()
     }
 
     private fun refreshGraph() {
+        Log.i("GRAPHFRAGMENT", "Starting Sensor: ${dataVM.graphStartingSensor}")
         barChart?.data = viewmodel.getBarChartData(dataVM.graphStartingSensor)
+        binding?.barChart?.barData?.setValueTextSize(24f)
         barChart?.notifyDataSetChanged()
         barChart?.invalidate();
         barChart?.animateY(500)
@@ -177,12 +189,15 @@ class GraphFragment: Fragment(R.layout.graph_fragment), AdapterView.OnItemSelect
         barChart?.setDrawBarShadow(false)
         barChart?.setDrawValueAboveBar(true)
         barChart?.description?.isEnabled = false
-        barChart?.setMaxVisibleValueCount(60)
         barChart?.setPinchZoom(false)
-        barChart?.setDrawGridBackground(false)
         barChart?.legend?.isEnabled = false
         barChart?.invalidate()
         barChart?.animateY(500)
+        barChart?.setDrawGridBackground(false)
+        barChart?.setExtraOffsets(5f, 0f, 5f, 20f)
+        barChart?.setDrawBorders(true)
+        barChart?.setBorderWidth(3f)
+        barChart?.setBorderColor(Color.BLACK)
     }
 
     private fun setBarChartXAxis() {
@@ -206,61 +221,19 @@ class GraphFragment: Fragment(R.layout.graph_fragment), AdapterView.OnItemSelect
         xAxis?.valueFormatter = IndexAxisValueFormatter(weekdays)
         xAxis?.textColor = Color.BLACK
         xAxis?.position = XAxis.XAxisPosition.BOTTOM
+        xAxis?.textSize = 20f
+        xAxis?.yOffset = 10f
         // y-axis left side
         val leftAxis = barChart?.axisLeft
         leftAxis?.textColor = Color.BLACK
+        leftAxis?.textSize = 14f
+        leftAxis?.axisMinimum = 0f
         // y-axis right side
         val rightAxis = barChart?.axisRight
         rightAxis?.textColor = Color.BLACK
+        rightAxis?.textSize = 14f
+        rightAxis?.axisMinimum = 0f
     }
 }
 
-// a guarentee must be made before this binding adapter function is called: SensorDataList must not be
-// null, and dataVM's graphStartingSensor must not be null
-//@BindingAdapter("android:setBarData")
-//fun setLineGraphData(chart: BarChart, sensor: Sensors) {
-//    // bar chart properties
-//    barChart = chart
-//    chart.setDrawBarShadow(false);
-//    chart.setDrawValueAboveBar(true);
-//    chart.description.isEnabled = false;
-//    chart.setMaxVisibleValueCount(60);
-//    chart.setPinchZoom(false)
-//    chart.setDrawGridBackground(false);
-//    chart.legend.isEnabled = false
-//    chart.invalidate()
-//    chart.animateY(500)
-//
-//
-//    // must specify which type of data the bar chart should open with
-////    chart.data = getBarChartData(sensor)
-//    // setting the x-axis values
-//    val xAxis = chart.xAxis
-//    val currentDateTime = LocalDateTime.now()
-//    var xAxisDayOfWeek = currentDateTime.with(TemporalAdjusters.previous(DayOfWeek.of(currentDateTime.dayOfWeek.value)))
-//    // x-axis formatter needs a list of strings to represent the days of the week
-//    val weekdays = ArrayList<String>()
-//    for (i in 0..6) {
-//        xAxisDayOfWeek = xAxisDayOfWeek.plusDays(1)
-//        when (xAxisDayOfWeek.dayOfWeek.value) {
-//            1 -> weekdays.add("Mon")
-//            2 -> weekdays.add("Tue")
-//            3 -> weekdays.add("Wed")
-//            4 -> weekdays.add("Thu")
-//            5 -> weekdays.add("Fri")
-//            6 -> weekdays.add("Sat")
-//            7 -> weekdays.add("Sun")
-//        }
-//    }
-//    xAxis.valueFormatter = IndexAxisValueFormatter(weekdays)
-//    xAxis.textColor = Color.BLACK
-//    xAxis.position = XAxis.XAxisPosition.BOTTOM
-//    // y-axis left side
-//    val leftAxis = chart.axisLeft
-//    leftAxis.textColor = Color.BLACK
-//    // y-axis right side
-//    val rightAxis = chart.axisRight
-//    rightAxis.textColor = Color.BLACK
-//}
-//
 

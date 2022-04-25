@@ -3,6 +3,7 @@ package com.example.healthring.analytics
 import android.graphics.Color
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import com.example.healthring.R
 import com.example.healthring.model.SensorData
 import com.example.healthring.model.Sensors
 import com.github.mikephil.charting.data.BarData
@@ -42,10 +43,11 @@ class GraphViewModel: ViewModel() {
         }
 
         val set1 = BarDataSet(values, "DataSet 1")
-        set1.color = Color.rgb(20, 204, 201)
+        set1.setGradientColor(Color.rgb(20, 94, 204), Color.rgb(20, 204, 201))
+        set1.barBorderWidth = 0.5f
         val data = BarData(set1)
-        data.setValueTextSize(10f);
-        data.barWidth = 0.9f;
+        data.setValueTextSize(24f)
+        data.barWidth = 0.9f
         data.setValueTextColor(Color.BLACK)
         return data
     }
