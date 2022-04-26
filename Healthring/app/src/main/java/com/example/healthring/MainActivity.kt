@@ -62,13 +62,6 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
-        //        setContentView(R.layout.loading_page)
-//
-//        Handler().postDelayed({
-//            val intent = Intent(this@MainActivity, LoginFragment::class.java)
-//            startActivity(intent)
-//        }, 3000)
-
         // Get the navigation host fragment from this Activity
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
