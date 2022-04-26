@@ -13,6 +13,7 @@ import com.amplifyframework.auth.cognito.AWSCognitoAuthSession
 import com.amplifyframework.auth.result.AuthSessionResult
 import com.amplifyframework.core.Amplify
 import com.example.healthring.R
+import com.example.healthring.analytics.TimeScale
 import com.google.gson.Gson
 import kotlinx.coroutines.*
 import okhttp3.*
@@ -65,6 +66,7 @@ class DataViewModel: ViewModel() {
     var sensorDataList: MutableList<SensorData>? = null
     // default graph sensor
     var graphStartingSensor: Sensors = Sensors.H_RATE
+    var timeScale: TimeScale = TimeScale.WEEKLY
     var updatingSensors: Boolean = false
     var grabbedWeeklyData: Boolean = false
 
@@ -245,6 +247,7 @@ class DataViewModel: ViewModel() {
             coroutineScope {
                 while(true) {
                     Thread.sleep(500)
+                    Log.i("DATAVIEWMODEL2", "Current Epoch: ${System.currentTimeMillis()}")
                     val grabData = async { callDatabaseSensorData() }
                     grabData.await()
                 }

@@ -33,13 +33,20 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.time.DayOfWeek
+import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.time.temporal.TemporalAdjusters
 import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.math.absoluteValue
 
 var sensorDataList: MutableList<SensorData>? = null
+
+enum class TimeScale {
+    WEEKLY, DAILY, HOURLY
+}
 
 class GraphFragment: Fragment(R.layout.graph_fragment), AdapterView.OnItemSelectedListener {
 
@@ -138,9 +145,25 @@ class GraphFragment: Fragment(R.layout.graph_fragment), AdapterView.OnItemSelect
         refreshGraph()
     }
 
+    private fun changePlotTimescaleToWeekly() {
+        dataVM.timeScale = TimeScale.WEEKLY
+        refreshGraph()
+    }
+
+    private fun changePlotTimescaleToDaily() {
+        dataVM.timeScale = TimeScale.DAILY
+        refreshGraph()
+    }
+
+    private fun changePlotTimescaleToHourly() {
+        dataVM.timeScale = TimeScale.HOURLY
+        refreshGraph()
+    }
+
     private fun refreshGraph() {
         Log.i("GRAPHFRAGMENT", "Starting Sensor: ${dataVM.graphStartingSensor}")
-        barChart?.data = viewmodel.getBarChartData(dataVM.graphStartingSensor)
+        barChart?.data = viewmodel.getBarChartData(dataVM.graphStartingSensor, dataVM.timeScale)
+        setBarChartXAxis()
         binding?.barChart?.barData?.setValueTextSize(24f)
         barChart?.notifyDataSetChanged()
         barChart?.invalidate();
@@ -156,9 +179,9 @@ class GraphFragment: Fragment(R.layout.graph_fragment), AdapterView.OnItemSelect
         val itemSelected = parent?.getItemAtPosition(position)
         if(parent?.count == 3) {
             when(itemSelected) {
-                "WEEKLY" -> return
-                "DAILY" -> return
-                "HOURLY" -> return
+                "WEEKLY" -> changePlotTimescaleToWeekly()
+                "DAILY" -> changePlotTimescaleToDaily()
+                "HOURLY" -> changePlotTimescaleToHourly()
                 else -> Log.e("GRAPHFRAG", "Error occurred during graph data spinner selection")
             }
         } else {
@@ -181,7 +204,7 @@ class GraphFragment: Fragment(R.layout.graph_fragment), AdapterView.OnItemSelect
 
     private fun setBarData() {
         setBarChartProperties()
-        barChart?.data = viewmodel.getBarChartData(dataVM.graphStartingSensor)
+        barChart?.data = viewmodel.getBarChartData(dataVM.graphStartingSensor, dataVM.timeScale)
         setBarChartXAxis()
     }
 
@@ -202,23 +225,13 @@ class GraphFragment: Fragment(R.layout.graph_fragment), AdapterView.OnItemSelect
 
     private fun setBarChartXAxis() {
         val xAxis = barChart?.xAxis
-        val currentDateTime = LocalDateTime.now()
-        var xAxisDayOfWeek = currentDateTime.with(TemporalAdjusters.previous(DayOfWeek.of(currentDateTime.dayOfWeek.value)))
         // x-axis formatter needs a list of strings to represent the days of the week
-        val weekdays = ArrayList<String>()
-        for (i in 0..6) {
-            xAxisDayOfWeek = xAxisDayOfWeek.plusDays(1)
-            when (xAxisDayOfWeek.dayOfWeek.value) {
-                1 -> weekdays.add("Mon")
-                2 -> weekdays.add("Tue")
-                3 -> weekdays.add("Wed")
-                4 -> weekdays.add("Thu")
-                5 -> weekdays.add("Fri")
-                6 -> weekdays.add("Sat")
-                7 -> weekdays.add("Sun")
-            }
+        val aAxisLabels: ArrayList<String> = when (dataVM.timeScale) {
+            TimeScale.WEEKLY -> createWeeklyXAxisLabels()
+            TimeScale.DAILY -> createDailyXAxisLabels()
+            else -> ArrayList()
         }
-        xAxis?.valueFormatter = IndexAxisValueFormatter(weekdays)
+        xAxis?.valueFormatter = IndexAxisValueFormatter(aAxisLabels)
         xAxis?.textColor = Color.BLACK
         xAxis?.position = XAxis.XAxisPosition.BOTTOM
         xAxis?.textSize = 20f
@@ -233,6 +246,45 @@ class GraphFragment: Fragment(R.layout.graph_fragment), AdapterView.OnItemSelect
         rightAxis?.textColor = Color.BLACK
         rightAxis?.textSize = 14f
         rightAxis?.axisMinimum = 0f
+    }
+
+    private fun createWeeklyXAxisLabels(): ArrayList<String> {
+        val weekdays = ArrayList<String>()
+        val currentDateTime = LocalDateTime.now()
+        var xAxisDayOfWeek = currentDateTime.with(TemporalAdjusters.previous(DayOfWeek.of(currentDateTime.dayOfWeek.value)))
+        for (i in 0..6) {
+            xAxisDayOfWeek = xAxisDayOfWeek.plusDays(1)
+            when (xAxisDayOfWeek.dayOfWeek.value) {
+                1 -> weekdays.add("Mon")
+                2 -> weekdays.add("Tue")
+                3 -> weekdays.add("Wed")
+                4 -> weekdays.add("Thu")
+                5 -> weekdays.add("Fri")
+                6 -> weekdays.add("Sat")
+                7 -> weekdays.add("Sun")
+            }
+        }
+        return weekdays
+    }
+
+    private fun createDailyXAxisLabels(): ArrayList<String> {
+        val weekdays = ArrayList<String>()
+        val currentDateTime = LocalDateTime.now()
+        var currentHour = currentDateTime.with(DayOfWeek.of(currentDateTime.dayOfWeek.value).minus(1))
+        for (i in 0..7) {
+            currentHour = currentHour.plusHours(3)
+            when (currentHour.hour) {
+                in 0..2 -> weekdays.add("12-3")
+                in 3..5 -> weekdays.add("3-6")
+                in 6..8 -> weekdays.add("6-9")
+                in 9..11 -> weekdays.add("9-12")
+                in 12..14 -> weekdays.add("12-3")
+                in 15..17 -> weekdays.add("3-6")
+                in 18..20 -> weekdays.add("6-9")
+                in 21..23 -> weekdays.add("9-12")
+            }
+        }
+        return weekdays
     }
 }
 
