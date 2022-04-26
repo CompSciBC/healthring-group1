@@ -24,6 +24,7 @@ import com.amplifyframework.core.Amplify
 import com.example.healthring.auth.LoginFragment
 import com.example.healthring.model.DataViewModel
 import com.google.android.material.internal.ContextUtils.getActivity
+import java.time.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,6 +32,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val currentDateTime = LocalDateTime.now()
+        var currentHour = currentDateTime.with(DayOfWeek.of(currentDateTime.dayOfWeek.value).minus(1))
+        Log.i("TEMPORAL", "Current epoch: ${System.currentTimeMillis()}")
 
         try {
             this.supportActionBar?.hide();
