@@ -94,7 +94,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/header_container"
-            app:layout_constraintBottom_toTopOf="@id/health_nav_container"
+            app:layout_constraintBottom_toTopOf="@id/nav_container"
             tools:layout_editor_absoluteX="-31dp">
 
             <LinearLayout
@@ -352,54 +352,66 @@
             </LinearLayout>
         </ScrollView>
 
-        <LinearLayout
-            android:id="@+id/health_nav_container"
-            android:layout_width="match_parent"
+        <com.example.healthring.customviews.navcontainer.NavContainer
+            android:id="@+id/nav_container"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:background="@color/hot_purple">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent">
 
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/health_monitor_button"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:layout_weight="1"
-                android:text="Health Moniter"
-                android:backgroundTint="@color/hot_purple"
-                android:textSize="18sp"
-                app:srcCompat="@drawable/health_icon"
-                app:tint="@color/black" />
+        </com.example.healthring.customviews.navcontainer.NavContainer>
 
-            <ImageButton
-                android:id="@+id/fitness_tracker_button"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginHorizontal="2dp"
-                android:text="Fitness Tracker"
-                android:backgroundTint="@color/hot_purple"
-                android:textSize="18sp"
-                app:srcCompat="@drawable/fitness_icon"
-                app:tint="@color/black"
-                android:onClick="@{() -> healthMonitorFragment.goToFitnessFragment()}"/>
+        <!-- Old nav container
+                <LinearLayout
+                    android:id="@+id/health_nav_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:background="@color/hot_purple">
 
-            <ImageButton
-                android:id="@+id/todays_task_button"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginRight="2dp"
-                android:text="Today's Task"
-                android:backgroundTint="@color/hot_purple"
-                android:textSize="18sp"
-                app:srcCompat="@drawable/tasks_icon"
-                app:tint="@color/black"
-                android:onClick="@{() -> healthMonitorFragment.goToTaskFragment()}"/>
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/health_monitor_button"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/hot_purple"
+                        android:text="Health Moniter"
+                        android:textSize="18sp"
+                        app:srcCompat="@drawable/health_icon"
+                        app:tint="@color/black" />
 
-        </LinearLayout>
+                    <ImageButton
+                        android:id="@+id/todays_task_button"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/hot_purple"
+                        android:onClick="@{() -> healthMonitorFragment.goToTaskFragment()}"
+                        android:text="Today's Task"
+                        android:textSize="18sp"
+                        app:srcCompat="@drawable/tasks_icon"
+                        app:tint="@color/black" />
 
+                    <ImageButton
+                        android:id="@+id/fitness_tracker_button"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="2dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/hot_purple"
+                        android:onClick="@{() -> healthMonitorFragment.goToFitnessFragment()}"
+                        android:text="Fitness Tracker"
+                        android:textSize="18sp"
+                        app:srcCompat="@drawable/fitness_icon"
+                        app:tint="@color/black" />
+
+                </LinearLayout>
+        -->
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

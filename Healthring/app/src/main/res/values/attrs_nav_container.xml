@@ -1,0 +1,5 @@
+<resources>
+    <declare-styleable name="NavContainer">
+        <attr name="exampleColor" format ="color"></attr>
+    </declare-styleable>
+</resources>

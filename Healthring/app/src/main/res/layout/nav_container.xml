@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--The fragment holding the navigation functions.
+    Must be assigned in the fragment of the view using this one-->
+    <data>
+        <variable
+            name = "fragment"
+            type = "com.example.healthring.customviews.navcontainer.NavContainerHolder"/>
+    </data>
+
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:id="@+id/linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/hot_purple">
+
+        <ImageButton
+            android:id="@+id/health_monitor_button"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/hot_purple"
+            android:onClick="@{()->fragment.goToHealthMonitorFragment()}"
+            android:text="Health Monitor"
+            android:textSize="18sp"
+            app:srcCompat="@drawable/health_icon"
+            app:tint="@color/black" />
+
+        <ImageButton
+            android:id="@+id/todays_task_button"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/hot_purple"
+            android:onClick="@{() -> fragment.goToTaskFragment()}"
+            android:text="Today's Task"
+            android:textSize="18sp"
+            app:srcCompat="@drawable/tasks_icon"
+            app:tint="@color/black" />
+
+        <ImageButton
+            android:id="@+id/fitness_tracker_button"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="2dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/hot_purple"
+            android:onClick="@{() -> fragment.goToFitnessFragment()}"
+            android:text="Fitness Tracker"
+            android:textSize="18sp"
+            app:srcCompat="@drawable/fitness_icon"
+            app:tint="@color/black" />
+
+    </LinearLayout>
+</FrameLayout>
+</layout>

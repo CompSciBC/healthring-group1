@@ -39,6 +39,7 @@ class FitnessTrackerFragment : Fragment(R.layout.fitness_tracker_fragment) {
             lifecycleOwner = viewLifecycleOwner
             fitnessTrackerFragment = this@FitnessTrackerFragment
             dataViewModel = dataVM
+
         }
     }
 

@@ -1,40 +1,26 @@
 package com.example.healthring.healthmonitor
 
-import android.app.Application
-import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.provider.Settings
-import android.text.Editable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.TextView
-import androidx.activity.viewModels
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.amazonaws.mobile.auth.core.internal.util.ThreadUtils.runOnUiThread
 import com.example.healthring.R
+import com.example.healthring.customviews.navcontainer.NavContainerHolder
 import com.example.healthring.databinding.HealthMonitorFragmentBinding
 import com.example.healthring.model.DataViewModel
 import com.example.healthring.model.Sensors
-import com.google.android.play.core.internal.t
 import kotlinx.coroutines.*
-import org.w3c.dom.Text
 import java.lang.Thread.sleep
 
 
-class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
+class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment), NavContainerHolder {
 
     private var binding : HealthMonitorFragmentBinding? = null
     private val dataVM: DataViewModel by activityViewModels()
@@ -77,11 +63,17 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
         }
     }
 
-    fun goToFitnessFragment() {
+    override fun goToHealthMonitorFragment() {
+        //if the user tries to navigate to the current fragment,
+        //let them know that they are already there
+        Toast.makeText(context, "You are already on this page", Toast.LENGTH_LONG).show()
+    }
+
+    override fun goToFitnessFragment() {
         findNavController().navigate(R.id.action_healthMonitorFragment_to_fitnessTrackerFragment)
     }
 
-    fun goToTaskFragment() {
+    override fun goToTaskFragment() {
         findNavController().navigate(R.id.action_healthMonitorFragment_to_todaysTasksFragment2)
     }
 
