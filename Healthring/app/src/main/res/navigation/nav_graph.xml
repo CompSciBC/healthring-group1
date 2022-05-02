@@ -94,6 +94,9 @@
         <action
             android:id="@+id/action_signupFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_signupFragment_to_confirmationFragment"
+            app:destination="@id/confirmationFragment" />
     </fragment>
     <fragment
         android:id="@+id/graphFragment"
@@ -129,4 +132,8 @@
         android:id="@+id/notificationsFragment"
         android:name="com.example.healthring.settings.NotificationsFragment"
         android:label="NotificationsFragment" />
+    <fragment
+        android:id="@+id/confirmationFragment"
+        android:name="com.example.healthring.auth.ConfirmationFragment"
+        android:label="ConfirmationFragment" />
 </navigation>
