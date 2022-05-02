@@ -28,8 +28,9 @@ class GraphViewModel: ViewModel() {
         set1.barBorderWidth = 0.5f
         val data = BarData(set1)
         data.setValueTextSize(24f)
-        data.barWidth = 0.9f
+        data.barWidth = 0.85f
         data.setValueTextColor(Color.BLACK)
+        data.setDrawValues(false)
         return data
     }
 
@@ -60,7 +61,7 @@ class GraphViewModel: ViewModel() {
 
     private fun filterDailySensorDataReturnBarEntries(values: ArrayList<BarEntry>, sensor: Sensors) {
         val currentDateTime = LocalDateTime.now()
-        var comparisonDate = currentDateTime.with(DayOfWeek.of(currentDateTime.dayOfWeek.value).minus(1))
+        var comparisonDate = currentDateTime.minusDays(1)
         var sumOfData = 0
         var numOfDataPoints = 0
         for (i in 0..7) {

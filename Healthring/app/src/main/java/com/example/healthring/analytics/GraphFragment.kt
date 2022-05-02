@@ -1,5 +1,6 @@
 package com.example.healthring.analytics
 import android.graphics.Color
+import android.graphics.DashPathEffect
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -155,11 +156,6 @@ class GraphFragment: Fragment(R.layout.graph_fragment), AdapterView.OnItemSelect
         refreshGraph()
     }
 
-    private fun changePlotTimescaleToHourly() {
-        dataVM.timeScale = TimeScale.HOURLY
-        refreshGraph()
-    }
-
     private fun refreshGraph() {
         Log.i("GRAPHFRAGMENT", "Starting Sensor: ${dataVM.graphStartingSensor}")
         barChart?.data = viewmodel.getBarChartData(dataVM.graphStartingSensor, dataVM.timeScale)
@@ -177,11 +173,10 @@ class GraphFragment: Fragment(R.layout.graph_fragment), AdapterView.OnItemSelect
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         Log.i("GRAPHFRAG", "${parent?.getItemAtPosition(position)} was selected.")
         val itemSelected = parent?.getItemAtPosition(position)
-        if(parent?.count == 3) {
+        if(parent?.count == 2) {
             when(itemSelected) {
                 "WEEKLY" -> changePlotTimescaleToWeekly()
                 "DAILY" -> changePlotTimescaleToDaily()
-                "HOURLY" -> changePlotTimescaleToHourly()
                 else -> Log.e("GRAPHFRAG", "Error occurred during graph data spinner selection")
             }
         } else {
@@ -236,16 +231,47 @@ class GraphFragment: Fragment(R.layout.graph_fragment), AdapterView.OnItemSelect
         xAxis?.position = XAxis.XAxisPosition.BOTTOM
         xAxis?.textSize = 20f
         xAxis?.yOffset = 10f
+        xAxis?.setDrawGridLines(true)
+
+        setDefaultXAxisProperties()
+        val yAxisLeft = barChart?.axisLeft
+        val yAxisRight = barChart?.axisRight
+        when(dataVM.graphStartingSensor) {
+            Sensors.H_RATE -> {
+                yAxisLeft?.spaceTop = 250f
+                yAxisRight?.spaceTop = 250f
+            }
+            Sensors.B_PRESSURE -> {
+                yAxisLeft?.spaceTop = 250f
+                yAxisRight?.spaceTop = 250f
+            }
+            Sensors.B_OXYGEN -> {
+                yAxisLeft?.spaceTop = 300f
+                yAxisRight?.spaceTop = 300f
+            }
+            else -> {
+                yAxisLeft?.spaceMax = 20f
+                yAxisRight?.spaceMax = 20f
+                Log.i("FULLRANGE", "Full range: ${yAxisRight?.mAxisRange}")
+            }
+        }
+    }
+
+    private fun setDefaultXAxisProperties() {
         // y-axis left side
-        val leftAxis = barChart?.axisLeft
-        leftAxis?.textColor = Color.BLACK
-        leftAxis?.textSize = 14f
-        leftAxis?.axisMinimum = 0f
+        with(barChart?.axisLeft) {
+            this?.textColor = Color.BLACK
+            this?.textSize = 14f
+            this?.axisMinimum = 0f
+            this?.setDrawGridLines(true)
+        }
         // y-axis right side
-        val rightAxis = barChart?.axisRight
-        rightAxis?.textColor = Color.BLACK
-        rightAxis?.textSize = 14f
-        rightAxis?.axisMinimum = 0f
+        with(barChart?.axisRight) {
+            this?.textColor = Color.BLACK
+            this?.textSize = 14f
+            this?.axisMinimum = 0f
+            this?.setDrawGridLines(false)
+        }
     }
 
     private fun createWeeklyXAxisLabels(): ArrayList<String> {
