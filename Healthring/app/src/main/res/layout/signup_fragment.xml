@@ -142,7 +142,7 @@
             app:backgroundTint="@color/hot_purple"
             android:textColor="#FFFFFF"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:onClick="@{() -> signupFragment.registerNewUser()}"/>
+            android:onClick="@{() -> signupFragment.registerNewUserAndGoToConfirmationPage()}"/>
 
         <Button
             android:id="@+id/signup_back_to_login_button"
