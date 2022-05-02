@@ -71,6 +71,42 @@
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:onClick="@{() -> confirmationFragment.confirmNewUser()}"/>
 
+                <Button
+                    android:id="@+id/signup_submit_button"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_height="64dp"
+                    android:layout_marginBottom="24dp"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintTop_toBottomOf="@id/signup_confirm_code"
+                    android:textSize="25sp"
+                    android:fontFamily="@font/roboto"
+                    tools:text="RESEND CODE"
+                    android:text="Resend Code"
+                    app:backgroundTint="@color/hot_purple"
+                    android:textColor="#FFFFFF"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:onClick="@{() -> confirmationFragment.resendConfirmationCode()}"/>
+
+                <Button
+                    android:id="@+id/signup_back_to_login_button"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="80dp"
+                    android:layout_marginRight="80dp"
+                    android:layout_height="64dp"
+                    android:layout_marginBottom="24dp"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintTop_toBottomOf="@id/signup_submit_button"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/roboto"
+                    tools:text="Back to login"
+                    android:text="Back to login"
+                    app:backgroundTint="@color/hot_purple"
+                    android:textColor="#FFFFFF"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:onClick="@{() -> confirmationFragment.goToLoginFragment()}"/>
+
 
 
 <!--                <TextView-->
