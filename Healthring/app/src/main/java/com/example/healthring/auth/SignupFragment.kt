@@ -83,22 +83,4 @@ class SignupFragment : Fragment() {
     fun goToConfirmationFragment() {
         findNavController().navigate(R.id.action_signupFragment_to_confirmationFragment)
     }
-
-
-
-//    fun confirmNewUser() {
-//        Log.i("Amplify", "confirmation code: ${authViewModel.confirmCode.value.toString()}")
-//        Amplify.Auth.confirmSignUp(
-//            authViewModel.email.value!!, authViewModel.confirmCode.value.toString(),
-//            { result ->
-//                if (result.isSignUpComplete) {
-//                    Log.i("AuthQuickstart", "Confirm signUp succeeded")
-//                } else {
-//                    Log.i("AuthQuickstart","Confirm sign up not complete")
-//                }
-//            },
-//            { Log.e("AuthQuickstart", "Failed to confirm sign up", it) }
-//        )
-//    }
-
 }

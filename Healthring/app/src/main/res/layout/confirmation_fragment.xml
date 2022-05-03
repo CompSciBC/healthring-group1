@@ -48,7 +48,7 @@
                             tools:text="987654"
                             android:hint="Confirmation Code"
                             android:inputType="number"
-                            android:afterTextChanged="@{(edtitable)->viewModel.afterUserChangeEmail(edtitable)}"
+                            android:afterTextChanged="@{(edtitable)->viewModel.afterUserChangeConfirmCode(edtitable)}"
                             />
 
                 </com.google.android.material.textfield.TextInputLayout>
