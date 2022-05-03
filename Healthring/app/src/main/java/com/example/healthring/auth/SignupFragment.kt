@@ -67,12 +67,13 @@ class SignupFragment : Fragment() {
             // Sign up succeeded, go to sign up fragment
             {
                 Log.i("AuthQuickStart", "Sign up succeeded: $it")
-                succeeded = true
+                goToConfirmationFragment()
             },
             // Implement that tells the user that sign up fails.
             // use a toast
             {
                 Log.e ("AuthQuickStart", "Sign up failed", it)
+                Snackbar.make(binding?.root!!, "Email or either password entered was not correct.", Snackbar.LENGTH_LONG).show()
             }
         )
 
@@ -82,6 +83,8 @@ class SignupFragment : Fragment() {
     fun goToConfirmationFragment() {
         findNavController().navigate(R.id.action_signupFragment_to_confirmationFragment)
     }
+
+
 
 //    fun confirmNewUser() {
 //        Log.i("Amplify", "confirmation code: ${authViewModel.confirmCode.value.toString()}")
