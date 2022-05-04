@@ -13,7 +13,8 @@
 
     <PreferenceCategory
         app:key="push_notifications_category"
-        app:title="Notify Me When">
+        app:title="Notify Me When"
+        app:dependency="enable_push_notifications">
         <SwitchPreferenceCompat
             app:key="notify_heart_rate"
             app:title="My Heart Rate is Critical"
@@ -38,7 +39,8 @@
 
     <PreferenceCategory
         app:key="email_notifications_category"
-        app:title="Email Me When">
+        app:title="Email Me When"
+        app:dependency="enable_email_notifications">
         <SwitchPreferenceCompat
             app:key="email_heart_rate"
             app:title="My Heart Rate is Critical"

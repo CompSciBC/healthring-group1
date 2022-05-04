@@ -38,6 +38,14 @@ class NotificationsFragment : PreferenceFragmentCompat() {
             true
         }
 
+        val enableEmailNotificationsSwitch = findPreference<Preference>("enable_email_notifications")
+        val emailNotificationsCategory = findPreference<PreferenceCategory>("email_notifications_category")
+        enableEmailNotificationsSwitch?.setOnPreferenceChangeListener { preference, newValue ->
+            emailNotificationsCategory?.isEnabled = enableEmailNotificationsSwitch.isEnabled
+            emailNotificationsCategory?.shouldDisableView = enableEmailNotificationsSwitch.isEnabled
+            true
+        }
+
     }
 
     override fun onPause() {
