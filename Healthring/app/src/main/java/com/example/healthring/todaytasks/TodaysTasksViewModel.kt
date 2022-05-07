@@ -3,6 +3,8 @@ package com.example.healthring.todaytasks
 import androidx.lifecycle.*
 import com.example.healthring.taskdata.Task
 import com.example.healthring.taskdata.TaskDao
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class TodaysTasksViewModel(private val taskDao: TaskDao) : ViewModel() {
@@ -28,7 +30,7 @@ class TodaysTasksViewModel(private val taskDao: TaskDao) : ViewModel() {
     val allTasks: LiveData<List<Task>> = taskDao.getTasks().asLiveData()
 
     private fun insertTask(task: Task) {
-        viewModelScope.launch {
+        CoroutineScope(Dispatchers.IO).launch {
             taskDao.insert(task)
         }
     }
@@ -59,13 +61,13 @@ class TodaysTasksViewModel(private val taskDao: TaskDao) : ViewModel() {
     }
 
     private fun updateTask(task: Task) {
-        viewModelScope.launch {
+        CoroutineScope(Dispatchers.IO).launch {
             taskDao.update(task)
         }
     }
 
     fun deleteTask(task: Task) {
-        viewModelScope.launch {
+        CoroutineScope(Dispatchers.IO).launch {
             taskDao.delete(task)
         }
     }

@@ -10,13 +10,13 @@ import kotlinx.coroutines.flow.Flow
 interface TaskDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(task: Task)
+    fun insert(task: Task)
 
     @Update
-    suspend fun update(task: Task)
+    fun update(task: Task)
 
     @Delete
-    suspend fun delete(task: Task)
+    fun delete(task: Task)
 
     // Using Flow or LiveData as return type will ensure you get notified whenever the data
     // in the database changes. It is recommended to use Flow in the persistence layer.
