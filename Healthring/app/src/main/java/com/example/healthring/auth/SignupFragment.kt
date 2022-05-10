@@ -83,4 +83,11 @@ class SignupFragment : Fragment() {
     fun goToConfirmationFragment() {
         findNavController().navigate(R.id.action_signupFragment_to_confirmationFragment)
     }
+
+    // password matching validation
+//    if (!user_passwordInput.getText().toString().equals(user_confirm_passwordInput.getText().toString()){
+//
+//        Toast.makeText(this, "Confirm password is not correct", Toast.LENGTH_SHORT).show();
+//
+//    }
 }
