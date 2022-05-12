@@ -18,7 +18,7 @@ class TaskListAdapter(private val onItemClicked: (Task) -> Unit) :
             TaskListItemBinding.inflate(
                 LayoutInflater.from(
                     parent.context
-                )
+                ), parent, false
             )
         )
     }
