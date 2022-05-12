@@ -1,22 +1,36 @@
 package com.example.healthring.todaytasks
 
 import android.app.Application
+import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.healthring.R
 import com.example.healthring.databinding.AddTaskFragmentBinding
+import com.example.healthring.taskdata.Task
 
-class AddTaskFragment : Fragment(R.layout.add_task_fragment) {
+class AddTaskFragment : Fragment() {
+
+    private val taskViewModel: TodaysTasksViewModel by activityViewModels {
+        TasksViewModelFactory(
+            (activity?.application as TaskApplication).database
+                .taskDao()
+        )
+    }
+
+    lateinit var task: Task
+
+    private val navigationArgs: TaskDetailFragmentArgs by navArgs()
 
     private var _binding: AddTaskFragmentBinding? = null
     private val binding get() = _binding!!
-
-    private val taskViewModel: TodaysTasksViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,17 +41,83 @@ class AddTaskFragment : Fragment(R.layout.add_task_fragment) {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding?.apply {
-            lifecycleOwner = viewLifecycleOwner
-            addTaskFragment = this@AddTaskFragment
-            todaysTasksViewModel = taskViewModel
+    private fun isEntryValid(): Boolean {
+        return taskViewModel.isEntryValid(
+            binding.taskTitle.text.toString(),
+            binding.taskDate.text.toString(),
+            binding.taskTime.text.toString(),
+            binding.taskNotes.text.toString()
+        )
+    }
+
+    private fun addNewTask() {
+        if (isEntryValid()) {
+            taskViewModel.addNewTask(
+                binding.taskTitle.text.toString(),
+                binding.taskDate.text.toString(),
+                binding.taskTime.text.toString(),
+                binding.taskNotes.text.toString(),
+            )
+//            findNavController().navigate(R.id.action_todaysTasksFragment2_to_addTaskFragment)
+            val action = AddTaskFragmentDirections.actionAddTaskFragmentToTodaysTasksFragment2()
+            findNavController().navigate(action)
         }
     }
 
-    fun goToTaskFragment() {
-        findNavController().navigate(R.id.action_addTaskFragment_to_todaysTasksFragment2)
+    private fun updateTask() {
+        if (isEntryValid()) {
+            taskViewModel.updateTask(
+                this.navigationArgs.taskId,
+                this.binding.taskTitle.text.toString(),
+                this.binding.taskDate.text.toString(),
+                this.binding.taskTime.text.toString(),
+                this.binding.taskNotes.text.toString()
+            )
+            val action = AddTaskFragmentDirections.actionAddTaskFragmentToTodaysTasksFragment2()
+            findNavController().navigate(action)
+        }
     }
 
+    private fun bind(task: Task) {
+        binding.apply {
+            taskTitle.setText(task.taskTitle, TextView.BufferType.SPANNABLE)
+            taskDate.setText(task.taskDate, TextView.BufferType.SPANNABLE)
+            taskTime.setText(task.taskTime, TextView.BufferType.SPANNABLE)
+            taskNotes.setText(task.taskNotes, TextView.BufferType.SPANNABLE)
+            saveAction.setOnClickListener { updateTask() }
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+//        binding?.apply {
+//            lifecycleOwner = viewLifecycleOwner
+//            addTaskFragment = this@AddTaskFragment
+//            todaysTasksViewModel = taskViewModel
+//        }
+        val id = navigationArgs.taskId
+        if (id > 0) {
+            taskViewModel.retrieveTask(id).observe(this.viewLifecycleOwner) { selectedTask ->
+                task = selectedTask
+                bind(task)
+            }
+        } else {
+            binding.saveAction.setOnClickListener {
+                addNewTask()
+            }
+        }
+    }
+
+//    fun goToTaskFragment() {
+//        findNavController().navigate(R.id.action_addTaskFragment_to_todaysTasksFragment2)
+//    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        // Hide keyboard.
+        val inputMethodManager = requireActivity().getSystemService(INPUT_METHOD_SERVICE) as
+                InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(requireActivity().currentFocus?.windowToken, 0)
+        _binding = null
+    }
 }
