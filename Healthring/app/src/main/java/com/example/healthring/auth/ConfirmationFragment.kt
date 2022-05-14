@@ -71,11 +71,4 @@ class ConfirmationFragment : Fragment() {
             { Log.e("AuthQuickstart", "Failed to resend confirm sign up", it) }
         )
     }
-
-
-
-
-
-
-
 }

@@ -22,9 +22,16 @@
         <item name="android:color">@color/hot_purple</item>
         <item name="android:fontFamily">@font/roboto</item>
     </style>
-    <style name="Widget.Task.TextView" parent="Widget.MaterialComponents.TextView">
-        <item name="android:textSize">16sp</item>
+
+    <style name="PasswordTextField" parent="TextAppearance.AppCompat">
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginLeft">40dp</item>
+        <item name="android:layout_marginRight">40dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Body1</item>
+        <item name="endIconMode">password_toggle</item>
+
+        <item name="iconTint">@color/hot_purple</item>
+
     </style>
 </resources>

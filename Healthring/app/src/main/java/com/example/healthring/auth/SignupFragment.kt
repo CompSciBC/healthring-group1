@@ -17,8 +17,8 @@ import com.google.android.material.snackbar.Snackbar
 
 class SignupFragment : Fragment() {
 
-    private var binding : SignupFragmentBinding? = null
-    private val authViewModel : AuthViewModel by viewModels()
+    private var binding: SignupFragmentBinding? = null
+    private val authViewModel: AuthViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,22 +47,25 @@ class SignupFragment : Fragment() {
         findNavController().navigate(R.id.action_signupFragment_to_loginFragment)
     }
 
-    fun registerNewUserAndGoToConfirmationPage() {
-        val succeeded = registerNewUser()
-
-        if (succeeded) {
-            goToConfirmationFragment()
-        } else {
-            Snackbar.make(binding?.root!!, "Email or either password entered was not correct.", Snackbar.LENGTH_LONG).show()
-        }
-    }
-
-    fun registerNewUser(): Boolean {
+    fun registerNewUser() {
         // TODO: Add a try-catch to handle assertion errors for when email/pwd is null
-        var succeeded = false
+
+        if (authViewModel.email.value == null) {
+            Snackbar.make(binding?.root!!, "Please enter a email.", Snackbar.LENGTH_LONG).show()
+            return
+
+        }
+
+        if (authViewModel.password.value == null || authViewModel.password.value == "") {
+            Snackbar.make(binding?.root!!, "Please enter a password.", Snackbar.LENGTH_LONG).show()
+            return
+        }
+
         val options = AuthSignUpOptions.builder()
             .userAttribute(AuthUserAttributeKey.email(), authViewModel.email.value!!)
             .build()
+
+
         Amplify.Auth.signUp(authViewModel.email.value!!, authViewModel.password.value!!, options,
             // Sign up succeeded, go to sign up fragment
             {
@@ -72,12 +75,16 @@ class SignupFragment : Fragment() {
             // Implement that tells the user that sign up fails.
             // use a toast
             {
-                Log.e ("AuthQuickStart", "Sign up failed", it)
-                Snackbar.make(binding?.root!!, "Email or either password entered was not correct.", Snackbar.LENGTH_LONG).show()
+                Log.e("AuthQuickStart", "Sign up failed", it)
+                Snackbar.make(
+                    binding?.root!!,
+                    "Email or either password entered was not correct.",
+                    Snackbar.LENGTH_LONG
+                ).show()
+
             }
         )
 
-        return succeeded
     }
 
     fun goToConfirmationFragment() {

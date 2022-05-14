@@ -37,7 +37,10 @@
             app:layout_constraintTop_toBottomOf="@id/title_signup"
             android:layout_marginTop="100dp"
             android:layout_gravity="center"
-            style="@style/ProfileTextFields">
+            style="@style/ProfileTextFields"
+            app:helperText="@string/required"
+            app:helperTextTextColor="@color/red"
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -56,12 +59,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/signup_email"
             android:layout_gravity="center"
-            android:layout_height="50dp"
-            android:layout_width="268dp"
-            android:layout_marginHorizontal="38dp"
-            android:layout_marginTop="15dp"
+            style="@style/PasswordTextField"
+
+            app:helperText="@string/required"
+            app:helperTextTextColor="@color/red"
             app:passwordToggleEnabled="true"
             app:passwordToggleTint="@color/hot_purple"
+            app:counterEnabled="true"
+            app:counterMaxLength="16"
             >
 
             <com.google.android.material.textfield.TextInputEditText
@@ -72,8 +77,7 @@
                 android:hint="Choose a Password"
                 android:inputType="textPassword"
                 tools:text="password321"
-                app:passwordToggleEnabled="true"
-                app:passwordToggleTint="@color/hot_purple"
+                android:maxLength="16"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -83,12 +87,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/signup_password"
             android:layout_gravity="center"
-            android:layout_height="50dp"
-            android:layout_width="268dp"
-            android:layout_marginHorizontal="38dp"
-            android:layout_marginTop="15dp"
+            style="@style/PasswordTextField"
+
+            app:helperText="@string/required"
+            app:helperTextTextColor="@color/red"
             app:passwordToggleEnabled="true"
             app:passwordToggleTint="@color/hot_purple"
+            app:counterEnabled="true"
+            app:counterMaxLength="16"
             >
 
             <com.google.android.material.textfield.TextInputEditText
@@ -98,11 +104,69 @@
                 tools:text="password321"
                 android:hint="Re-Enter the Password"
                 android:inputType="textPassword"
-                app:passwordToggleEnabled="true"
-                app:passwordToggleTint="@color/hot_purple"
+                android:maxLength="16"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
+
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/signup_password"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/signup_email"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_width="268dp"-->
+<!--            android:layout_marginHorizontal="38dp"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            app:passwordToggleEnabled="true"-->
+<!--            app:passwordToggleTint="@color/hot_purple"-->
+<!--            app:helperText="@string/required"-->
+<!--            app:helperTextTextColor="@color/red"-->
+
+<!--            app:counterEnabled="true"-->
+<!--            app:counterMaxLength="16"-->
+<!--            >-->
+
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                style="@style/ProfileTextFieldFonts"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:afterTextChanged="@{(edtitable)->viewModel.afterUserChangePassword(edtitable)}"-->
+<!--                android:hint="Choose a Password"-->
+<!--                android:inputType="textPassword"-->
+<!--                tools:text="password321"-->
+<!--                app:passwordToggleEnabled="true"-->
+<!--                app:passwordToggleTint="@color/hot_purple"-->
+<!--                android:maxLength="16"-->
+<!--                />-->
+
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/signup_reenter_password"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/signup_password"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_width="268dp"-->
+<!--            android:layout_marginHorizontal="38dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            app:passwordToggleEnabled="true"-->
+<!--            app:passwordToggleTint="@color/hot_purple"-->
+<!--            >-->
+
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                style="@style/ProfileTextFieldFonts"-->
+<!--                tools:text="password321"-->
+<!--                android:hint="Re-Enter the Password"-->
+<!--                android:inputType="textPassword"-->
+<!--                app:passwordToggleEnabled="true"-->
+<!--                app:passwordToggleTint="@color/hot_purple"-->
+<!--                />-->
+
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
 
         <Button
             android:id="@+id/signup_submit_button"
