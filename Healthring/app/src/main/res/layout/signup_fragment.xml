@@ -63,8 +63,6 @@
 
             app:helperText="@string/required"
             app:helperTextTextColor="@color/red"
-            app:passwordToggleEnabled="true"
-            app:passwordToggleTint="@color/hot_purple"
             app:counterEnabled="true"
             app:counterMaxLength="16"
             >
@@ -91,8 +89,6 @@
 
             app:helperText="@string/required"
             app:helperTextTextColor="@color/red"
-            app:passwordToggleEnabled="true"
-            app:passwordToggleTint="@color/hot_purple"
             app:counterEnabled="true"
             app:counterMaxLength="16"
             >
