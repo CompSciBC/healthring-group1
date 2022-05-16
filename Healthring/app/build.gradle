@@ -78,7 +78,7 @@ dependencies {
     // graphing library
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
-<<<<<<< HEAD
+
     // Room
     implementation 'androidx.room:room-runtime:2.4.2'
     annotationProcessor 'androidx.room:room-compiler:2.3.0'
@@ -92,6 +92,5 @@ dependencies {
 
     implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
-=======
->>>>>>> e5ffef2 (password and formatting)
+
 }
