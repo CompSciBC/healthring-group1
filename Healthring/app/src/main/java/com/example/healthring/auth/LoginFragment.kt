@@ -21,6 +21,8 @@ import kotlinx.coroutines.*
 import okhttp3.internal.wait
 import java.lang.NullPointerException
 
+
+
 class LoginFragment : Fragment() {
 
     private var binding: LoginFragmentBinding? = null
@@ -48,6 +50,8 @@ class LoginFragment : Fragment() {
 
         }
 
+        emailFocusListener()
+
         Amplify.Auth.fetchAuthSession(
             {
                 val session = it as AWSCognitoAuthSession
@@ -64,10 +68,10 @@ class LoginFragment : Fragment() {
 
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        emailFocusListener()
-    }
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//
+//    }
 
     private fun signInSuccessful(session: AWSCognitoAuthSession) {
         val token: String? = session.userPoolTokens.value?.idToken
@@ -154,7 +158,9 @@ class LoginFragment : Fragment() {
     // ------------------------------------------------------------------------------------
     // Validate Edit Text
     private fun emailFocusListener() {
+
         binding?.loginEmail?.setOnFocusChangeListener { _, hasFocus ->
+            Log.i("EmailTest", "TestTest")
             if (!hasFocus) {
                 binding?.loginEmail?.helperText = validEmail()
             }

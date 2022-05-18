@@ -51,7 +51,8 @@
                     android:textColor="@color/black"
                     style="?attr/materialButtonOutlinedStyle"
                     android:outlineSpotShadowColor="@color/black"
-                    android:outlineAmbientShadowColor="@color/black" />
+                    android:outlineAmbientShadowColor="@color/black"
+                    android:clickable="true"/>
 
                 <Button
                     android:id="@+id/profileGenderFemaleButton"
@@ -70,13 +71,13 @@
                 style="@style/ProfileTextFields">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/insideProfileNameTextInput"
+                    style="@style/ProfileTextFieldFonts"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/ProfileTextFieldFonts"
-                    tools:text="Alexander Filbert"
                     android:hint="Name"
                     android:inputType="textPersonName"
-                    />
+                    tools:text="Alexander Filbert" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -87,6 +88,7 @@
                 style="@style/ProfileTextFields">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/insideProfileBirthdayTextInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/ProfileTextFieldFonts"
@@ -104,6 +106,7 @@
                 style="@style/ProfileTextFields">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/insideProfileHeightTextInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/ProfileTextFieldFonts"
@@ -121,6 +124,7 @@
                 style="@style/ProfileTextFields">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/insideProfileWeightTextInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/ProfileTextFieldFonts"
@@ -138,6 +142,7 @@
                 style="@style/ProfileTextFields">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/insideProfilePhoneTextInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/ProfileTextFieldFonts"
@@ -192,7 +197,8 @@
                 app:backgroundTint="@color/hot_purple"
                 android:textColor="#FFFFFF"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:onClick="@{() -> profileFragment.navigateBack()}"/>
+                />
+<!--            android:onClick="@{() -> profileFragment.navigateBack()}"-->
 
         </LinearLayout>
     </ScrollView>
