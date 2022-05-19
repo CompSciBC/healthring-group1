@@ -144,7 +144,11 @@
     <fragment
         android:id="@+id/confirmationFragment"
         android:name="com.example.healthring.auth.ConfirmationFragment"
-        android:label="ConfirmationFragment" />
+        android:label="ConfirmationFragment" >
+        <action
+            android:id="@+id/action_confirmationFragment_to_healthMonitorFragment"
+            app:destination="@id/healthMonitorFragment" />
+    </fragment>
     <fragment
         android:id="@+id/taskDetailFragment"
         android:name="com.example.healthring.todaytasks.TaskDetailFragment"

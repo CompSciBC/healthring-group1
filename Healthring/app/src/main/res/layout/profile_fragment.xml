@@ -52,7 +52,7 @@
                     style="?attr/materialButtonOutlinedStyle"
                     android:outlineSpotShadowColor="@color/black"
                     android:outlineAmbientShadowColor="@color/black"
-                    android:clickable="true"/>
+                    />
 
                 <Button
                     android:id="@+id/profileGenderFemaleButton"
@@ -197,8 +197,9 @@
                 app:backgroundTint="@color/hot_purple"
                 android:textColor="#FFFFFF"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:onClick="@{() -> profileFragment.gotToHealthMonitorFragment()}"
                 />
-<!--            android:onClick="@{() -> profileFragment.navigateBack()}"-->
+
 
         </LinearLayout>
     </ScrollView>

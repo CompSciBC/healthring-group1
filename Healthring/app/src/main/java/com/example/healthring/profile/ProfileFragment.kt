@@ -14,8 +14,8 @@ import com.example.healthring.databinding.ProfileFragmentBinding
 
 import android.content.SharedPreferences
 import android.util.Log
-import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
+import android.graphics.Color
 
 
 class ProfileFragment : Fragment(R.layout.profile_fragment) {
@@ -50,10 +50,6 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
             saveData()
         }
 
-        binding?.profileGenderMaleButton?.setOnClickListener {
-
-        }
-
     }
 
     fun goToHealthMonitorFragment() {
@@ -65,6 +61,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
     }
 
     private fun saveData() {
+
         val profileNameInsertedText = binding?.insideProfileNameTextInput?.editableText?.toString()
         binding?.insideProfileNameTextInput?.setText(profileNameInsertedText.toString())
 
@@ -89,6 +86,15 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
             Context.MODE_PRIVATE
         ) ?: return
         with(sharedPreferences.edit()) {
+
+            binding?.profileGenderMaleButton?.isSelected?.apply { (Color.parseColor("#CD019C")) }.let {
+                if (it != null) {
+                    putBoolean("BOOLEAN_KEY1", it)
+                }
+            }
+
+
+
             putString("STRING_KEY1", profileNameInsertedText)
             putString("STRING_KEY2", profileBirthdayInsertedText)
             putString("STRING_KEY3", profileHeightInsertedText)
@@ -116,6 +122,8 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         Log.i("save Load", "Saved Successful $savedString1")
         val savedBoolean = sharedPreferences.getBoolean("BOOLEAN_KEY", false)
 
+        val savedBoolean1 = sharedPreferences.getBoolean("BOOLEAN_KEY1", false)
+
         binding?.insideProfileNameTextInput?.setText(savedString1.toString())
         binding?.insideProfileBirthdayTextInput?.setText(savedString2.toString())
         binding?.insideProfileHeightTextInput?.setText(savedString3.toString())
@@ -124,12 +132,8 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         binding?.button?.isClickable = savedBoolean
     }
 
-//    private fun genderChoice() {
-//        val sharedPreferences = binding?.profileFragment?.activity?.getSharedPreferences(
-//            "sharedPref",
-//            Context.MODE_PRIVATE
-//        ) ?: return
-//
-//        val maleChosen = binding?.profileGenderMaleButton.
-//    }
+    fun gotToHealthMonitorFragment() {
+        findNavController().navigate(R.id.action_profileFragment_to_healthMonitorFragment)
+    }
+
 }

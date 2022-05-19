@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.navigateUp
 import com.amplifyframework.auth.AuthUserAttributeKey
 import com.amplifyframework.auth.options.AuthSignUpOptions
 import com.amplifyframework.core.Amplify
@@ -48,7 +49,9 @@ class ConfirmationFragment : Fragment() {
         findNavController().navigateUp()
     }
 
-
+    fun gotToProfileFragment() {
+        findNavController().navigate(R.id.action_confirmationFragment_to_healthMonitorFragment)
+    }
 
     fun confirmNewUser() {
         Amplify.Auth.confirmSignUp(

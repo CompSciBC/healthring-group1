@@ -46,14 +46,14 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inside_loginEmail"
+                style="@style/ProfileTextFieldFonts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/ProfileTextFieldFonts"
-                tools:text="Alexander Filbert"
+                android:afterTextChanged="@{(edtitable)->loginVM.afterUserChangeEmail(edtitable)}"
                 android:hint="Email"
                 android:inputType="textPersonName"
-                android:afterTextChanged="@{(edtitable)->loginVM.afterUserChangeEmail(edtitable)}"
-                />
+                tools:text="Alexander Filbert" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
