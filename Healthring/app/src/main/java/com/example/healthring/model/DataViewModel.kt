@@ -18,6 +18,8 @@ import com.google.gson.Gson
 import kotlinx.coroutines.*
 import okhttp3.*
 import okhttp3.HttpUrl.Companion.toHttpUrl
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.lang.Exception
 import java.lang.NullPointerException
 import java.text.SimpleDateFormat
@@ -73,6 +75,11 @@ class DataViewModel: ViewModel() {
     private var _token: String? = null
     private var responseCount = 0
 
+    val enableEmailNotifications = MutableLiveData<Boolean>(false)
+    val emailHeartRate = MutableLiveData<Boolean>(false)
+    val emailBloodPressure = MutableLiveData<Boolean>(false)
+    val emailBloodOxygen = MutableLiveData<Boolean>(false)
+
     private fun updateIdToken() {
         Amplify.Auth.fetchAuthSession(
             {
@@ -94,6 +101,39 @@ class DataViewModel: ViewModel() {
         } else {
             Log.e("DATAVIEWMODEL", "User Id Token is null.")
         }
+    }
+
+    fun postEmailNotification(emailData: EmailData) {
+        Log.i("RESPONSECOUNT", "Count: $responseCount")
+        responseCount++
+        updateIdToken()
+
+        val endPath = "emails"
+
+        // Todo: serialize email object
+        val jsonString = Gson().toJson(emailData)
+
+        val url = urlBuilder(endPath)
+        val client = OkHttpClient()
+        val request = Request.Builder()
+            .url(url)
+            .header("Authorization", _token!!)
+            .post(jsonString.toRequestBody(MEDIA_TYPE_MARKDOWN))
+            .build()
+
+        try {
+            val response = client.newCall(request).execute()
+            val message = requestSuccess(response)
+            if(message != null) {
+                Log.i("DATAVIEWMODEL", "$message")
+            }
+        } catch (e: java.net.UnknownHostException) {
+            Log.e("DATAVIEWMODEL", "$e")
+        }
+    }
+
+    companion object {
+        val MEDIA_TYPE_MARKDOWN = "application/json; charset=utf-8".toMediaType()
     }
 
     private fun callDatabaseSensorData() {
