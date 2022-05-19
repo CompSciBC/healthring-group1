@@ -155,8 +155,7 @@ class LoginFragment : Fragment() {
         findNavController().navigate(R.id.action_loginFragment_to_signupFragment)
     }
 
-    // ------------------------------------------------------------------------------------
-    // Validate Edit Text
+
     private fun emailFocusListener() {
 
         binding?.loginEmail?.setOnFocusChangeListener { _, hasFocus ->

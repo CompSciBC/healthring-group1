@@ -132,8 +132,19 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         binding?.button?.isClickable = savedBoolean
     }
 
+<<<<<<< HEAD
     fun gotToHealthMonitorFragment() {
         findNavController().navigate(R.id.action_profileFragment_to_healthMonitorFragment)
     }
 
+=======
+//    private fun genderButton() {
+//        val sharedPreferences = binding?.profileFragment?.activity?.getSharedPreferences(
+//            "sharedPref",
+//            Context.MODE_PRIVATE
+//        ) ?: return
+//
+//        val maleChosen = binding?.profileGenderMaleButton.
+//    }
+>>>>>>> ea00ba0 (update for pull)
 }

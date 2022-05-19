@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import android.util.Log
+import android.util.Patterns
 import com.amplifyframework.auth.AuthUserAttributeKey
 import com.amplifyframework.auth.options.AuthSignUpOptions
 import com.amplifyframework.core.Amplify
@@ -91,10 +92,48 @@ class SignupFragment : Fragment() {
         findNavController().navigate(R.id.action_signupFragment_to_confirmationFragment)
     }
 
-    // password matching validation
-//    if (!user_passwordInput.getText().toString().equals(user_confirm_passwordInput.getText().toString()){
+//    private fun emailFocusListener() {
 //
-//        Toast.makeText(this, "Confirm password is not correct", Toast.LENGTH_SHORT).show();
+//        binding?.loginEmail?.setOnFocusChangeListener { _, hasFocus ->
+//            Log.i("EmailTest", "TestTest")
+//            if (!hasFocus) {
+//                binding?.loginEmail?.helperText = validEmail()
+//            }
+//        }
+//    }
+
+    public fun validEmail(): String? {
+        val emailText = authViewModel.email.value.toString()
+        if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
+            return "Invalid Email Address"
+        }
+        return null
+    }
+
+//    private fun passwordFocusListener() {
 //
+//        binding.passwordEditText.setOnFocusChangeListener { _, focused ->
+//            if (!focused) {
+//                bindingTest.passwordContainer.helperText = validPassword()
+//            }
+//        }
+//
+//    }
+//
+//    private fun validPassword(): String? {
+//        val passwordText = bindingTest.passwordEditText.text.toString()
+//        if (passwordText.length < 8) {
+//            return "Minimum 8 Character Password"
+//        }
+//        if (!passwordText.matches(".*[A-Z].*".toRegex())) {
+//            return "Must Contain 1 Upper-case Character"
+//        }
+//        if (!passwordText.matches(".*[a-z].*".toRegex())) {
+//            return "Must Contain 1 Lower-case Character"
+//        }
+//        if (!passwordText.matches(".*[@#\$%^&+=].*".toRegex())) {
+//            return "Must Contain 1 Special Character (@#\$%^&+=)"
+//        }
+//        return null
 //    }
 }
