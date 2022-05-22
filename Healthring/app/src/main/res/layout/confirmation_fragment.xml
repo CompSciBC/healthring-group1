@@ -69,7 +69,7 @@
                     app:backgroundTint="@color/hot_purple"
                     android:textColor="#FFFFFF"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:onClick="@{() -> confirmationFragment.gotToProfileFragment()}"/>
+                    android:onClick="@{() -> confirmationFragment.goToHealthMonitorFragment()}"/>
 
                 <Button
                     android:id="@+id/signup_submit_button"

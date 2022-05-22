@@ -101,6 +101,9 @@
         <action
             android:id="@+id/action_signupFragment_to_confirmationFragment"
             app:destination="@id/confirmationFragment" />
+        <action
+            android:id="@+id/action_signupFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/graphFragment"
@@ -145,9 +148,12 @@
         android:id="@+id/confirmationFragment"
         android:name="com.example.healthring.auth.ConfirmationFragment"
         android:label="ConfirmationFragment" >
+<!--        <action-->
+<!--            android:id="@+id/action_confirmationFragment_to_healthMonitorFragment"-->
+<!--            app:destination="@id/healthMonitorFragment" />-->
         <action
-            android:id="@+id/action_confirmationFragment_to_healthMonitorFragment"
-            app:destination="@id/healthMonitorFragment" />
+            android:id="@+id/action_confirmationFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/taskDetailFragment"

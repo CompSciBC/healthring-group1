@@ -50,7 +50,7 @@ class ConfirmationFragment : Fragment() {
     }
 
     fun gotToProfileFragment() {
-        findNavController().navigate(R.id.action_confirmationFragment_to_healthMonitorFragment)
+        findNavController().navigate(R.id.action_signupFragment_to_profileFragment)
     }
 
     fun confirmNewUser() {

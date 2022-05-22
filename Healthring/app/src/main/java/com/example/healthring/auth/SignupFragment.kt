@@ -110,30 +110,30 @@ class SignupFragment : Fragment() {
         return null
     }
 
-//    private fun passwordFocusListener() {
-//
-//        binding.passwordEditText.setOnFocusChangeListener { _, focused ->
-//            if (!focused) {
-//                bindingTest.passwordContainer.helperText = validPassword()
-//            }
-//        }
-//
-//    }
-//
-//    private fun validPassword(): String? {
-//        val passwordText = bindingTest.passwordEditText.text.toString()
-//        if (passwordText.length < 8) {
-//            return "Minimum 8 Character Password"
-//        }
-//        if (!passwordText.matches(".*[A-Z].*".toRegex())) {
-//            return "Must Contain 1 Upper-case Character"
-//        }
-//        if (!passwordText.matches(".*[a-z].*".toRegex())) {
-//            return "Must Contain 1 Lower-case Character"
-//        }
-//        if (!passwordText.matches(".*[@#\$%^&+=].*".toRegex())) {
-//            return "Must Contain 1 Special Character (@#\$%^&+=)"
-//        }
-//        return null
-//    }
+    private fun passwordFocusListener() {
+
+        binding.passwordEditText.setOnFocusChangeListener { _, focused ->
+            if (!focused) {
+                bindingTest.passwordContainer.helperText = validPassword()
+            }
+        }
+
+    }
+
+    private fun validPassword(): String? {
+        val passwordText = bindingTest.passwordEditText.text.toString()
+        if (passwordText.length < 8) {
+            return "Minimum 8 Character Password"
+        }
+        if (!passwordText.matches(".*[A-Z].*".toRegex())) {
+            return "Must Contain 1 Upper-case Character"
+        }
+        if (!passwordText.matches(".*[a-z].*".toRegex())) {
+            return "Must Contain 1 Lower-case Character"
+        }
+        if (!passwordText.matches(".*[@#\$%^&+=].*".toRegex())) {
+            return "Must Contain 1 Special Character (@#\$%^&+=)"
+        }
+        return null
+    }
 }
