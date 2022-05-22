@@ -14,6 +14,7 @@ import com.amplifyframework.core.Amplify
 import com.example.healthring.R
 import com.example.healthring.databinding.SignupFragmentBinding
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.*
 
 class SignupFragment : Fragment() {
 
@@ -88,7 +89,9 @@ class SignupFragment : Fragment() {
     }
 
     fun goToConfirmationFragment() {
-        findNavController().navigate(R.id.action_signupFragment_to_confirmationFragment)
+        GlobalScope.launch(Dispatchers.Main) {
+            findNavController().navigate(R.id.action_signupFragment_to_confirmationFragment)
+        }
     }
 
     // password matching validation
