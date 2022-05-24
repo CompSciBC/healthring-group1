@@ -14,4 +14,22 @@
     <color name="red">#ff2400</color>
     <color name="hot_purple">#CD019C</color>
     <color name="secondary">#14CCC9</color>
+
+    <color name="salmon">#F46D75</color>
+    <color name="persian_red">#CA3433</color>
+    <color name="indian_red">#CD5C5C</color>
+
+    <color name="purple_1">#A06CCC</color>
+    <color name="light_purple_1">#BF05F4</color>
+
+    <color name="grey_700">#515151</color>
+    <color name="grey_900">#222222</color>
+
+
+
+
+
+
+
+
 </resources>

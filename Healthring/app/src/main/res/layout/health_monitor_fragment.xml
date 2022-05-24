@@ -19,7 +19,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="@color/grey_900">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/header_container"
@@ -37,7 +37,7 @@
                 android:layout_marginTop="20dp"
                 android:text="HealthRing"
                 android:layout_marginLeft="18dp"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="normal"
                 android:fontFamily="@font/roboto_regular"
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="6dp"
                 app:srcCompat="@drawable/profile_icon"
-                app:tint="@color/black"
+                app:tint="@color/white"
                 android:backgroundTint="@color/hot_purple"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -77,7 +77,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/settings_icon"
-                app:tint="@color/black"
+                app:tint="@color/white"
                 android:scaleX="0.8"
                 android:scaleY="0.8"
                 android:backgroundTint="@color/hot_purple"
@@ -102,7 +102,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingHorizontal="24dp">
+                android:paddingHorizontal="24dp"
+                android:background="@color/grey_900">
 
                 <TextView
                     android:id="@+id/sdfsdf"
@@ -111,7 +112,7 @@
                     android:fontFamily="@font/roboto_regular"
                     android:text="Health Monitor"
                     android:textAlignment="center"
-                    android:textColor="@color/hot_purple"
+                    android:textColor="@color/white"
                     android:textSize="36sp"
                     android:textStyle="bold" />
 
@@ -169,7 +170,7 @@
                     android:fontFamily="@font/roboto_regular"
                     android:text="Heart Rate"
                     android:textAlignment="center"
-                    android:textColor="@color/hot_purple"
+                    android:textColor="@color/white"
                     android:textSize="24sp"
                     app:layout_constraintTop_toBottomOf="@id/heart_rate_tracker" />
 
@@ -229,7 +230,7 @@
                     android:fontFamily="@font/roboto_regular"
                     android:text="Blood Pressure"
                     android:textAlignment="center"
-                    android:textColor="@color/hot_purple"
+                    android:textColor="@color/white"
                     android:textSize="24sp"
                     app:layout_constraintTop_toBottomOf="@id/blood_pressure_tracker" />
 
@@ -289,7 +290,7 @@
                     android:fontFamily="@font/roboto_regular"
                     android:text="Blood Oxygen"
                     android:textAlignment="center"
-                    android:textColor="@color/hot_purple"
+                    android:textColor="@color/white"
                     android:textSize="24sp"
                     app:layout_constraintTop_toBottomOf="@id/blood_pressure_tracker" />
 
@@ -311,7 +312,7 @@
                         android:background="@drawable/blue_border"
                         android:text="LOW"
                         android:textAlignment="center"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textSize="18sp" />
 
                     <TextView
@@ -322,7 +323,7 @@
                         android:background="@drawable/green_border"
                         android:text="NORMAL"
                         android:textAlignment="center"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textSize="18sp" />
 
                     <TextView
@@ -333,7 +334,7 @@
                         android:background="@drawable/amber_border"
                         android:text="HIGH"
                         android:textAlignment="center"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textSize="18sp" />
 
                     <TextView
@@ -344,7 +345,7 @@
                         android:background="@drawable/red_border"
                         android:text="CRITICAL"
                         android:textAlignment="center"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -358,7 +359,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:background="@color/hot_purple">
+            android:background="@color/grey_900">
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/health_monitor_button"
@@ -367,7 +368,7 @@
                 android:layout_marginLeft="2dp"
                 android:layout_weight="1"
                 android:text="Health Moniter"
-                android:backgroundTint="@color/hot_purple"
+                android:backgroundTint="@color/grey_700"
                 android:textSize="18sp"
                 app:srcCompat="@drawable/health_icon"
                 app:tint="@color/black" />
@@ -379,7 +380,7 @@
                 android:layout_weight="1"
                 android:layout_marginHorizontal="2dp"
                 android:text="Fitness Tracker"
-                android:backgroundTint="@color/hot_purple"
+                android:backgroundTint="@color/grey_700"
                 android:textSize="18sp"
                 app:srcCompat="@drawable/fitness_icon"
                 app:tint="@color/black"
@@ -392,7 +393,7 @@
                 android:layout_weight="1"
                 android:layout_marginRight="2dp"
                 android:text="Today's Task"
-                android:backgroundTint="@color/hot_purple"
+                android:backgroundTint="@color/grey_700"
                 android:textSize="18sp"
                 app:srcCompat="@drawable/tasks_icon"
                 app:tint="@color/black"
