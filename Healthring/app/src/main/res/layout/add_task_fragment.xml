@@ -84,37 +84,66 @@
                         android:inputType="text"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/task_date_label"
+                <LinearLayout
+                    android:id="@+id/date_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Date"
-                    android:padding="16dp"
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/date_button"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:background="@drawable/ic_calendar_button"
+                        android:layout_gravity="center">
 
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/task_title_label">
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/task_date"
+                    </com.google.android.material.button.MaterialButton>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/task_date_label"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="date"/>
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:hint="Date"
+                        android:padding="16dp"
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/task_time_label"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/task_title_label">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/task_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="date"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/time_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Time"
-                    android:padding="16dp"
+                    app:layout_constraintTop_toBottomOf="@id/date_layout">
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/time_button"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:background="@drawable/ic_time_button"
+                        android:layout_gravity="center">
 
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/task_date_label">
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/task_time"
+                    </com.google.android.material.button.MaterialButton>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/task_time_label"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="time"/>
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:hint="Time"
+                        android:padding="16dp"
+                        app:layout_constraintTop_toBottomOf="@id/task_date_label">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/task_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="time"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/task_notes_label"
@@ -124,7 +153,7 @@
                     android:padding="16dp"
 
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/task_time_label">
+                    app:layout_constraintTop_toBottomOf="@id/time_layout">
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/task_notes"
                         android:layout_width="match_parent"

@@ -3,6 +3,8 @@ package com.example.healthring.todaytasks
 import android.app.Application
 import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Bundle
+import android.text.format.DateFormat
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +17,9 @@ import androidx.navigation.fragment.navArgs
 import com.example.healthring.R
 import com.example.healthring.databinding.AddTaskFragmentBinding
 import com.example.healthring.taskdata.Task
+import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
 
 class AddTaskFragment : Fragment() {
 
@@ -38,7 +43,77 @@ class AddTaskFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = AddTaskFragmentBinding.inflate(inflater, container, false)
+        binding.timeButton.setOnClickListener {
+            openTimePicker()
+        }
+        binding.dateButton.setOnClickListener {
+            openDatePicker()
+        }
         return binding.root
+    }
+
+    private fun openDatePicker() {
+        val datePicker =
+            MaterialDatePicker.Builder.datePicker()
+                .setTitleText("Select date")
+                .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                .build()
+        datePicker.show(childFragmentManager, "tag")
+
+//        datePicker.addOnPositiveButtonClickListener {
+//            datePicker.
+//        }
+    }
+
+    private fun openTimePicker() {
+        val isSystem24Hour = DateFormat.is24HourFormat(requireContext())
+        val clockFormat = if (isSystem24Hour) TimeFormat.CLOCK_24H else TimeFormat.CLOCK_12H
+
+        val picker =
+            MaterialTimePicker.Builder()
+                .setTimeFormat(clockFormat)
+                .setHour(12)
+                .setMinute(0)
+                .setTitleText("Set Alarm")
+                .build()
+        picker.show(childFragmentManager, "tag")
+
+        picker.addOnPositiveButtonClickListener {
+            val pickedHour: Int = picker.hour
+            val pickedMinute: Int = picker.minute
+            Log.d("TimeTest", "$pickedHour:$pickedMinute")
+            val formatedTime: String = when {
+                pickedHour > 12 -> {
+                    if(pickedMinute < 10) {
+                        "${pickedHour - 12}:0${pickedMinute} PM"
+                    } else {
+                        "${pickedHour - 12}:${pickedMinute} PM"
+                    }
+                }
+                pickedHour == 12 -> {
+                    if(pickedMinute < 10) {
+                        "${pickedHour}:0${pickedMinute} PM"
+                    } else {
+                        "${pickedHour}:${pickedMinute} PM"
+                    }
+                }
+                pickedHour == 0 -> {
+                    if(pickedMinute < 10) {
+                        "${pickedHour + 12}:0${pickedMinute} AM"
+                    } else {
+                        "${pickedHour + 12}:${pickedMinute} AM"
+                    }
+                }
+                else -> {
+                    if(pickedMinute < 10) {
+                        "${pickedHour}:0${pickedMinute} AM"
+                    } else {
+                        "${pickedHour}:${pickedMinute} AM"
+                    }
+                }
+            }
+            binding.taskTime.setText(formatedTime)
+        }
     }
 
     private fun isEntryValid(): Boolean {
