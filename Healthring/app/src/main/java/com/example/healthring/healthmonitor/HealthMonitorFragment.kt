@@ -78,74 +78,13 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
             }
             dataVM.grabbedWeeklyData = true
         }
-        dataVM.heart_rate.observe(viewLifecycleOwner, Observer { if(dataVM.enableEmailNotifications.value!! == true && dataVM.heart_rate.value!! > 150) {
-            Log.d("Observe:", "Test 1")
-            val email = Amplify.Auth.currentUser.username
-            var title = ""
-            var body = ""
-            if(dataVM.emailHeartRate.value!! == true) {
-                val newTitle = title.plus("Critical Heart Rate Alert")
-                title = newTitle
-                val newBody = body.plus("Your heart rate is critically high at ${dataVM.heart_rate.value}bpm. ")
-                body = newBody
-                Log.i("TestPrint_Title", title)
-                Log.i("TestPrint_Body", body)
+        if(!dataVM.observingCriticalSensors) {
+            GlobalScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
+                dataVM.observeSensorsForEmailNotifications()
             }
-            if(dataVM.emailBloodPressure.value!! == true && dataVM.blood_pressure.value!! >= 150) {
-                if (title.isEmpty()) {
-                    val newTitle = title.plus("Critical Blood Pressure Alert")
-                    title = newTitle
-                }
-                val newBody = body.plus("Your blood pressure is critically high at ${dataVM.blood_pressure.value}mmHg. ")
-                body = newBody
-                Log.i("TestPrint_Title", title)
-                Log.i("TestPrint_Body", body)
-            }
-            if(dataVM.emailBloodOxygen.value!! == true && dataVM.blood_oxygen.value!! < 70) {
-                if (title.isEmpty()) {
-                    val newTitle = title.plus("Critical Blood Oxygen Alert")
-                    title = newTitle
-                }
-                val newBody = body.plus("Your blood oxygen is critically low at ${dataVM.blood_oxygen.value}%.")
-                body = newBody
-                Log.i("TestPrint_Title", title)
-                Log.i("TestPrint_Body", body)
-            }
-            if(title.isNotEmpty()) {
-                val emailData = EmailData(email, title, body)
-                GlobalScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
-                    dataVM.postEmailNotification(emailData)
-                    Log.d("Post Email Call", "${emailData.title}")
-                }
-            }
+            dataVM.observingCriticalSensors = true
         }
-        })
 
-//        if(dataVM.enableEmailNotifications.value == true) {
-//            Log.d("Post Email Call", "Inside HealthFragment")
-//            val email = Amplify.Auth.currentUser.username
-//            val title = ""
-//            val body = ""
-//            if(dataVM.emailHeartRate.value == true && dataVM.heart_rate.value!! >= 150) {
-//                title.plus("Critical HeartRate Alert")
-//                body.plus("Your heart rate is critically high at ${dataVM.heart_rate.value}bpm.\n")
-//            }
-//            if(dataVM.emailBloodPressure.value == true && dataVM.blood_pressure.value!! >= 150) {
-//                if(title.isEmpty()) { title.plus("Critical BloodPressure Alert") }
-//                body.plus("Your blood pressure is critically high at ${dataVM.blood_pressure.value}mmHg.\n")
-//            }
-//            if(dataVM.emailBloodOxygen.value == true && dataVM.blood_oxygen.value!! < 70) {
-//                if(title.isEmpty()) { title.plus("Critical BloodPressure Alert") }
-//                body.plus("Your blood oxygen is critically low at ${dataVM.blood_oxygen.value}%.")
-//            }
-//            if(title.isNotEmpty()) {
-//                val emailData = EmailData(email, title, body)
-//                GlobalScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
-//                    dataVM.postEmailNotification(emailData)
-//                    Log.d("Post Email Call", "${emailData.title}")
-//                }
-//            }
-//        }
     }
 
     fun goToFitnessFragment() {
