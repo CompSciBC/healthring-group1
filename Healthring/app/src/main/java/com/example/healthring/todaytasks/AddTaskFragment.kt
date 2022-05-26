@@ -60,9 +60,9 @@ class AddTaskFragment : Fragment() {
                 .build()
         datePicker.show(childFragmentManager, "tag")
 
-//        datePicker.addOnPositiveButtonClickListener {
-//            datePicker.
-//        }
+        datePicker.addOnPositiveButtonClickListener {
+            binding.taskDate.setText(datePicker.headerText)
+        }
     }
 
     private fun openTimePicker() {
