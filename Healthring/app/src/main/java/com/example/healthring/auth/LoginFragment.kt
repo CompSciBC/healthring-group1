@@ -21,8 +21,6 @@ import kotlinx.coroutines.*
 import okhttp3.internal.wait
 import java.lang.NullPointerException
 
-
-
 class LoginFragment : Fragment() {
 
     private var binding: LoginFragmentBinding? = null
@@ -47,7 +45,6 @@ class LoginFragment : Fragment() {
             loginFragment = this@LoginFragment
             loginVM = loginViewModel
             viewModel = authViewModel
-
         }
 
         emailFocusListener()
@@ -67,14 +64,7 @@ class LoginFragment : Fragment() {
             },
             { Log.e("AuthQuickStart", "Failed to fetch session", it) }
         )
-
-
     }
-
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//
-//    }
 
     private fun signInSuccessful(session: AWSCognitoAuthSession) {
         val token: String? = session.userPoolTokens.value?.idToken

@@ -229,7 +229,7 @@ class GraphFragment: Fragment(R.layout.graph_fragment), AdapterView.OnItemSelect
         xAxis?.valueFormatter = IndexAxisValueFormatter(aAxisLabels)
         xAxis?.textColor = Color.BLACK
         xAxis?.position = XAxis.XAxisPosition.BOTTOM
-        xAxis?.textSize = 20f
+        xAxis?.textSize = 16f
         xAxis?.yOffset = 10f
         xAxis?.setDrawGridLines(true)
 
@@ -238,16 +238,18 @@ class GraphFragment: Fragment(R.layout.graph_fragment), AdapterView.OnItemSelect
         val yAxisRight = barChart?.axisRight
         when(dataVM.graphStartingSensor) {
             Sensors.H_RATE -> {
-                yAxisLeft?.spaceTop = 250f
-                yAxisRight?.spaceTop = 250f
+                yAxisLeft?.spaceTop = 200f
+                yAxisRight?.spaceTop = 200f
             }
             Sensors.B_PRESSURE -> {
                 yAxisLeft?.spaceTop = 250f
+                yAxisLeft?.axisMaximum = 230f
                 yAxisRight?.spaceTop = 250f
+                yAxisRight?.axisMaximum = 230f
             }
             Sensors.B_OXYGEN -> {
-                yAxisLeft?.spaceTop = 300f
-                yAxisRight?.spaceTop = 300f
+                yAxisLeft?.spaceTop = 100f
+                yAxisRight?.spaceTop = 100f
             }
             else -> {
                 yAxisLeft?.spaceMax = 20f
@@ -300,14 +302,14 @@ class GraphFragment: Fragment(R.layout.graph_fragment), AdapterView.OnItemSelect
         for (i in 0..7) {
             currentHour = currentHour.plusHours(3)
             when (currentHour.hour) {
-                in 0..2 -> weekdays.add("12-3")
-                in 3..5 -> weekdays.add("3-6")
-                in 6..8 -> weekdays.add("6-9")
-                in 9..11 -> weekdays.add("9-12")
-                in 12..14 -> weekdays.add("12-3")
-                in 15..17 -> weekdays.add("3-6")
-                in 18..20 -> weekdays.add("6-9")
-                in 21..23 -> weekdays.add("9-12")
+                in 0..2 -> weekdays.add("12am")
+                in 3..5 -> weekdays.add("3am")
+                in 6..8 -> weekdays.add("6am")
+                in 9..11 -> weekdays.add("9am")
+                in 12..14 -> weekdays.add("12pm")
+                in 15..17 -> weekdays.add("3pm")
+                in 18..20 -> weekdays.add("6pm")
+                in 21..23 -> weekdays.add("9pm")
             }
         }
         return weekdays
