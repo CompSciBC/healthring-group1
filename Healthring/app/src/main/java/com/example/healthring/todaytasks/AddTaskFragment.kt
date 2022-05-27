@@ -175,17 +175,24 @@ class AddTaskFragment : Fragment() {
             taskViewModel.retrieveTask(id).observe(this.viewLifecycleOwner) { selectedTask ->
                 task = selectedTask
                 bind(task)
+                binding.cancelAction.setOnClickListener {
+                    goBackToTasksScreen()
+                }
             }
         } else {
             binding.saveAction.setOnClickListener {
                 addNewTask()
             }
+            binding.cancelAction.setOnClickListener {
+                goBackToTasksScreen()
+            }
         }
     }
 
-//    fun goToTaskFragment() {
-//        findNavController().navigate(R.id.action_addTaskFragment_to_todaysTasksFragment2)
-//    }
+    private fun goBackToTasksScreen(){
+        val action = AddTaskFragmentDirections.actionAddTaskFragmentToTodaysTasksFragment2()
+        findNavController().navigate(action)
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
