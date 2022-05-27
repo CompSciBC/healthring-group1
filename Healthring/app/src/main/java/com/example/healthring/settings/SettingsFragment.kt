@@ -41,7 +41,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
         Log.i("SETTINGSPREF", "shared preferences: ${preferenceManager}")
         Log.i("SETTINGSPREF", "shared preferences name: ${preferenceManager.sharedPreferencesName}")
 
-        disableSensorColorsClickListener()
         resetPasswordClickListener()
         signOutClickListener()
 
@@ -57,14 +56,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
 //            notificationPref.isEnabled = false
 //            true
 //        }
-    }
-
-    private fun disableSensorColorsClickListener() {
-        val disableSensorColorsPref = findPreference<SwitchPreferenceCompat>("astheics_turnoff_sensor_colors")
-        disableSensorColorsPref?.setOnPreferenceClickListener {
-            dataVM.disableSensorColors.value = disableSensorColorsPref.isChecked
-            true
-        }
     }
 
     private fun resetPasswordClickListener() {
