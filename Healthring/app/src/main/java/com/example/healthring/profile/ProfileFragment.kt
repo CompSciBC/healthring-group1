@@ -101,12 +101,12 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
             putString("STRING_KEY4", profileWeightInsertedText)
             putString("STRING_KEY5", profilePhoneInsertedText)
             binding?.button?.isClickable?.let { putBoolean("BOOLEAN_KEY", it) }?.apply()
-            Snackbar.make(binding?.root!!, "Data Saved!", Snackbar.LENGTH_SHORT).show()
+//            Snackbar.make(binding?.root!!, "Data Saved!", Snackbar.LENGTH_SHORT).show()
         }
 
         val savedString = sharedPreferences.getString("STRING_KEY", null)
         Log.i("save String", "Saved Successful $savedString")
-
+        navigateBack()
     }
 
     private fun loadData() {
