@@ -9,7 +9,7 @@
     app:cardElevation="4dp"
     app:cardCornerRadius="8dp"
     app:contentPadding="8dp"
-    app:cardBackgroundColor="@color/purple_200">
+    app:cardBackgroundColor="@color/amber">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:descendantFocusability="blocksDescendants"
@@ -23,7 +23,7 @@
             android:padding="8dp"
             android:hint="Title"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="24sp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -32,6 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
+            android:textSize="20sp"
             android:hint="Notes"
             app:layout_constraintTop_toBottomOf="@id/task_title"
             app:layout_constraintStart_toStartOf="parent" />
@@ -45,6 +46,7 @@
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
+                android:textSize="20sp"
                 android:hint="Date"
                 app:layout_constraintTop_toBottomOf="@id/task_notes"
                 app:layout_constraintStart_toStartOf="parent"/>
@@ -54,7 +56,9 @@
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
+                android:textSize="20sp"
                 android:hint="Time"
+                android:gravity="right"
                 app:layout_constraintTop_toBottomOf="@id/task_notes"
                 app:layout_constraintEnd_toEndOf="parent"/>
         </LinearLayout>
