@@ -36,8 +36,8 @@ class NotificationsFragment : PreferenceFragmentCompat() {
 
         val enableEmailNotificationsSwitch = findPreference<SwitchPreferenceCompat>("enable_email_notifications")
         enableEmailNotificationsSwitch?.setOnPreferenceClickListener {
-            dataVM.enableEmailNotifications.value = enableEmailNotificationsSwitch.isChecked
-            Log.d("Email Notifications", "${dataVM.enableEmailNotifications.value}")
+            dataVM.enableEmailNotifications = enableEmailNotificationsSwitch.isChecked
+            Log.d("Email Notifications", "${dataVM.enableEmailNotifications}")
             true
         }
 
@@ -62,8 +62,8 @@ class NotificationsFragment : PreferenceFragmentCompat() {
     private fun emailHeartRateClickListener() {
         val emailHeartRateSwitch = findPreference<SwitchPreferenceCompat>("email_heart_rate")
         emailHeartRateSwitch?.setOnPreferenceClickListener {
-            dataVM.emailHeartRate.value = emailHeartRateSwitch.isChecked
-            Log.d("HeartRate Email", "${dataVM.emailHeartRate.value}")
+            dataVM.emailHeartRate = emailHeartRateSwitch.isChecked
+            Log.d("HeartRate Email", "${dataVM.emailHeartRate}")
             true
         }
     }
@@ -71,8 +71,8 @@ class NotificationsFragment : PreferenceFragmentCompat() {
     private fun emailBloodPressureClickListener() {
         val emailBloodPressureSwitch = findPreference<SwitchPreferenceCompat>("email_blood_pressure")
         emailBloodPressureSwitch?.setOnPreferenceClickListener {
-            dataVM.emailBloodPressure.value = emailBloodPressureSwitch.isChecked
-            Log.d("BloodPressure Email", "${dataVM.emailBloodPressure.value}")
+            dataVM.emailBloodPressure = emailBloodPressureSwitch.isChecked
+            Log.d("BloodPressure Email", "${dataVM.emailBloodPressure}")
             true
         }
     }
@@ -80,8 +80,8 @@ class NotificationsFragment : PreferenceFragmentCompat() {
     private fun emailBloodOxygenClickListener() {
         val emailBloodOxygenSwitch = findPreference<SwitchPreferenceCompat>("email_blood_oxygen")
         emailBloodOxygenSwitch?.setOnPreferenceClickListener {
-            dataVM.emailBloodOxygen.value = emailBloodOxygenSwitch.isChecked
-            Log.d("BloodOxygen Email", "${dataVM.emailBloodOxygen.value}")
+            dataVM.emailBloodOxygen = emailBloodOxygenSwitch.isChecked
+            Log.d("BloodOxygen Email", "${dataVM.emailBloodOxygen}")
             true
         }
     }

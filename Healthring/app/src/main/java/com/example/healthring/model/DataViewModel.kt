@@ -71,10 +71,10 @@ class DataViewModel: ViewModel() {
     var grabbedWeeklyData: Boolean = false
 
     var observingCriticalSensors: Boolean = false
-    val enableEmailNotifications = MutableLiveData<Boolean>(false)
-    val emailHeartRate = MutableLiveData<Boolean>(false)
-    val emailBloodPressure = MutableLiveData<Boolean>(false)
-    val emailBloodOxygen = MutableLiveData<Boolean>(false)
+    var enableEmailNotifications: Boolean = false
+    var emailHeartRate: Boolean = false
+    var emailBloodPressure: Boolean = false
+    var emailBloodOxygen: Boolean = false
 
     private var _token: String? = null
     private var responseCount = 0
@@ -316,22 +316,22 @@ class DataViewModel: ViewModel() {
         suspend fun dispatchEmail() =
             coroutineScope {
                 while(true) {
-                    if (enableEmailNotifications.value!! && updatingSensors) {
+                    if (enableEmailNotifications && updatingSensors) {
                         val email = Amplify.Auth.currentUser.username
                         var title = ""
                         var body = ""
-                        if (emailHeartRate.value!! && heart_rate.value!! > 150){
+                        if (emailHeartRate && heart_rate.value!! > 150){
                             title = "Critical Heart Rate Alert"
                             body = "Your heart rate is critically high at ${heart_rate.value}bpm. "
                         }
-                        if (emailBloodPressure.value!! && blood_pressure.value!! >= 150) {
+                        if (emailBloodPressure && blood_pressure.value!! >= 150) {
                             if (title.isEmpty()) {
                                 title = "Critical Blood Pressure Alert"
                             }
                             val newBody = body.plus("<br>Your blood pressure is critically high at ${blood_pressure.value}mmHg.<br>")
                             body = newBody
                         }
-                        if (emailBloodOxygen.value!! && blood_oxygen.value!! < 70) {
+                        if (emailBloodOxygen && blood_oxygen.value!! < 70) {
                             if (title.isEmpty()) {
                                 title = "Critical Blood Oxygen Alert"
                             }

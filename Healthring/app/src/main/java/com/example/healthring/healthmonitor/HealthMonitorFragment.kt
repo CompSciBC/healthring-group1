@@ -80,6 +80,15 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
             dataVM.grabbedWeeklyData = true
         }
         if(!dataVM.observingCriticalSensors) {
+            syncNotificationPreferencesOnStart()
+            Log.d("Email Pref enable saved", preferences?.all!!["enable_email_notifications"].toString())
+            Log.d("Email Pref enable live", dataVM.enableEmailNotifications.toString())
+            Log.d("Email Pref HR saved", preferences?.all!!["email_heart_rate"].toString())
+            Log.d("Email Pref HR live", dataVM.emailHeartRate.toString())
+            Log.d("Email Pref BP saved", preferences?.all!!["email_blood_pressure"].toString())
+            Log.d("Email Pref BP live", dataVM.emailBloodPressure.toString())
+            Log.d("Email Pref BO saved", preferences?.all!!["email_blood_oxygen"].toString())
+            Log.d("Email Pref BO live", dataVM.emailBloodOxygen.toString())
             GlobalScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
                 dataVM.observeSensorsForEmailNotifications()
             }
@@ -200,5 +209,12 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
         } else {
             viewModel.bOxygenColor.value = ContextCompat.getDrawable(requireContext(), R.drawable.blue_border)
         }
+    }
+
+    private fun syncNotificationPreferencesOnStart() {
+        dataVM.enableEmailNotifications = preferences?.all!!["enable_email_notifications"].toString().toBoolean()
+        dataVM.emailHeartRate = preferences?.all!!["email_heart_rate"].toString().toBoolean()
+        dataVM.emailBloodPressure = preferences?.all!!["email_blood_pressure"].toString().toBoolean()
+        dataVM.emailBloodOxygen = preferences?.all!!["email_blood_oxygen"].toString().toBoolean()
     }
 }
