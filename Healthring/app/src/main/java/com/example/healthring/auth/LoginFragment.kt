@@ -56,8 +56,11 @@ class LoginFragment : Fragment() {
             {
                 val session = it as AWSCognitoAuthSession
                 when (session.identityId.type) {
-                    AuthSessionResult.Type.SUCCESS ->
+                    AuthSessionResult.Type.SUCCESS -> {
+                        handleResult(true)
                         signInSuccessful(session)
+                        Log.i("AuthQuickStart", "Signed in")
+                    }
                     AuthSessionResult.Type.FAILURE ->
                         Log.w("AuthQuickStart", "Not signed in.", session.identityId.error)
                 }
