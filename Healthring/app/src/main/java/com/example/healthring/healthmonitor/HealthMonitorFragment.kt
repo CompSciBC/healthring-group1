@@ -1,6 +1,7 @@
 package com.example.healthring.healthmonitor
 
 import android.app.Application
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -23,6 +24,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.preference.PreferenceManager
 import com.amazonaws.mobile.auth.core.internal.util.ThreadUtils.runOnUiThread
 import com.example.healthring.R
 import com.example.healthring.databinding.HealthMonitorFragmentBinding
@@ -75,6 +77,10 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
             }
             dataVM.grabbedWeeklyData = true
         }
+
+        val preferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+
+        Log.i("SETTINGSPREF", "preferences: ${preferences.all}")
     }
 
     fun goToFitnessFragment() {

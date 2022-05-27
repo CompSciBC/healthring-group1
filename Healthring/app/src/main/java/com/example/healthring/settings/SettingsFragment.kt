@@ -38,6 +38,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
         (activity as AppCompatActivity).window.setBackgroundDrawableResource(R.color.white)
 
+        Log.i("SETTINGSPREF", "shared preferences: ${preferenceManager}")
+        Log.i("SETTINGSPREF", "shared preferences name: ${preferenceManager.sharedPreferencesName}")
+
         disableSensorColorsClickListener()
         sensorTextSizeSliderChangeListener()
         titlesTextSizeSliderChangeListener()

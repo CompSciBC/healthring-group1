@@ -37,8 +37,7 @@ class GraphViewModel: ViewModel() {
     private fun filterWeeklySensorDataReturnBarEntries(values: ArrayList<BarEntry>, sensor: Sensors) {
         val currentDateTime = LocalDateTime.now()
         // comparison date, starting from the oldest day. In this case, the day from one week ago
-        var comparisonDate = currentDateTime.with(TemporalAdjusters.previous(
-            DayOfWeek.of(currentDateTime.dayOfWeek.value)))
+        var comparisonDate = currentDateTime.minusDays(6)
         var sumOfData = 0
         var numOfDataPoints = 0
         for (i in 0..6) {
@@ -80,7 +79,6 @@ class GraphViewModel: ViewModel() {
                 values.add(BarEntry(i.toFloat(), 0f))
             }
             comparisonDate = comparisonDate.plusHours(3)
-            Log.i("COMPARISON", "Comparison date: ${comparisonDate}")
         }
     }
 

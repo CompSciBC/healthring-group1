@@ -93,8 +93,6 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
                 }
             }
 
-
-
             putString("STRING_KEY1", profileNameInsertedText)
             putString("STRING_KEY2", profileBirthdayInsertedText)
             putString("STRING_KEY3", profileHeightInsertedText)
@@ -114,11 +112,11 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
             "sharedPref",
             Context.MODE_PRIVATE
         ) ?: return
-        val savedString1 = sharedPreferences.getString("STRING_KEY1", null)
-        val savedString2 = sharedPreferences.getString("STRING_KEY2", null)
-        val savedString3 = sharedPreferences.getString("STRING_KEY3", null)
-        val savedString4 = sharedPreferences.getString("STRING_KEY4", null)
-        val savedString5 = sharedPreferences.getString("STRING_KEY5", null)
+        val savedString1 = sharedPreferences.getString("STRING_KEY1", "")
+        val savedString2 = sharedPreferences.getString("STRING_KEY2", "")
+        val savedString3 = sharedPreferences.getString("STRING_KEY3", "")
+        val savedString4 = sharedPreferences.getString("STRING_KEY4", "")
+        val savedString5 = sharedPreferences.getString("STRING_KEY5", "")
         Log.i("save Load", "Saved Successful $savedString1")
         val savedBoolean = sharedPreferences.getBoolean("BOOLEAN_KEY", false)
 

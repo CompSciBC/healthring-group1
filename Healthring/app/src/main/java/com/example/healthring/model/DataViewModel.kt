@@ -1,5 +1,6 @@
 package com.example.healthring.model
 
+import android.content.SharedPreferences
 import android.text.Editable
 import android.util.Log
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
+import androidx.preference.PreferenceManager
 import com.amazonaws.mobile.auth.core.internal.util.ThreadUtils.runOnUiThread
 import com.amplifyframework.auth.cognito.AWSCognitoAuthSession
 import com.amplifyframework.auth.result.AuthSessionResult
@@ -69,6 +71,8 @@ class DataViewModel: ViewModel() {
     var timeScale: TimeScale = TimeScale.WEEKLY
     var updatingSensors: Boolean = false
     var grabbedWeeklyData: Boolean = false
+
+
 
     private var _token: String? = null
     private var responseCount = 0
@@ -138,6 +142,8 @@ class DataViewModel: ViewModel() {
         } catch (e: NullPointerException) {
             Log.e("DATAVIEWMODEL", "No username found")
         }
+
+
     }
 
     private fun requestBuilder(url: HttpUrl): Request {
@@ -211,8 +217,6 @@ class DataViewModel: ViewModel() {
         }
         // fills the sensorDataList with new records
         createReportDataList(sensorDataArray)
-//        Log.i("DATAVIEWMODEL", "${sensorDataList.size} data points collected.")
-//        Log.i("DATAVIEWMODEL", "${sensorDataList.slice(1..100).map { it.date }} ")
     }
 
     // returns a list of SensorData objects pertaining to the requested report
@@ -235,6 +239,7 @@ class DataViewModel: ViewModel() {
         sensorDataList?.sortBy { it.date }
         // get rid of duplicates
         sensorDataList?.distinctBy { it.date }
+
         Log.i("DATAVIEWMODEL", "Graph Data Downloaded and Process, Time Elapsed: " +
                 "${(System.nanoTime() - startTime!!) / 1000000000f} seconds")
         CoroutineScope(Dispatchers.Main).launch() {
