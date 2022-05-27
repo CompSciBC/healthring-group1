@@ -77,6 +77,12 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
             }
             dataVM.grabbedWeeklyData = true
         }
+        if(!dataVM.observingCriticalSensors) {
+            GlobalScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
+                dataVM.observeSensorsForEmailNotifications()
+            }
+            dataVM.observingCriticalSensors = true
+        }
 
         val preferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
 
