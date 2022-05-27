@@ -97,5 +97,4 @@ class FitnessTrackerFragment : Fragment(R.layout.fitness_tracker_fragment) {
         binding?.fitnessCaloriesTracker?.textSize = preferences?.all!!["sensor_text_size_seekbar"].toString().toFloat()
         binding?.fitnessCaloriesTrackerTitle?.textSize = preferences?.all!!["sensor_title_text_size_seekbar"].toString().toFloat()
     }
-
 }
