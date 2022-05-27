@@ -62,8 +62,6 @@ class DataViewModel: ViewModel() {
         get() = _isLoadingGraphData
 
     val disableSensorColors = MutableLiveData<Boolean>(false)
-    val sensorsTextSize = MutableLiveData<Float>(55f)
-    val sensorTitlesTextSize = MutableLiveData<Float>(24f)
 
     var sensorDataList: MutableList<SensorData>? = null
     // default graph sensor
@@ -71,8 +69,6 @@ class DataViewModel: ViewModel() {
     var timeScale: TimeScale = TimeScale.WEEKLY
     var updatingSensors: Boolean = false
     var grabbedWeeklyData: Boolean = false
-
-
 
     private var _token: String? = null
     private var responseCount = 0

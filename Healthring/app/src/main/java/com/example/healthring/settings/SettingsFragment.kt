@@ -42,8 +42,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
         Log.i("SETTINGSPREF", "shared preferences name: ${preferenceManager.sharedPreferencesName}")
 
         disableSensorColorsClickListener()
-        sensorTextSizeSliderChangeListener()
-        titlesTextSizeSliderChangeListener()
         resetPasswordClickListener()
         signOutClickListener()
 
@@ -65,24 +63,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
         val disableSensorColorsPref = findPreference<SwitchPreferenceCompat>("astheics_turnoff_sensor_colors")
         disableSensorColorsPref?.setOnPreferenceClickListener {
             dataVM.disableSensorColors.value = disableSensorColorsPref.isChecked
-            true
-        }
-    }
-
-    private fun sensorTextSizeSliderChangeListener() {
-        val sensorTextSizeSeekBar = findPreference<SeekBarPreference>("sensor_text_size_seekbar")
-        sensorTextSizeSeekBar?.setOnPreferenceChangeListener { preference, newValue ->
-            dataVM.sensorsTextSize.value = newValue.toString().toFloat()
-            Log.i("SETTINGS", "newValue: ${dataVM.sensorsTextSize.value}")
-            true
-        }
-    }
-
-    private fun titlesTextSizeSliderChangeListener() {
-        val titlesTextSizeSeekBar = findPreference<SeekBarPreference>("sensor_title_text_size_seekbar")
-        titlesTextSizeSeekBar?.setOnPreferenceChangeListener { preference, newValue ->
-            dataVM.sensorTitlesTextSize.value = newValue.toString().toFloat()
-            Log.i("SETTINGS", "newValue: ${dataVM.sensorTitlesTextSize.value}")
             true
         }
     }

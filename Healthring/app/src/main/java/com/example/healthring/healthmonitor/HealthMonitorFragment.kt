@@ -39,6 +39,7 @@ import java.lang.Thread.sleep
 class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
 
     private var binding : HealthMonitorFragmentBinding? = null
+    private var preferences: SharedPreferences? = null
     private val dataVM: DataViewModel by activityViewModels()
     private val viewModel: HealthMonitorViewModel by viewModels()
 
@@ -49,6 +50,7 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
     ): View? {
         val fragmentBinding = HealthMonitorFragmentBinding.inflate(inflater, container, false)
         binding = fragmentBinding
+        preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         return fragmentBinding.root
     }
 
@@ -77,10 +79,6 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
             }
             dataVM.grabbedWeeklyData = true
         }
-
-        val preferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
-
-        Log.i("SETTINGSPREF", "preferences: ${preferences.all}")
     }
 
     fun goToFitnessFragment() {
@@ -146,8 +144,8 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
     }
 
     fun updateHeartRateColor() {
-        binding?.heartRateTracker?.textSize = dataVM.sensorsTextSize.value!!
-        binding?.heartRateTrackerTitle?.textSize = dataVM.sensorTitlesTextSize.value!!
+        binding?.heartRateTracker?.textSize = preferences?.all!!["sensor_text_size_seekbar"].toString().toFloat()
+        binding?.heartRateTrackerTitle?.textSize = preferences?.all!!["sensor_title_text_size_seekbar"].toString().toFloat()
         if(dataVM.disableSensorColors.value!!) {
             viewModel.hRateColor.value = ContextCompat.getDrawable(requireContext(), R.drawable.secondary_sesnor_background)
             return
@@ -164,8 +162,8 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
     }
 
     fun updateBloodPressureColor() {
-        binding?.bloodPressureTracker?.textSize = dataVM.sensorsTextSize.value!!
-        binding?.bloodPressureTrackerTitle?.textSize = dataVM.sensorTitlesTextSize.value!!
+        binding?.bloodPressureTracker?.textSize = preferences?.all!!["sensor_text_size_seekbar"].toString().toFloat()
+        binding?.bloodPressureTrackerTitle?.textSize = preferences?.all!!["sensor_title_text_size_seekbar"].toString().toFloat()
         if(dataVM.disableSensorColors.value!!) {
             viewModel.bPressureColor.value = ContextCompat.getDrawable(requireContext(), R.drawable.secondary_sesnor_background)
             return
@@ -182,8 +180,8 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
     }
 
     fun updateBloodOxygenColor() {
-        binding?.bloodOxygenTracker?.textSize = dataVM.sensorsTextSize.value!!
-        binding?.bloodOxygenTrackerTitle?.textSize = dataVM.sensorTitlesTextSize.value!!
+        binding?.bloodOxygenTracker?.textSize = preferences?.all!!["sensor_text_size_seekbar"].toString().toFloat()
+        binding?.bloodOxygenTrackerTitle?.textSize = preferences?.all!!["sensor_title_text_size_seekbar"].toString().toFloat()
         if(dataVM.disableSensorColors.value!!) {
             viewModel.bOxygenColor.value = ContextCompat.getDrawable(requireContext(), R.drawable.secondary_sesnor_background)
             return

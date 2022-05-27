@@ -1,5 +1,6 @@
 package com.example.healthring.fitnesstracker
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.preference.PreferenceManager
 import com.amplifyframework.core.Amplify
 import com.example.healthring.R
 import com.example.healthring.databinding.FitnessTrackerFragmentBinding
@@ -20,6 +22,7 @@ import kotlinx.coroutines.*
 class FitnessTrackerFragment : Fragment(R.layout.fitness_tracker_fragment) {
 
     private var binding : FitnessTrackerFragmentBinding? = null
+    private var preferences: SharedPreferences? = null
     private val viewModel: FitnessTrackerViewModel by viewModels()
     private val dataVM: DataViewModel by activityViewModels()
 
@@ -40,6 +43,7 @@ class FitnessTrackerFragment : Fragment(R.layout.fitness_tracker_fragment) {
             fitnessTrackerFragment = this@FitnessTrackerFragment
             dataViewModel = dataVM
         }
+        preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
     }
 
     fun goToHealthMonitorFragment() {
@@ -80,18 +84,18 @@ class FitnessTrackerFragment : Fragment(R.layout.fitness_tracker_fragment) {
     }
 
     fun updateStepsTextSize() {
-        binding?.fitnessStepsTracker?.textSize = dataVM.sensorsTextSize.value!!
-        binding?.fitnessStepsTrackerTitle?.textSize = dataVM.sensorTitlesTextSize.value!!
+        binding?.fitnessStepsTracker?.textSize = preferences?.all!!["sensor_text_size_seekbar"].toString().toFloat()
+        binding?.fitnessStepsTrackerTitle?.textSize = preferences?.all!!["sensor_title_text_size_seekbar"].toString().toFloat()
     }
 
     fun updateDistanceTextSize() {
-        binding?.fitnessDistanceTracker?.textSize = dataVM.sensorsTextSize.value!!
-        binding?.fitnessDistanceTrackerTitle?.textSize = dataVM.sensorTitlesTextSize.value!!
+        binding?.fitnessDistanceTracker?.textSize = preferences?.all!!["sensor_text_size_seekbar"].toString().toFloat()
+        binding?.fitnessDistanceTrackerTitle?.textSize = preferences?.all!!["sensor_title_text_size_seekbar"].toString().toFloat()
     }
 
     fun updateCaloriesTextSize() {
-        binding?.fitnessCaloriesTracker?.textSize = dataVM.sensorsTextSize.value!!
-        binding?.fitnessCaloriesTrackerTitle?.textSize = dataVM.sensorTitlesTextSize.value!!
+        binding?.fitnessCaloriesTracker?.textSize = preferences?.all!!["sensor_text_size_seekbar"].toString().toFloat()
+        binding?.fitnessCaloriesTrackerTitle?.textSize = preferences?.all!!["sensor_title_text_size_seekbar"].toString().toFloat()
     }
 
 }
