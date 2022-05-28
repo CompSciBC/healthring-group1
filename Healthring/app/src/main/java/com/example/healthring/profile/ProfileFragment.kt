@@ -16,6 +16,7 @@ import android.content.SharedPreferences
 import android.util.Log
 import com.google.android.material.snackbar.Snackbar
 import android.graphics.Color
+import com.amplifyframework.core.Amplify
 
 
 class ProfileFragment : Fragment(R.layout.profile_fragment) {
@@ -24,7 +25,8 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
 
 
     lateinit var sharedPreferences: SharedPreferences
-
+    private val emailKey: String = Amplify.Auth.currentUser.username
+    // val oldKey: String = "sharedPref"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -82,7 +84,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         binding?.insideProfilePhoneTextInput?.setText(profilePhoneInsertedText.toString())
 
         val sharedPreferences = binding?.profileFragment?.activity?.getSharedPreferences(
-            "sharedPref",
+            emailKey,
             Context.MODE_PRIVATE
         ) ?: return
         with(sharedPreferences.edit()) {
@@ -109,7 +111,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
 
     private fun loadData() {
         val sharedPreferences = binding?.profileFragment?.activity?.getSharedPreferences(
-            "sharedPref",
+            emailKey,
             Context.MODE_PRIVATE
         ) ?: return
         val savedString1 = sharedPreferences.getString("STRING_KEY1", "")
