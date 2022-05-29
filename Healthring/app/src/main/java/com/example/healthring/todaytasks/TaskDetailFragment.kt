@@ -61,12 +61,13 @@ class TaskDetailFragment : Fragment() {
 
     private fun bind(task: Task) {
         binding.apply {
-            binding.taskTitle.text = task.taskTitle
-            binding.taskDate.text = task.taskDate
-            binding.taskTime.text = task.taskTime
-            binding.taskNotes.text = task.taskNotes
+            binding.taskTitle.text = "Title: " + task.taskTitle
+            binding.taskDate.text = "Date: " + task.taskDate
+            binding.taskTime.text = "Time: " + task.taskTime
+            binding.taskNotes.text = "Notes: " + task.taskNotes
             deleteTask.setOnClickListener { showConfirmationDialog() }
             editTask.setOnClickListener { editTask() }
+            cancelAction.setOnClickListener { goBackToTasksScreen() }
         }
     }
 
@@ -80,6 +81,10 @@ class TaskDetailFragment : Fragment() {
             task.id
         )
         this.findNavController().navigate(action)
+    }
+
+    private fun goBackToTasksScreen(){
+        findNavController().navigateUp()
     }
 
     override fun onDestroyView() {

@@ -1,71 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:layout_margin="@dimen/margin"
-    tools:context=".TaskDetailFragment">
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".TaskDetailFragment">
 
-    <TextView
-        android:id="@+id/task_title"
-        style="@style/Widget.Task.TextView"
-        android:layout_width="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Title" />
+        <TextView
+            android:id="@+id/health_ring"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HealthRing"
+            android:layout_marginTop="18dp"
+            android:layout_marginLeft="18dp"
+            android:textColor="@color/hot_purple"
+            android:textSize="24sp"
+            android:textStyle="normal"
+            android:fontFamily="@font/roboto_regular"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/task_date"
-        style="@style/Widget.Task.TextView"
-        android:layout_width="wrap_content"
-        android:layout_marginTop="@dimen/margin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/task_title"
-        tools:text="Date" />
+        <ImageView
+            android:id="@+id/health_ring_logo"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@id/health_ring"
+            app:layout_constraintTop_toTopOf="@id/health_ring"
+            android:src="@drawable/logo_transparent" />
 
-    <TextView
-        android:id="@+id/task_time"
-        style="@style/Widget.Task.TextView"
-        android:layout_width="wrap_content"
-        android:text="Time"
-        app:layout_constraintTop_toBottomOf="@+id/task_date"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/tasks_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View Task"
+            android:textColor="@color/hot_purple"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/roboto_regular"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/health_ring"
+            app:layout_constraintBottom_toTopOf="@+id/tasks_sensor_scrollview"/>
 
-    <TextView
-        android:id="@+id/task_notes"
-        style="@style/Widget.Task.TextView"
-        android:layout_width="wrap_content"
-        android:layout_marginStart="@dimen/margin_between_elements"
-        android:layout_marginTop="@dimen/margin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/task_time"
-        tools:text="Notes" />
+        <ScrollView
+            android:id="@+id/tasks_sensor_scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/tasks_header"
+            app:layout_constraintBottom_toTopOf="@id/edit_task">
 
-    <Button
-        android:id="@+id/delete_task"
-        style="?attr/materialButtonOutlinedStyle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin"
-        android:text="Delete"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/task_notes" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/edit_task"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/margin_between_elements"
-        android:layout_marginBottom="@dimen/margin_between_elements"
-        android:contentDescription="Edit"
-        android:src="@drawable/ic_edit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:backgroundTint="@color/hot_purple"
-        app:tint="@android:color/white" />
+                <TextView
+                    android:id="@+id/task_title"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:padding="16dp"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Title" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/task_date"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:padding="16dp"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/task_title"
+                    tools:text="Date" />
+
+                <TextView
+                    android:id="@+id/task_time"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:padding="16dp"
+                    android:textSize="20sp"
+                    android:text="Time"
+                    app:layout_constraintTop_toBottomOf="@+id/task_date"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/task_notes"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:padding="16dp"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/task_time"
+                    tools:text="Notes" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/edit_task"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
+            android:contentDescription="Edit"
+            android:src="@drawable/ic_edit"
+            app:layout_constraintBottom_toTopOf="@id/delete_task"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:backgroundTint="@color/hot_purple"
+            app:tint="@android:color/white" />
+
+        <Button
+            android:id="@+id/delete_task"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/hot_purple"
+            android:text="Delete"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:layout_margin="24dp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/cancel_action">
+
+        </Button>
+
+        <Button
+            android:id="@+id/cancel_action"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/amber"
+            android:text="Cancel"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:layout_margin="24dp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/delete_task">
+
+        </Button>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
