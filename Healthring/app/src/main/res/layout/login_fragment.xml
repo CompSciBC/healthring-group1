@@ -68,6 +68,7 @@
             app:helperTextTextColor="@color/red"
             app:counterEnabled="true"
             app:counterMaxLength="16"
+            app:counterTextColor="@color/white"
             >
 
             <com.google.android.material.textfield.TextInputEditText

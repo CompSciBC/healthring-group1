@@ -28,7 +28,9 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:orientation="horizontal"
-            android:background="@drawable/header_semicircle_background">
+            android:background="@drawable/header_semicircle_background"
+            >
+
 
             <TextView
                 android:id="@+id/health_ring"
@@ -65,7 +67,7 @@
                 android:layout_margin="6dp"
                 app:srcCompat="@drawable/profile_icon"
                 app:tint="@color/white"
-                android:backgroundTint="@color/hot_purple"
+                android:backgroundTint="@color/grey_700"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -80,7 +82,7 @@
                 app:tint="@color/white"
                 android:scaleX="0.8"
                 android:scaleY="0.8"
-                android:backgroundTint="@color/hot_purple"
+                android:backgroundTint="@color/grey_700"
                 app:layout_constraintTop_toTopOf="@+id/profile_picture_button"
                 app:layout_constraintBottom_toBottomOf="@+id/profile_picture_button"
                 app:layout_constraintStart_toEndOf="@+id/profile_picture_button"
@@ -371,7 +373,7 @@
                 android:backgroundTint="@color/grey_700"
                 android:textSize="18sp"
                 app:srcCompat="@drawable/health_icon"
-                app:tint="@color/black" />
+                app:tint="@color/white" />
 
             <ImageButton
                 android:id="@+id/fitness_tracker_button"
@@ -383,7 +385,7 @@
                 android:backgroundTint="@color/grey_700"
                 android:textSize="18sp"
                 app:srcCompat="@drawable/fitness_icon"
-                app:tint="@color/black"
+                app:tint="@color/white"
                 android:onClick="@{() -> healthMonitorFragment.goToFitnessFragment()}"/>
 
             <ImageButton
@@ -396,7 +398,7 @@
                 android:backgroundTint="@color/grey_700"
                 android:textSize="18sp"
                 app:srcCompat="@drawable/tasks_icon"
-                app:tint="@color/black"
+                app:tint="@color/white"
                 android:onClick="@{() -> healthMonitorFragment.goToTaskFragment()}"/>
 
         </LinearLayout>
