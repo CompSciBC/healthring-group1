@@ -16,7 +16,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
+            android:background="@color/grey_900"
             android:padding="24dp">
 
         <TextView
@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="72dp"
             android:text="CONFIRMATION"
-            android:textColor="@color/hot_purple"
+            android:textColor="@color/white"
             android:textSize="40sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -66,7 +66,7 @@
                     android:fontFamily="@font/roboto"
                     tools:text="Confirm"
                     android:text="Confirm"
-                    app:backgroundTint="@color/hot_purple"
+                    app:backgroundTint="@color/grey_700"
                     android:textColor="#FFFFFF"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:onClick="@{() -> confirmationFragment.goToHealthMonitorFragment()}"/>
@@ -84,7 +84,7 @@
                     android:fontFamily="@font/roboto"
                     tools:text="Resend Code"
                     android:text="Resend Code"
-                    app:backgroundTint="@color/hot_purple"
+                    app:backgroundTint="@color/grey_700"
                     android:textColor="#FFFFFF"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:onClick="@{() -> confirmationFragment.resendConfirmationCode()}"/>
@@ -102,7 +102,7 @@
                     android:fontFamily="@font/roboto"
                     tools:text="Back to sign up"
                     android:text="Back to sign up"
-                    app:backgroundTint="@color/hot_purple"
+                    app:backgroundTint="@color/grey_700"
                     android:textColor="#FFFFFF"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:onClick="@{() -> confirmationFragment.navigateUp()}"/>

@@ -17,7 +17,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="@color/grey_900">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/header_container"
@@ -35,7 +35,7 @@
                 android:layout_marginTop="20dp"
                 android:text="HealthRing"
                 android:layout_marginLeft="18dp"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="normal"
                 android:fontFamily="@font/roboto_regular"
@@ -62,8 +62,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="6dp"
                 app:srcCompat="@drawable/profile_icon"
-                app:tint="@color/black"
-                android:backgroundTint="@color/hot_purple"
+                app:tint="@color/white"
+                android:backgroundTint="@color/grey_700"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -75,10 +75,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/settings_icon"
-                app:tint="@color/black"
+                app:tint="@color/white"
                 android:scaleX="0.8"
                 android:scaleY="0.8"
-                android:backgroundTint="@color/hot_purple"
+                android:backgroundTint="@color/grey_700"
                 app:layout_constraintTop_toTopOf="@+id/profile_picture_button"
                 app:layout_constraintBottom_toBottomOf="@+id/profile_picture_button"
                 app:layout_constraintStart_toEndOf="@+id/profile_picture_button"
@@ -97,7 +97,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingHorizontal="24dp">
+                android:paddingHorizontal="24dp"
+                android:background="@color/grey_900">
 
                 <TextView
                     android:id="@+id/fitness_tracker_header"
@@ -105,7 +106,7 @@
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
                     android:text="Fitness Tracker"
-                    android:textColor="@color/hot_purple"
+                    android:textColor="@color/white"
                     android:textSize="36sp"
                     android:textStyle="bold"
                     android:fontFamily="@font/roboto_regular" />
@@ -164,7 +165,7 @@
                     android:text="Steps"
                     android:textAlignment="center"
                     android:textSize="24sp"
-                    android:textColor="@color/hot_purple"
+                    android:textColor="@color/white"
                     android:fontFamily="@font/roboto_regular"
                     app:layout_constraintTop_toBottomOf="@id/heart_rate_tracker" />
 
@@ -224,7 +225,7 @@
                     android:text="Distance"
                     android:textAlignment="center"
                     android:textSize="24sp"
-                    android:textColor="@color/hot_purple"
+                    android:textColor="@color/white"
                     android:fontFamily="@font/roboto_regular"
                     app:layout_constraintTop_toBottomOf="@id/blood_pressure_tracker" />
 
@@ -284,7 +285,7 @@
                     android:text="Calories"
                     android:textAlignment="center"
                     android:textSize="24sp"
-                    android:textColor="@color/hot_purple"
+                    android:textColor="@color/white"
                     android:fontFamily="@font/roboto_regular"
                     app:layout_constraintTop_toBottomOf="@id/blood_pressure_tracker" />
 
@@ -297,20 +298,20 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:background="@color/hot_purple">
+            android:background="@color/grey_900">
 
             <ImageButton
                 android:id="@+id/health_monitor_button"
                 android:layout_width="110dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/grey_700"
+                android:onClick="@{() -> fitnessTrackerFragment.goToHealthMonitorFragment()}"
                 android:text="Health Moniter"
-                android:backgroundTint="@color/hot_purple"
                 android:textSize="18sp"
                 app:srcCompat="@drawable/health_icon"
-                app:tint="@color/black"
-                android:onClick="@{() -> fitnessTrackerFragment.goToHealthMonitorFragment()}"/>
+                app:tint="@color/white" />
 
             <ImageButton
                 android:id="@+id/fitness_tracker_button"
@@ -319,10 +320,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="2dp"
                 android:text="Fitness Tracker"
-                android:backgroundTint="@color/hot_purple"
+                android:backgroundTint="@color/grey_700"
                 android:textSize="18sp"
                 app:srcCompat="@drawable/fitness_icon"
-                app:tint="@color/black"
+                app:tint="@color/white"
                 />
 
             <ImageButton
@@ -332,10 +333,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="2dp"
                 android:text="Today's Task"
-                android:backgroundTint="@color/hot_purple"
+                android:backgroundTint="@color/grey_700"
                 android:textSize="18sp"
                 app:srcCompat="@drawable/tasks_icon"
-                app:tint="@color/black"
+                app:tint="@color/white"
                 android:onClick="@{() -> fitnessTrackerFragment.goToTaskFragment()}"/>
         </LinearLayout>
 
