@@ -39,7 +39,7 @@
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/roboto_regular"
                 android:text="HealthRing"
-                android:textColor="@color/grey_900"
+                android:textColor="@color/Alex_white"
                 android:textSize="20sp"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toStartOf="@id/profile_picture_button"
@@ -72,7 +72,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/profile_icon"
-                app:tint="@color/grey_900" />
+                app:tint="@color/Alex_white" />
 
             <ImageButton
                 android:id="@+id/settings_button"
@@ -86,7 +86,7 @@
                 app:layout_constraintStart_toEndOf="@+id/profile_picture_button"
                 app:layout_constraintTop_toTopOf="@+id/profile_picture_button"
                 app:srcCompat="@drawable/settings_icon"
-                app:tint="@color/grey_900" />
+                app:tint="@color/Alex_white" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -383,7 +383,7 @@
                 android:backgroundTint="@color/magenta"
                 android:textSize="18sp"
                 app:srcCompat="@drawable/fitness_icon"
-                app:tint="@color/grey_900"
+                app:tint="@color/Alex_white"
                 android:onClick="@{() -> healthMonitorFragment.goToFitnessFragment()}"/>
 
             <ImageButton
@@ -396,7 +396,7 @@
                 android:backgroundTint="@color/magenta"
                 android:textSize="18sp"
                 app:srcCompat="@drawable/tasks_icon"
-                app:tint="@color/grey_900"
+                app:tint="@color/Alex_white"
                 android:onClick="@{() -> healthMonitorFragment.goToTaskFragment()}"/>
 
         </LinearLayout>
