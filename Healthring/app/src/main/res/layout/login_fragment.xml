@@ -18,7 +18,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/resene_wistful"
+        android:background="@color/resene_cherubs"
         android:padding="24dp">
 
         <TextView
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="72dp"
             android:text="HEALTHRING"
-            android:textColor="@color/grey_700"
+            android:textColor="@color/grey_900"
             android:textSize="48sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -42,7 +42,7 @@
             android:layout_gravity="center"
             style="@style/ProfileTextFields"
             app:helperText="@string/required"
-            app:helperTextTextColor="@color/red"
+            app:helperTextTextColor="@color/grey_900"
             >
 
             <com.google.android.material.textfield.TextInputEditText
@@ -65,7 +65,7 @@
             style="@style/PasswordTextField"
 
             app:helperText="@string/required"
-            app:helperTextTextColor="@color/red"
+            app:helperTextTextColor="@color/grey_900"
             app:counterEnabled="true"
             app:counterMaxLength="16"
             >
@@ -95,8 +95,8 @@
             android:fontFamily="@font/roboto"
             tools:text="login"
             android:text="login"
-            app:backgroundTint="@color/hot_purple"
-            android:textColor="#FFFFFF"
+            app:backgroundTint="@color/resene_wistful"
+            android:textColor="@color/grey_900"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:onClick="@{() -> loginFragment.signIn()}"/>
 
@@ -113,8 +113,8 @@
             android:fontFamily="@font/roboto"
             tools:text="create account"
             android:text="create account"
-            app:backgroundTint="@color/hot_purple"
-            android:textColor="#FFFFFF"
+            app:backgroundTint="@color/resene_wistful"
+            android:textColor="@color/grey_900"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:onClick="@{() -> loginFragment.goToSignupFragment()}" />
 
@@ -131,8 +131,8 @@
             android:fontFamily="@font/roboto"
             tools:text="Open Sesame"
             android:text="Open Sesame"
-            app:backgroundTint="@color/hot_purple"
-            android:textColor="#FFFFFF"
+            app:backgroundTint="@color/resene_wistful"
+            android:textColor="@color/grey_900"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:onClick="@{() -> loginFragment.openSesameSignIn()}" />
 

@@ -31,7 +31,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="endIconMode">password_toggle</item>
 
-        <item name="endIconTint"> @color/hot_purple</item>
+        <item name="endIconTint"> @color/resene_wistful</item>
 
     </style>
 
