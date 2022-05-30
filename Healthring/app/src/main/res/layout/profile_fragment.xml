@@ -17,7 +17,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white">
+            android:background="@color/resene_cherubs">
 
             <com.mikhaellopez.circularimageview.CircularImageView
                 android:id="@+id/profileImage"
@@ -195,7 +195,7 @@
                 android:text="Save"
                 android:textColor="#FFFFFF"
                 android:textSize="30sp"
-                app:backgroundTint="@color/hot_purple"
+                app:backgroundTint="@color/resene_wistful"
                 app:layout_constraintTop_toBottomOf="@id/profileUnitsToggleGroup"
                 tools:text="Save" />
 
