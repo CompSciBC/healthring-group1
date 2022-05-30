@@ -165,7 +165,6 @@
 
                 </RelativeLayout>
 
-
                 <TextView
                     android:id="@+id/heart_rate_tracker_title"
                     android:layout_width="match_parent"
