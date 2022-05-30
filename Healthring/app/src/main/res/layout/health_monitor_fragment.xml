@@ -19,7 +19,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/grey_900">
+        android:background="@color/resene_wistful">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/header_container"
@@ -39,7 +39,7 @@
                 android:layout_marginTop="20dp"
                 android:text="HealthRing"
                 android:layout_marginLeft="18dp"
-                android:textColor="@color/white"
+                android:textColor="@color/grey_900"
                 android:textSize="20sp"
                 android:textStyle="normal"
                 android:fontFamily="@font/roboto_regular"
@@ -48,17 +48,18 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <!-- ImageView for HealthRing Logo, update later with transparent one -->
+
             <ImageView
                 android:id="@+id/health_ring_logo"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginBottom="10dp"
-                android:scaleX="1.4"
-                android:scaleY="1.4"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="108dp"
+                android:layout_marginBottom="16dp"
+                android:scaleX="1"
+                android:scaleY="1"
+                android:src="@drawable/healthringlogohighres"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:src="@drawable/logo_transparent" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <ImageButton
                 android:id="@+id/profile_picture_button"
@@ -66,8 +67,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="6dp"
                 app:srcCompat="@drawable/profile_icon"
-                app:tint="@color/white"
-                android:backgroundTint="@color/grey_700"
+                app:tint="@color/grey_900"
+                android:backgroundTint="@color/resene_cherubs"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -79,10 +80,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/settings_icon"
-                app:tint="@color/white"
+                app:tint="@color/black"
                 android:scaleX="0.8"
                 android:scaleY="0.8"
-                android:backgroundTint="@color/grey_700"
+                android:backgroundTint="@color/resene_cherubs"
                 app:layout_constraintTop_toTopOf="@+id/profile_picture_button"
                 app:layout_constraintBottom_toBottomOf="@+id/profile_picture_button"
                 app:layout_constraintStart_toEndOf="@+id/profile_picture_button"
@@ -105,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingHorizontal="24dp"
-                android:background="@color/grey_900">
+                android:background="@color/resene_wistful">
 
                 <TextView
                     android:id="@+id/sdfsdf"
@@ -114,7 +115,7 @@
                     android:fontFamily="@font/roboto_regular"
                     android:text="Health Monitor"
                     android:textAlignment="center"
-                    android:textColor="@color/white"
+                    android:textColor="@color/grey_900"
                     android:textSize="36sp"
                     android:textStyle="bold" />
 
@@ -314,7 +315,7 @@
                         android:background="@drawable/blue_border"
                         android:text="LOW"
                         android:textAlignment="center"
-                        android:textColor="@color/white"
+                        android:textColor="@color/grey_900"
                         android:textSize="18sp" />
 
                     <TextView
@@ -325,7 +326,7 @@
                         android:background="@drawable/green_border"
                         android:text="NORMAL"
                         android:textAlignment="center"
-                        android:textColor="@color/white"
+                        android:textColor="@color/grey_900"
                         android:textSize="18sp" />
 
                     <TextView
@@ -336,7 +337,7 @@
                         android:background="@drawable/amber_border"
                         android:text="HIGH"
                         android:textAlignment="center"
-                        android:textColor="@color/white"
+                        android:textColor="@color/grey_900"
                         android:textSize="18sp" />
 
                     <TextView
@@ -347,7 +348,7 @@
                         android:background="@drawable/red_border"
                         android:text="CRITICAL"
                         android:textAlignment="center"
-                        android:textColor="@color/white"
+                        android:textColor="@color/grey_900"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -361,7 +362,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:background="@color/grey_900">
+            android:background="@color/resene_cherubs">
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/health_monitor_button"
@@ -370,23 +371,23 @@
                 android:layout_marginLeft="2dp"
                 android:layout_weight="1"
                 android:text="Health Moniter"
-                android:backgroundTint="@color/grey_700"
+                android:backgroundTint="@color/resene_cherubs"
                 android:textSize="18sp"
                 app:srcCompat="@drawable/health_icon"
-                app:tint="@color/white" />
+                app:tint="@color/grey_900" />
 
             <ImageButton
                 android:id="@+id/fitness_tracker_button"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginHorizontal="2dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/resene_cherubs"
+                android:onClick="@{() -> healthMonitorFragment.goToFitnessFragment()}"
                 android:text="Fitness Tracker"
-                android:backgroundTint="@color/grey_700"
                 android:textSize="18sp"
                 app:srcCompat="@drawable/fitness_icon"
-                app:tint="@color/white"
-                android:onClick="@{() -> healthMonitorFragment.goToFitnessFragment()}"/>
+                app:tint="@color/grey_900" />
 
             <ImageButton
                 android:id="@+id/todays_task_button"
@@ -395,10 +396,10 @@
                 android:layout_weight="1"
                 android:layout_marginRight="2dp"
                 android:text="Today's Task"
-                android:backgroundTint="@color/grey_700"
+                android:backgroundTint="@color/resene_cherubs"
                 android:textSize="18sp"
                 app:srcCompat="@drawable/tasks_icon"
-                app:tint="@color/white"
+                app:tint="@color/grey_900"
                 android:onClick="@{() -> healthMonitorFragment.goToTaskFragment()}"/>
 
         </LinearLayout>
