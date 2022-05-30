@@ -53,6 +53,16 @@
             app:key="email_blood_oxygen"
             app:title="My Blood Oxygen is Critical"
             app:defaultValue="true"/>
+        <EditTextPreference
+            app:key="email_contact"
+            app:title="Emergency Contact Email (Optional)"
+            app:useSimpleSummaryProvider="true"
+            android:dialogTitle="Please enter email."/>
+        <EditTextPreference
+            app:key="email_doctor"
+            app:title="Doctor's Email (Optional)"
+            app:useSimpleSummaryProvider="true"
+            android:dialogTitle="Please enter doctor's email."/>
     </PreferenceCategory>
 
 </PreferenceScreen>

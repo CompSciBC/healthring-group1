@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -33,6 +34,8 @@ class NotificationsFragment : PreferenceFragmentCompat() {
         emailHeartRateClickListener()
         emailBloodPressureClickListener()
         emailBloodOxygenClickListener()
+        emailEmergencyContactTextListener()
+        emailDoctorContactTextListener()
 
         val enableEmailNotificationsSwitch = findPreference<SwitchPreferenceCompat>("enable_email_notifications")
         enableEmailNotificationsSwitch?.setOnPreferenceClickListener {
@@ -83,6 +86,20 @@ class NotificationsFragment : PreferenceFragmentCompat() {
             dataVM.emailBloodOxygen = emailBloodOxygenSwitch.isChecked
             Log.d("BloodOxygen Email", "${dataVM.emailBloodOxygen}")
             true
+        }
+    }
+
+    private fun emailEmergencyContactTextListener() {
+        val emailEmergencyContact = findPreference<EditTextPreference>("email_contact")
+        emailEmergencyContact?.setOnBindEditTextListener {
+            dataVM.emergencyEmail = emailEmergencyContact.text!!
+        }
+    }
+
+    private fun emailDoctorContactTextListener() {
+        val emailDoctorContact = findPreference<EditTextPreference>("email_doctor")
+        emailDoctorContact?.setOnBindEditTextListener {
+            dataVM.doctorEmail = emailDoctorContact.text!!
         }
     }
 

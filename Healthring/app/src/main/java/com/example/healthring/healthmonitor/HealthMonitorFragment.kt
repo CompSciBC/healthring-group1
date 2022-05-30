@@ -216,5 +216,7 @@ class HealthMonitorFragment : Fragment(R.layout.health_monitor_fragment){
         dataVM.emailHeartRate = preferences?.all!!["email_heart_rate"].toString().toBoolean()
         dataVM.emailBloodPressure = preferences?.all!!["email_blood_pressure"].toString().toBoolean()
         dataVM.emailBloodOxygen = preferences?.all!!["email_blood_oxygen"].toString().toBoolean()
+        dataVM.emergencyEmail = preferences?.all!!["email_contact"].toString()
+        dataVM.doctorEmail = preferences?.all!!["email_doctor"].toString()
     }
 }
