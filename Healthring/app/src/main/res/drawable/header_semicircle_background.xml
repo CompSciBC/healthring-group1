@@ -3,7 +3,7 @@
     <item>
         <shape xmlns:android="http://schemas.android.com/apk/res/android"
             android:shape="rectangle">
-            <solid android:color="#FFFFFF" />
+            <solid android:color="@color/resene_wistful" />
         </shape>
     </item>
     <item
@@ -17,7 +17,7 @@
 <!--                android:startColor="#6E01CD"-->
 <!--                android:endColor="@color/hot_purple"-->
 <!--                android:angle="135"/>-->
-            <solid android:color="@color/hot_purple"/>
+            <solid android:color="@color/resene_cherubs"/>
         </shape>
     </item>
 </layer-list>
