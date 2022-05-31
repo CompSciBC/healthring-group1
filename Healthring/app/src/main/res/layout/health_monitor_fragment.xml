@@ -128,20 +128,29 @@
                     app:layout_constraintStart_toStartOf="parent"
                     tools:background="@drawable/green_border">
 
-                    <TextView
-                        android:id="@+id/heart_rate_tracker"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                    <ImageView
+                        android:id="@+id/heart_rate_logo"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
-                        android:layout_toStartOf="@id/heart_rate_graph_btn"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/ic_heart_rate_logo"
+                        app:layout_constraintEnd_toStartOf="@id/heart_rate_tracker"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/heart_rate_tracker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
                         android:afterTextChanged="@{() -> healthMonitorFragment.updateHeartRateColor()}"
                         android:fontFamily="@font/roboto_regular"
-                        android:text="@{dataViewModel.heart_rate.toString() + ` bpm`}"
+                        android:text="@{dataViewModel.heart_rate.toString()}"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="55sp"
-                        tools:text="140 bpm" />
+                        tools:text="140" />
 
                     <ImageButton
                         android:id="@+id/heart_rate_graph_btn"
@@ -172,7 +181,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_regular"
-                    android:text="Heart Rate"
+                    android:text="Heart Rate (bpm)"
                     android:textAlignment="center"
                     android:textColor="@color/magenta"
                     android:textSize="24sp"
@@ -188,20 +197,29 @@
                     app:layout_constraintTop_toBottomOf="@id/blood_pressure_tracker"
                     tools:background="@drawable/blue_border">
 
-                    <TextView
-                        android:id="@+id/blood_pressure_tracker"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                    <ImageView
+                        android:id="@+id/blood_pressure_logo"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
-                        android:layout_toStartOf="@id/blood_p_graph_btn"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/ic_blood_pressure_logo"
+                        app:layout_constraintEnd_toStartOf="@id/blood_pressure_tracker"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/blood_pressure_tracker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
                         android:afterTextChanged="@{() -> healthMonitorFragment.updateBloodPressureColor()}"
                         android:fontFamily="@font/roboto_regular"
                         android:text="@{dataViewModel.blood_pressure.toString()}"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="55sp"
-                        tools:text="90 bp" />
+                        tools:text="90" />
 
                     <ImageButton
                         android:id="@+id/blood_p_graph_btn"
@@ -232,7 +250,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_regular"
-                    android:text="Blood Pressure"
+                    android:text="Blood Pressure (mmHg)"
                     android:textAlignment="center"
                     android:textColor="@color/magenta"
                     android:textSize="24sp"
@@ -249,20 +267,29 @@
                     app:layout_constraintTop_toBottomOf="@id/blood_pressure_tracker"
                     tools:background="@drawable/red_border">
 
+                    <ImageView
+                        android:id="@+id/blood_oxygen_logo"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/ic_blood_o2_logo"
+                        app:layout_constraintEnd_toStartOf="@id/blood_oxygen_tracker"
+                        app:layout_constraintStart_toStartOf="parent" />
+
                     <TextView
                         android:id="@+id/blood_oxygen_tracker"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
                         android:layout_centerInParent="true"
-                        android:layout_toStartOf="@id/blood_o_graph_btn"
                         android:afterTextChanged="@{() -> healthMonitorFragment.updateBloodOxygenColor()}"
                         android:fontFamily="@font/roboto_regular"
-                        android:text="@{dataViewModel.blood_oxygen.toString() + ` %`}"
+                        android:text="@{dataViewModel.blood_oxygen.toString()}"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="55sp"
-                        tools:text="80%" />
+                        tools:text="80" />
 
                     <ImageButton
                         android:id="@+id/blood_o_graph_btn"
@@ -292,7 +319,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_regular"
-                    android:text="Blood Oxygen"
+                    android:text="Blood Oxygen (%)"
                     android:textAlignment="center"
                     android:textColor="@color/magenta"
                     android:textSize="24sp"

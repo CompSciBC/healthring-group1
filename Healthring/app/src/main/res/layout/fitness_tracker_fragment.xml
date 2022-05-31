@@ -122,13 +122,22 @@
                     app:layout_constraintStart_toStartOf="parent"
                     tools:background="@drawable/secondary_sesnor_background">
 
-                    <TextView
-                        android:id="@+id/fitness_steps_tracker"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                    <ImageView
+                        android:id="@+id/steps_logo"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
-                        android:layout_toStartOf="@id/steps_graph_btn"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/ic_steps_logo"
+                        app:layout_constraintEnd_toStartOf="@id/fitness_steps_tracker"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/fitness_steps_tracker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
                         android:afterTextChanged="@{() -> fitnessTrackerFragment.updateStepsTextSize()}"
                         android:fontFamily="@font/roboto_regular"
                         android:text="@{dataViewModel.steps.toString()}"
@@ -182,16 +191,26 @@
                     app:layout_constraintTop_toBottomOf="@id/blood_pressure_tracker"
                     tools:background="@drawable/secondary_sesnor_background">
 
-                    <TextView
-                        android:id="@+id/fitness_distance_tracker"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                    <ImageView
+                        android:id="@+id/walk_distance_logo"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
-                        android:layout_toStartOf="@id/distance_graph_btn"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/ic_walk_distance_logo"
+                        app:layout_constraintEnd_toStartOf="@id/fitness_distance_tracker"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/fitness_distance_tracker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_centerHorizontal="true"
                         android:afterTextChanged="@{() -> fitnessTrackerFragment.updateDistanceTextSize()}"
                         android:fontFamily="@font/roboto_regular"
-                        android:text="@{dataViewModel.distance.toString() + ` Miles`}"
+                        android:text="@{dataViewModel.distance.toString()}"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="45sp"
@@ -226,7 +245,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_regular"
-                    android:text="Distance"
+                    android:text="Distance (miles)"
                     android:textAlignment="center"
                     android:textColor="@color/magenta"
                     android:textSize="24sp"
@@ -242,16 +261,26 @@
                     app:layout_constraintTop_toBottomOf="@id/blood_pressure_tracker"
                     tools:background="@drawable/secondary_sesnor_background">
 
-                    <TextView
-                        android:id="@+id/fitness_calories_tracker"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                    <ImageView
+                        android:id="@+id/calories_burnt_logo"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
-                        android:layout_toStartOf="@id/calories_graph_btn"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/ic_calories_burnt_logo"
+                        app:layout_constraintEnd_toStartOf="@id/fitness_calories_tracker"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/fitness_calories_tracker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_centerHorizontal="true"
                         android:afterTextChanged="@{() -> fitnessTrackerFragment.updateCaloriesTextSize()}"
                         android:fontFamily="@font/roboto_regular"
-                        android:text="@{dataViewModel.calories.toString() + ` kCal`}"
+                        android:text="@{dataViewModel.calories.toString()}"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="55sp"
@@ -286,7 +315,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_regular"
-                    android:text="Calories"
+                    android:text="Calories (kCal)"
                     android:textAlignment="center"
                     android:textColor="@color/magenta"
                     android:textSize="24sp"
