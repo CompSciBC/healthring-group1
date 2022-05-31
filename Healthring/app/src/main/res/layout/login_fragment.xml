@@ -137,13 +137,13 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:onClick="@{() -> loginFragment.openSesameSignIn()}" />
 
-        <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="230dp"
-            android:layout_height="221dp"
-            app:srcCompat="@drawable/family_pulrpleish_grey900"
-            tools:layout_editor_absoluteX="64dp"
-            tools:layout_editor_absoluteY="-12dp" />
+<!--        <ImageView-->
+<!--            android:id="@+id/imageView6"-->
+<!--            android:layout_width="230dp"-->
+<!--            android:layout_height="221dp"-->
+<!--            app:srcCompat="@drawable/family_pulrpleish_grey900"-->
+<!--            tools:layout_editor_absoluteX="64dp"-->
+<!--            tools:layout_editor_absoluteY="-12dp" />-->
 
         <!--        <Button-->
 <!--            android:id="@+id/login_open_graph_button"-->
