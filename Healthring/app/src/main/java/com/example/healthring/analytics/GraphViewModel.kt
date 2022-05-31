@@ -24,7 +24,13 @@ class GraphViewModel: ViewModel() {
         }
         Log.i("GRAPHVIEWMODEL", "Number of bars: ${values.toString()}")
         val set1 = BarDataSet(values, "DataSet 1")
-        set1.setGradientColor(Color.rgb(20, 94, 204), Color.rgb(20, 204, 201))
+//        set1.setGradientColor(Color.rgb(20, 94, 204), Color.rgb(20, 204, 201))
+        set1.setColors(
+            Color.parseColor("#AEC6CF"),
+            Color.parseColor("#f8c57c"),
+            Color.parseColor("#77DD77"),
+            Color.parseColor("#ff6961"),
+        )
         set1.barBorderWidth = 0.5f
         val data = BarData(set1)
         data.setValueTextSize(24f)
