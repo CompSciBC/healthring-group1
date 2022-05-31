@@ -318,13 +318,12 @@ class DataViewModel: ViewModel() {
         suspend fun dispatchEmail() =
             coroutineScope {
                 while(true) {
-                    if (enableEmailNotifications && updatingSensors) {
-                        val email = Amplify.Auth.currentUser.username
+                    if (enableEmailNotifications && updatingSensors && (emailHeartRate || emailBloodPressure || emailBloodOxygen)) {
                         val emailList = mutableListOf(Amplify.Auth.currentUser.username)
-                        if(emergencyEmail?.isNotEmpty() && emergencyEmail?.isNotBlank()) {
+                        if(emergencyEmail.isNotBlank()) {
                             emailList.add(emergencyEmail)
                         }
-                        if(doctorEmail.isNotEmpty() && doctorEmail.isNotBlank()) {
+                        if(doctorEmail.isNotBlank()) {
                             emailList.add(doctorEmail)
                         }
                         var title = ""

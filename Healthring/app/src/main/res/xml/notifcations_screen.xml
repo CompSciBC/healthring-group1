@@ -3,31 +3,31 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <SwitchPreferenceCompat
-        app:key="enable_push_notifications"
-        app:title="Enable Push Notifications"
-        app:defaultValue="true"
-        app:allowDividerAbove="true"
-        app:allowDividerBelow="false"
-        app:icon="@drawable/notifications_icon"/>
+<!--    <SwitchPreferenceCompat-->
+<!--        app:key="enable_push_notifications"-->
+<!--        app:title="Enable Push Notifications"-->
+<!--        app:defaultValue="true"-->
+<!--        app:allowDividerAbove="true"-->
+<!--        app:allowDividerBelow="false"-->
+<!--        app:icon="@drawable/notifications_icon"/>-->
 
-    <PreferenceCategory
-        app:key="push_notifications_category"
-        app:title="Notify Me When"
-        app:dependency="enable_push_notifications">
-        <SwitchPreferenceCompat
-            app:key="notify_heart_rate"
-            app:title="My Heart Rate is Critical"
-            app:defaultValue="true"/>
-        <SwitchPreferenceCompat
-            app:key="notify_blood_pressure"
-            app:title="My Blood Pressure is Critical"
-            app:defaultValue="true"/>
-        <SwitchPreferenceCompat
-            app:key="notify_blood_oxygen"
-            app:title="My Blood Oxygen is Critical"
-            app:defaultValue="true"/>
-    </PreferenceCategory>
+<!--    <PreferenceCategory-->
+<!--        app:key="push_notifications_category"-->
+<!--        app:title="Notify Me When"-->
+<!--        app:dependency="enable_push_notifications">-->
+<!--        <SwitchPreferenceCompat-->
+<!--            app:key="notify_heart_rate"-->
+<!--            app:title="My Heart Rate is Critical"-->
+<!--            app:defaultValue="true"/>-->
+<!--        <SwitchPreferenceCompat-->
+<!--            app:key="notify_blood_pressure"-->
+<!--            app:title="My Blood Pressure is Critical"-->
+<!--            app:defaultValue="true"/>-->
+<!--        <SwitchPreferenceCompat-->
+<!--            app:key="notify_blood_oxygen"-->
+<!--            app:title="My Blood Oxygen is Critical"-->
+<!--            app:defaultValue="true"/>-->
+<!--    </PreferenceCategory>-->
 
     <SwitchPreferenceCompat
         app:key="enable_email_notifications"

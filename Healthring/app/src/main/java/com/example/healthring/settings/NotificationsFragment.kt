@@ -92,14 +92,14 @@ class NotificationsFragment : PreferenceFragmentCompat() {
     private fun emailEmergencyContactTextListener() {
         val emailEmergencyContact = findPreference<EditTextPreference>("email_contact")
         emailEmergencyContact?.setOnBindEditTextListener {
-            dataVM.emergencyEmail = emailEmergencyContact.text!!
+            dataVM.emergencyEmail = emailEmergencyContact.text.toString()
         }
     }
 
     private fun emailDoctorContactTextListener() {
         val emailDoctorContact = findPreference<EditTextPreference>("email_doctor")
         emailDoctorContact?.setOnBindEditTextListener {
-            dataVM.doctorEmail = emailDoctorContact.text!!
+            dataVM.doctorEmail = emailDoctorContact.text.toString()
         }
     }
 

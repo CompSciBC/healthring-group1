@@ -7,7 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="magenta">#9C27B0</color>
+<!--    <color name="magenta">#9C27B0</color>-->
     <color name="green">#FF4CAF50</color>
     <color name="blue">#5a79ba</color>
     <color name="amber">#ffbf00</color>
@@ -26,4 +26,22 @@
     <color name="pastelle_blue">#AEC6CF</color>
     <color name="pastelle_red">#ff6961</color>
     <color name="pastelle_amber">#f8c57c</color>
+
+    <color name="aqua">#00FFFF</color>
+
+    <color name="aqua_green">#03bb85</color>
+
+    <color name="red_voilet">#953553</color>
+
+    <color name="yellow_green">#9ACD32</color>
+
+    <color name="cherry">#fcc9b9</color>
+
+    <color name="Alex_white">#F5F5F5</color>
+
+    <color name="magenta">#64379f</color>
+
+
+
+
 </resources>
