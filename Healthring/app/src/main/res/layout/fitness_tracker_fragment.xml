@@ -4,13 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="fitnessTrackerFragment"
             type="com.example.healthring.fitnesstracker.FitnessTrackerFragment" />
+
         <variable
             name="dataViewModel"
             type="com.example.healthring.model.DataViewModel" />
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
     </data>
 
 
@@ -23,24 +26,24 @@
             android:id="@+id/header_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:background="@drawable/header_semicircle_background"
             android:orientation="horizontal"
-            android:background="@drawable/header_semicircle_background">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/health_ring"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="HealthRing"
                 android:layout_marginLeft="18dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="HealthRing"
                 android:textColor="@color/Alex_white"
                 android:textSize="20sp"
                 android:textStyle="normal"
-                android:fontFamily="@font/roboto_regular"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/profile_picture_button"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <!-- ImageView for HealthRing Logo, update later with transparent one -->
@@ -62,28 +65,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="6dp"
-                app:srcCompat="@drawable/profile_icon"
-                app:tint="@color/Alex_white"
                 android:backgroundTint="@color/magenta"
-                app:layout_constraintTop_toTopOf="parent"
+                android:onClick="@{() -> fitnessTrackerFragment.goToProfileFragment()}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:onClick="@{() -> fitnessTrackerFragment.goToProfileFragment()}" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/profile_icon"
+                app:tint="@color/Alex_white" />
 
             <ImageButton
                 android:id="@+id/settings_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/settings_icon"
-                app:tint="@color/Alex_white"
+                android:backgroundTint="@color/magenta"
+                android:onClick="@{() -> fitnessTrackerFragment.goToSettingsFragment()}"
                 android:scaleX="0.8"
                 android:scaleY="0.8"
-                android:backgroundTint="@color/magenta"
-                app:layout_constraintTop_toTopOf="@+id/profile_picture_button"
                 app:layout_constraintBottom_toBottomOf="@+id/profile_picture_button"
                 app:layout_constraintStart_toEndOf="@+id/profile_picture_button"
-                android:onClick="@{() -> fitnessTrackerFragment.goToSettingsFragment()}"/>
+                app:layout_constraintTop_toTopOf="@+id/profile_picture_button"
+                app:srcCompat="@drawable/settings_icon"
+                app:tint="@color/Alex_white" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -91,8 +94,8 @@
             android:id="@+id/fitness_sensor_scrollview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/header_container"
-            app:layout_constraintBottom_toTopOf="@id/fitness_nav_container">
+            app:layout_constraintBottom_toTopOf="@id/fitness_nav_container"
+            app:layout_constraintTop_toBottomOf="@id/header_container">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -104,19 +107,19 @@
                     android:id="@+id/fitness_tracker_header"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAlignment="center"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="Fitness Tracker"
+                    android:textAlignment="center"
                     android:textColor="@color/magenta"
                     android:textSize="36sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/roboto_regular" />
+                    android:textStyle="bold" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/secondary_sesnor_background"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:background="@drawable/secondary_sesnor_background"
                     tools:background="@drawable/secondary_sesnor_background">
 
                     <TextView
@@ -151,10 +154,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_alignParentEnd="true"
-                        android:padding="11dp"
                         android:indeterminateTint="@color/black"
+                        android:padding="11dp"
                         android:visibility="@{dataViewModel.isLoadingGraphData ? View.VISIBLE : View.INVISIBLE}"
-                        tools:visibility="gone"/>
+                        tools:visibility="gone" />
 
                 </RelativeLayout>
 
@@ -162,21 +165,21 @@
                     android:id="@+id/fitness_steps_tracker_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="Steps"
                     android:textAlignment="center"
-                    android:textSize="24sp"
                     android:textColor="@color/magenta"
-                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="24sp"
                     app:layout_constraintTop_toBottomOf="@id/heart_rate_tracker" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:background="@drawable/secondary_sesnor_background"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginTop="32dp"
                     app:layout_constraintTop_toBottomOf="@id/blood_pressure_tracker"
-                    android:background="@drawable/secondary_sesnor_background"
                     tools:background="@drawable/secondary_sesnor_background">
 
                     <TextView
@@ -186,13 +189,13 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:layout_toStartOf="@id/distance_graph_btn"
+                        android:afterTextChanged="@{() -> fitnessTrackerFragment.updateDistanceTextSize()}"
                         android:fontFamily="@font/roboto_regular"
                         android:text="@{dataViewModel.distance.toString() + ` Miles`}"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="45sp"
-                        tools:text="12"
-                        android:afterTextChanged="@{() -> fitnessTrackerFragment.updateDistanceTextSize()}"/>
+                        tools:text="12" />
 
                     <ImageButton
                         android:id="@+id/distance_graph_btn"
@@ -210,10 +213,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_alignParentEnd="true"
-                        android:padding="11dp"
                         android:indeterminateTint="@color/black"
+                        android:padding="11dp"
                         android:visibility="@{dataViewModel.isLoadingGraphData ? View.VISIBLE : View.INVISIBLE}"
-                        tools:visibility="gone"/>
+                        tools:visibility="gone" />
 
                 </RelativeLayout>
 
@@ -222,21 +225,21 @@
                     android:id="@+id/fitness_distance_tracker_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="Distance"
                     android:textAlignment="center"
-                    android:textSize="24sp"
                     android:textColor="@color/magenta"
-                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="24sp"
                     app:layout_constraintTop_toBottomOf="@id/blood_pressure_tracker" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:background="@drawable/secondary_sesnor_background"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginTop="32dp"
                     app:layout_constraintTop_toBottomOf="@id/blood_pressure_tracker"
-                    android:background="@drawable/secondary_sesnor_background"
                     tools:background="@drawable/secondary_sesnor_background">
 
                     <TextView
@@ -246,13 +249,13 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:layout_toStartOf="@id/calories_graph_btn"
+                        android:afterTextChanged="@{() -> fitnessTrackerFragment.updateCaloriesTextSize()}"
                         android:fontFamily="@font/roboto_regular"
                         android:text="@{dataViewModel.calories.toString() + ` kCal`}"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="55sp"
-                        tools:text="1242"
-                        android:afterTextChanged="@{() -> fitnessTrackerFragment.updateCaloriesTextSize()}"/>
+                        tools:text="1242" />
 
                     <ImageButton
                         android:id="@+id/calories_graph_btn"
@@ -270,10 +273,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_alignParentEnd="true"
-                        android:padding="11dp"
                         android:indeterminateTint="@color/black"
+                        android:padding="11dp"
                         android:visibility="@{dataViewModel.isLoadingGraphData ? View.VISIBLE : View.INVISIBLE}"
-                        tools:visibility="gone"/>
+                        tools:visibility="gone" />
 
                 </RelativeLayout>
 
@@ -282,11 +285,11 @@
                     android:id="@+id/fitness_calories_tracker_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="Calories"
                     android:textAlignment="center"
-                    android:textSize="24sp"
                     android:textColor="@color/magenta"
-                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="24sp"
                     app:layout_constraintTop_toBottomOf="@id/blood_pressure_tracker" />
 
             </LinearLayout>
@@ -296,50 +299,48 @@
             android:id="@+id/fitness_nav_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
+            android:background="@color/magenta"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:background="@color/magenta">
+            app:layout_constraintStart_toStartOf="parent">
 
             <ImageButton
                 android:id="@+id/health_monitor_button"
                 android:layout_width="110dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
-                android:text="Health Moniter"
+                android:layout_weight="1"
                 android:backgroundTint="@color/magenta"
+                android:onClick="@{() -> fitnessTrackerFragment.goToHealthMonitorFragment()}"
+                android:text="Health Moniter"
                 android:textSize="18sp"
                 app:srcCompat="@drawable/health_icon"
-                app:tint="@color/Alex_white"
-                android:onClick="@{() -> fitnessTrackerFragment.goToHealthMonitorFragment()}"/>
+                app:tint="@color/Alex_white" />
 
             <ImageButton
                 android:id="@+id/fitness_tracker_button"
                 android:layout_width="110dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="2dp"
-                android:text="Fitness Tracker"
+                android:layout_weight="1"
                 android:backgroundTint="@color/magenta"
+                android:text="Fitness Tracker"
                 android:textSize="18sp"
                 app:srcCompat="@drawable/fitness_icon"
-                app:tint="@color/Alex_white"
-                />
+                app:tint="@color/Alex_white" />
 
             <ImageButton
                 android:id="@+id/todays_task_button"
                 android:layout_width="110dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="2dp"
-                android:text="Today's Task"
+                android:layout_weight="1"
                 android:backgroundTint="@color/magenta"
+                android:onClick="@{() -> fitnessTrackerFragment.goToTaskFragment()}"
+                android:text="Today's Task"
                 android:textSize="18sp"
                 app:srcCompat="@drawable/tasks_icon"
-                app:tint="@color/Alex_white"
-                android:onClick="@{() -> fitnessTrackerFragment.goToTaskFragment()}"/>
+                app:tint="@color/Alex_white" />
         </LinearLayout>
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

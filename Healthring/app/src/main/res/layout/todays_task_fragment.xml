@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="todaysTasksFragment"
             type="com.example.healthring.todaytasks.TodaysTasksFragment" />
+
         <variable
             name="todaysTasksViewModel"
             type="com.example.healthring.todaytasks.TodaysTasksViewModel" />
@@ -21,24 +23,24 @@
             android:id="@+id/header_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:background="@drawable/header_semicircle_background"
             android:orientation="horizontal"
-            android:background="@drawable/header_semicircle_background">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/health_ring"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="HealthRing"
                 android:layout_marginLeft="18dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="HealthRing"
                 android:textColor="@color/Alex_white"
                 android:textSize="20sp"
                 android:textStyle="normal"
-                android:fontFamily="@font/roboto_regular"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/profile_picture_button"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <!-- ImageView for HealthRing Logo, update later with transparent one -->
@@ -60,29 +62,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="6dp"
-                app:srcCompat="@drawable/profile_icon"
-                app:tint="@color/Alex_white"
                 android:backgroundTint="@color/magenta"
-                app:layout_constraintTop_toTopOf="parent"
+                android:onClick="@{() -> todaysTasksFragment.goToProfileFragment()}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:onClick="@{() -> todaysTasksFragment.goToProfileFragment()}" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/profile_icon"
+                app:tint="@color/Alex_white" />
 
             <ImageButton
                 android:id="@+id/settings_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/settings_icon"
-                app:tint="@color/Alex_white"
+                android:backgroundTint="@color/magenta"
+                android:onClick="@{() -> todaysTasksFragment.goToSettingsFragment()}"
                 android:scaleX="0.8"
                 android:scaleY="0.8"
-                android:backgroundTint="@color/magenta"
-                app:layout_constraintTop_toTopOf="@+id/profile_picture_button"
                 app:layout_constraintBottom_toBottomOf="@+id/profile_picture_button"
                 app:layout_constraintStart_toEndOf="@+id/profile_picture_button"
-                android:onClick="@{() -> todaysTasksFragment.goToSettingsFragment()}"/>
-
+                app:layout_constraintTop_toTopOf="@+id/profile_picture_button"
+                app:srcCompat="@drawable/settings_icon"
+                app:tint="@color/Alex_white" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -91,84 +92,84 @@
             android:id="@+id/tasks_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
+            android:fontFamily="@font/roboto_regular"
+            android:paddingHorizontal="24dp"
             android:text="Task Tracker"
+            android:textAlignment="center"
             android:textColor="@color/grey_700"
             android:textSize="36sp"
             android:textStyle="bold"
-            android:fontFamily="@font/roboto_regular"
-            android:paddingHorizontal="24dp"
-            app:layout_constraintTop_toBottomOf="@id/header_container"
-            app:layout_constraintBottom_toTopOf="@id/recyclerView"/>
+            app:layout_constraintBottom_toTopOf="@id/recyclerView"
+            app:layout_constraintTop_toBottomOf="@id/header_container" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_margin="8dp"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
-            android:layout_margin="8dp"
-            app:layout_constraintTop_toBottomOf="@id/tasks_header"
-            app:layout_constraintBottom_toTopOf="@id/tasks_nav_container"/>
+            app:layout_constraintBottom_toTopOf="@id/tasks_nav_container"
+            app:layout_constraintTop_toBottomOf="@id/tasks_header" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
-        android:src="@android:drawable/ic_input_add"
-        android:backgroundTint="@color/magenta"
-        app:layout_constraintBottom_toTopOf="@id/tasks_nav_container"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@color/white"
-        app:borderWidth="0dp" />
-
-    <LinearLayout
-        android:id="@+id/tasks_nav_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@color/magenta">
-
-        <ImageButton
-            android:id="@+id/health_monitor_button"
-            android:layout_width="110dp"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="2dp"
-            android:layout_weight="1"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
             android:backgroundTint="@color/magenta"
-            android:onClick="@{() -> todaysTasksFragment.goToHealthMonitorFragment()}"
-            android:text="Health Moniter"
-            android:textSize="18sp"
-            app:srcCompat="@drawable/health_icon"
-            app:tint="@color/Alex_white" />
+            android:src="@android:drawable/ic_input_add"
+            app:borderWidth="0dp"
+            app:layout_constraintBottom_toTopOf="@id/tasks_nav_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="@color/white" />
 
-        <ImageButton
-            android:id="@+id/fitness_tracker_button"
-            android:layout_width="110dp"
+        <LinearLayout
+            android:id="@+id/tasks_nav_container"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="2dp"
-            android:layout_weight="1"
-            android:backgroundTint="@color/magenta"
-            android:onClick="@{() -> todaysTasksFragment.goToFitnessFragment()}"
-            android:text="Fitness Tracker"
-            android:textSize="18sp"
-            app:srcCompat="@drawable/fitness_icon"
-            app:tint="@color/Alex_white" />
+            android:background="@color/magenta"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-        <ImageButton
-            android:id="@+id/todays_task_button"
-            android:layout_width="110dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="2dp"
-            android:text="Today's Task"
-            android:backgroundTint="@color/magenta"
-            android:textSize="18sp"
-            app:srcCompat="@drawable/tasks_icon"
-            app:tint="@color/Alex_white"/>
+            <ImageButton
+                android:id="@+id/health_monitor_button"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/magenta"
+                android:onClick="@{() -> todaysTasksFragment.goToHealthMonitorFragment()}"
+                android:text="Health Moniter"
+                android:textSize="18sp"
+                app:srcCompat="@drawable/health_icon"
+                app:tint="@color/Alex_white" />
+
+            <ImageButton
+                android:id="@+id/fitness_tracker_button"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/magenta"
+                android:onClick="@{() -> todaysTasksFragment.goToFitnessFragment()}"
+                android:text="Fitness Tracker"
+                android:textSize="18sp"
+                app:srcCompat="@drawable/fitness_icon"
+                app:tint="@color/Alex_white" />
+
+            <ImageButton
+                android:id="@+id/todays_task_button"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="2dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/magenta"
+                android:text="Today's Task"
+                android:textSize="18sp"
+                app:srcCompat="@drawable/tasks_icon"
+                app:tint="@color/Alex_white" />
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

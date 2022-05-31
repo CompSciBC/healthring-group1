@@ -4,16 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="healthMonitorFragment"
             type="com.example.healthring.healthmonitor.HealthMonitorFragment" />
+
         <variable
             name="dataViewModel"
             type="com.example.healthring.model.DataViewModel" />
+
         <variable
             name="healthMonitorViewModel"
             type="com.example.healthring.healthmonitor.HealthMonitorViewModel" />
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -94,8 +98,8 @@
             android:id="@+id/health_sensor_scrollview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/header_container"
             app:layout_constraintBottom_toTopOf="@id/health_nav_container"
+            app:layout_constraintTop_toBottomOf="@id/header_container"
             tools:layout_editor_absoluteX="-31dp">
 
             <LinearLayout
@@ -155,10 +159,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_alignParentEnd="true"
-                        android:padding="11dp"
                         android:indeterminateTint="@color/black"
+                        android:padding="11dp"
                         android:visibility="@{dataViewModel.isLoadingGraphData ? View.VISIBLE : View.INVISIBLE}"
-                        tools:visibility="gone"/>
+                        tools:visibility="gone" />
 
                 </RelativeLayout>
 
@@ -215,10 +219,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_alignParentEnd="true"
-                        android:padding="11dp"
                         android:indeterminateTint="@color/black"
+                        android:padding="11dp"
                         android:visibility="@{dataViewModel.isLoadingGraphData ? View.VISIBLE : View.INVISIBLE}"
-                        tools:visibility="gone"/>
+                        tools:visibility="gone" />
 
 
                 </RelativeLayout>
@@ -275,9 +279,9 @@
                         style="@android:style/Widget.Material.ProgressBar.Large"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:padding="11dp"
                         android:layout_alignParentEnd="true"
                         android:indeterminateTint="@color/black"
+                        android:padding="11dp"
                         android:visibility="@{dataViewModel.isLoadingGraphData ? View.VISIBLE : View.INVISIBLE}"
                         tools:visibility="gone" />
 
@@ -357,9 +361,9 @@
             android:id="@+id/health_nav_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
+            android:background="@color/magenta"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:background="@color/magenta">
+            app:layout_constraintStart_toStartOf="parent">
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/health_monitor_button"
@@ -377,27 +381,27 @@
                 android:id="@+id/fitness_tracker_button"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginHorizontal="2dp"
-                android:text="Fitness Tracker"
+                android:layout_weight="1"
                 android:backgroundTint="@color/magenta"
+                android:onClick="@{() -> healthMonitorFragment.goToFitnessFragment()}"
+                android:text="Fitness Tracker"
                 android:textSize="18sp"
                 app:srcCompat="@drawable/fitness_icon"
-                app:tint="@color/Alex_white"
-                android:onClick="@{() -> healthMonitorFragment.goToFitnessFragment()}"/>
+                app:tint="@color/Alex_white" />
 
             <ImageButton
                 android:id="@+id/todays_task_button"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginRight="2dp"
-                android:text="Today's Task"
+                android:layout_weight="1"
                 android:backgroundTint="@color/magenta"
+                android:onClick="@{() -> healthMonitorFragment.goToTaskFragment()}"
+                android:text="Today's Task"
                 android:textSize="18sp"
                 app:srcCompat="@drawable/tasks_icon"
-                app:tint="@color/Alex_white"
-                android:onClick="@{() -> healthMonitorFragment.goToTaskFragment()}"/>
+                app:tint="@color/Alex_white" />
 
         </LinearLayout>
 
