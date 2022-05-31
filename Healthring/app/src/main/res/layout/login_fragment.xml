@@ -25,9 +25,9 @@
             android:id="@+id/title_healthring"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="92dp"
+            android:layout_marginTop="208dp"
             android:text="HEALTHRING"
-            android:textColor="@color/Alex_white"
+            android:textColor="@color/magenta"
             android:textSize="48sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +39,7 @@
             android:id="@+id/login_email"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title_healthring"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="30dp"
             android:layout_gravity="center"
             style="@style/ProfileTextFields"
             app:helperText="@string/required"
@@ -126,7 +126,7 @@
             android:layout_marginRight="120dp"
             android:layout_height="64dp"
             android:layout_marginBottom="24dp"
-            android:layout_marginTop="42dp"
+            android:layout_marginTop="2dp"
             app:layout_constraintTop_toBottomOf="@id/login_create_account_button"
             android:textSize="16sp"
             android:fontFamily="@font/roboto"
@@ -137,13 +137,13 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:onClick="@{() -> loginFragment.openSesameSignIn()}" />
 
-<!--        <ImageView-->
-<!--            android:id="@+id/imageView6"-->
-<!--            android:layout_width="230dp"-->
-<!--            android:layout_height="221dp"-->
-<!--            app:srcCompat="@drawable/family_pulrpleish_grey900"-->
-<!--            tools:layout_editor_absoluteX="64dp"-->
-<!--            tools:layout_editor_absoluteY="-12dp" />-->
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="230dp"
+            android:layout_height="221dp"
+            app:srcCompat="@drawable/family_pulrpleish_grey900"
+            tools:layout_editor_absoluteX="64dp"
+            tools:layout_editor_absoluteY="-12dp" />
 
         <!--        <Button-->
 <!--            android:id="@+id/login_open_graph_button"-->

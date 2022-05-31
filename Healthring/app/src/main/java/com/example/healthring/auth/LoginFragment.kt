@@ -47,7 +47,7 @@ class LoginFragment : Fragment() {
             viewModel = authViewModel
         }
 
-        emailFocusListener()
+//        emailFocusListener()
 
         Amplify.Auth.fetchAuthSession(
             {
@@ -149,23 +149,23 @@ class LoginFragment : Fragment() {
     }
 
 
-    private fun emailFocusListener() {
-
-        binding?.loginEmail?.setOnFocusChangeListener { _, hasFocus ->
-            Log.i("EmailTest", "TestTest")
-            if (!hasFocus) {
-                binding?.loginEmail?.helperText = validEmail()
-            }
-        }
-    }
-
-    public fun validEmail(): String? {
-        val emailText = authViewModel.email.value.toString()
-        if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
-            return "Invalid Email Address"
-        }
-        return null
-    }
+//    private fun emailFocusListener() {
+//
+//        binding?.loginEmail?.setOnFocusChangeListener { _, hasFocus ->
+//            Log.i("EmailTest", "TestTest")
+//            if (!hasFocus) {
+//                binding?.loginEmail?.helperText = validEmail()
+//            }
+//        }
+//    }
+//
+//    public fun validEmail(): String? {
+//        val emailText = authViewModel.email.value.toString()
+//        if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
+//            return "Invalid Email Address"
+//        }
+//        return null
+//    }
 
 //    private fun passwordFocusListener() {
 //

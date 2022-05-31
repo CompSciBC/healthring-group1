@@ -371,7 +371,7 @@
                 android:text="Health Moniter"
                 android:textSize="18sp"
                 app:srcCompat="@drawable/health_icon"
-                app:tint="@color/grey_900" />
+                app:tint="@color/Alex_white" />
 
             <ImageButton
                 android:id="@+id/fitness_tracker_button"

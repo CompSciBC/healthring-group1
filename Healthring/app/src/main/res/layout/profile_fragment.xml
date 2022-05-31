@@ -17,21 +17,22 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/resene_cherubs">
+            android:background="@color/Alex_white">
 
             <com.mikhaellopez.circularimageview.CircularImageView
                 android:id="@+id/profileImage"
                 android:layout_gravity="center"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:src="@drawable/profile_silhouette"
+                android:src="@drawable/profile_icon"
                 app:civ_border_color="#000000"
                 app:civ_border_width="2dp"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginTop="24dp"
                 tools:layout_editor_absoluteX="58dp"
                 tools:layout_editor_absoluteY="303dp"
-                tools:ignore="MissingClass" />
+                tools:ignore="MissingClass"
+                app:tint="@color/magenta"/>
 
             <com.google.android.material.button.MaterialButtonToggleGroup
                 android:id="@+id/profileGenderToggleGroup"
@@ -195,7 +196,7 @@
                 android:text="Save"
                 android:textColor="#FFFFFF"
                 android:textSize="30sp"
-                app:backgroundTint="@color/resene_wistful"
+                app:backgroundTint="@color/magenta"
                 app:layout_constraintTop_toBottomOf="@id/profileUnitsToggleGroup"
                 tools:text="Save" />
 
