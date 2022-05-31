@@ -33,6 +33,8 @@ class NotificationsFragment : PreferenceFragmentCompat() {
         emailHeartRateClickListener()
         emailBloodPressureClickListener()
         emailBloodOxygenClickListener()
+        emailEmergencyContactTextListener()
+        emailDoctorContactTextListener()
 
         val enableEmailNotificationsSwitch = findPreference<SwitchPreferenceCompat>("enable_email_notifications")
         enableEmailNotificationsSwitch?.setOnPreferenceClickListener {
@@ -83,6 +85,20 @@ class NotificationsFragment : PreferenceFragmentCompat() {
             dataVM.emailBloodOxygen = emailBloodOxygenSwitch.isChecked
             Log.d("BloodOxygen Email", "${dataVM.emailBloodOxygen}")
             true
+        }
+    }
+
+    private fun emailEmergencyContactTextListener() {
+        val emailEmergencyContact = findPreference<EditTextPreference>("email_contact")
+        emailEmergencyContact?.setOnBindEditTextListener {
+            dataVM.emergencyEmail = emailEmergencyContact.text.toString()
+        }
+    }
+
+    private fun emailDoctorContactTextListener() {
+        val emailDoctorContact = findPreference<EditTextPreference>("email_doctor")
+        emailDoctorContact?.setOnBindEditTextListener {
+            dataVM.doctorEmail = emailDoctorContact.text.toString()
         }
     }
 

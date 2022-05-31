@@ -75,6 +75,8 @@ class DataViewModel: ViewModel() {
     var emailHeartRate: Boolean = false
     var emailBloodPressure: Boolean = false
     var emailBloodOxygen: Boolean = false
+    var emergencyEmail: String = ""
+    var doctorEmail: String = ""
 
     private var _token: String? = null
     private var responseCount = 0
@@ -316,8 +318,14 @@ class DataViewModel: ViewModel() {
         suspend fun dispatchEmail() =
             coroutineScope {
                 while(true) {
-                    if (enableEmailNotifications && updatingSensors) {
-                        val email = Amplify.Auth.currentUser.username
+                    if (enableEmailNotifications && updatingSensors && (emailHeartRate || emailBloodPressure || emailBloodOxygen)) {
+                        val emailList = mutableListOf(Amplify.Auth.currentUser.username)
+                        if(emergencyEmail.isNotBlank()) {
+                            emailList.add(emergencyEmail)
+                        }
+                        if(doctorEmail.isNotBlank()) {
+                            emailList.add(doctorEmail)
+                        }
                         var title = ""
                         var body = ""
                         if (emailHeartRate && heart_rate.value!! > 150){
@@ -328,18 +336,18 @@ class DataViewModel: ViewModel() {
                             if (title.isEmpty()) {
                                 title = "Critical Blood Pressure Alert"
                             }
-                            val newBody = body.plus("<br>Your blood pressure is critically high at ${blood_pressure.value}mmHg.<br>")
+                            val newBody = body.plus("<br>Your blood pressure is critically high at ${blood_pressure.value}mmHg.")
                             body = newBody
                         }
-                        if (emailBloodOxygen && blood_oxygen.value!! < 70) {
+                        if (emailBloodOxygen && blood_oxygen.value!! != 0.0 && blood_oxygen.value!! < 70) {
                             if (title.isEmpty()) {
                                 title = "Critical Blood Oxygen Alert"
                             }
-                            val newBody = body.plus("<br>Your blood oxygen is critically low at ${blood_oxygen.value}%.<br>")
+                            val newBody = body.plus("<br>Your blood oxygen is critically low at ${blood_oxygen.value}%.")
                             body = newBody
                         }
                         if (title.isNotEmpty()) {
-                            val emailData = EmailData(email, title, body)
+                            val emailData = EmailData(emailList, title, body)
                             Log.d("TestFunction", "${emailData.email}, ${emailData.title}, ${emailData.body}")
                             val sendEmail = async { postEmailNotification(emailData) }
                             sendEmail.await()
