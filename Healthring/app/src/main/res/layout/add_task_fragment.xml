@@ -36,7 +36,7 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginStart="8dp"
-            android:src="@drawable/logo_transparent"
+            android:src="@drawable/healthringlogohighres_magenta"
             app:layout_constraintStart_toEndOf="@id/health_ring"
             app:layout_constraintTop_toTopOf="@id/health_ring" />
 

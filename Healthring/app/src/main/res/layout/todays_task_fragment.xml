@@ -53,7 +53,7 @@
                 android:layout_marginBottom="16dp"
                 android:scaleX="1"
                 android:scaleY="1"
-                android:src="@drawable/logo_transparent"
+                android:src="@drawable/healthringlogohighres_alexwhite"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -96,7 +96,7 @@
             android:paddingHorizontal="24dp"
             android:text="Task Tracker"
             android:textAlignment="center"
-            android:textColor="@color/grey_700"
+            android:textColor="@color/magenta"
             android:textSize="36sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/recyclerView"

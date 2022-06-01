@@ -24,29 +24,37 @@
         android:background="@color/Alex_white"
         android:padding="24dp">
 
-        <TextView
-            android:id="@+id/title_healthring"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="208dp"
-            android:text="HEALTHRING"
-            android:textColor="@color/magenta"
-            android:textSize="48sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.475"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+<!--        <TextView-->
+<!--            android:id="@+id/title_healthring"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="208dp"-->
+<!--            android:text="HEALTHRING"-->
+<!--            android:textColor="@color/Alex_white"-->
+<!--            android:textSize="48sp"-->
+<!--            android:textStyle="bold"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.475"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+        <ImageView
+            android:id="@+id/login_logo"
+            android:layout_width="330dp"
+            android:layout_height="300dp"
+            app:srcCompat="@drawable/physical_icon_simple_bold"
+            tools:layout_editor_absoluteX="17dp"
+            tools:layout_editor_absoluteY="30dp" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/login_email"
             style="@style/ProfileTextFields"
             android:layout_gravity="center"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             app:helperText="@string/required"
             app:helperTextTextColor="@color/red"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title_healthring">
+            app:layout_constraintTop_toBottomOf="@id/login_logo">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inside_loginEmail"
@@ -133,17 +141,19 @@
             android:text="Open Sesame"
             android:textColor="@color/Alex_white"
             android:textSize="16sp"
-            app:backgroundTint="@color/magenta"
+            app:backgroundTint="@color/Alex_white"
             app:layout_constraintTop_toBottomOf="@id/login_create_account_button"
             tools:text="Open Sesame" />
 
-        <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="230dp"
-            android:layout_height="221dp"
-            app:srcCompat="@drawable/family_pulrpleish_grey900"
-            tools:layout_editor_absoluteX="64dp"
-            tools:layout_editor_absoluteY="-12dp" />
+
+
+        <!--        <ImageView-->
+<!--            android:id="@+id/imageView7"-->
+<!--            android:layout_width="350dp"-->
+<!--            android:layout_height="310dp"-->
+<!--            app:srcCompat="@drawable/physical_icon_simple"-->
+<!--            tools:layout_editor_absoluteX="-5dp"-->
+<!--            tools:layout_editor_absoluteY="-13dp" />-->
 
         <!--        <Button-->
         <!--            android:id="@+id/login_open_graph_button"-->
