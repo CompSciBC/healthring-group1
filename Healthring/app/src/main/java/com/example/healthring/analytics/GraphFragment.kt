@@ -164,6 +164,7 @@ class GraphFragment: Fragment(R.layout.graph_fragment), AdapterView.OnItemSelect
         barChart?.notifyDataSetChanged()
         barChart?.invalidate();
         barChart?.animateY(500)
+        Log.i("GRAPHFRAGMENT", "Graph Refreshed")
     }
 
     fun navigateUp() {

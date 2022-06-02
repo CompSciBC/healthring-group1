@@ -55,10 +55,10 @@ class GraphViewModel: ViewModel() {
                 sumOfData += getSensorValueToInt(sensor, sensorRecord)
                 numOfDataPoints++
             }
-            if (sumOfData != 0) {
-                values.add(BarEntry(i.toFloat() , (sumOfData / numOfDataPoints).toFloat()))
-            } else {
+            if (sensorDataWithMatchingDate.isEmpty()) {
                 values.add(BarEntry(i.toFloat(), 0f))
+            } else {
+                values.add(BarEntry(i.toFloat() , (sumOfData / numOfDataPoints).toFloat()))
             }
             comparisonDate = comparisonDate.plusDays(1)
         }
