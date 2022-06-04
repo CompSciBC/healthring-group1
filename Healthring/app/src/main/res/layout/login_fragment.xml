@@ -40,9 +40,9 @@
 
         <ImageView
             android:id="@+id/login_logo"
-            android:layout_width="330dp"
+            android:layout_width="340dp"
             android:layout_height="300dp"
-            app:srcCompat="@drawable/physical_icon_simple_bold"
+            app:srcCompat="@drawable/physical_icon_simple_bolder_125"
             tools:layout_editor_absoluteX="17dp"
             tools:layout_editor_absoluteY="30dp" />
 

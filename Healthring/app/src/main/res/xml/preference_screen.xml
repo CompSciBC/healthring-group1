@@ -5,7 +5,8 @@
 
     <PreferenceCategory
         app:key="asthetics_category"
-        app:title="Asthetics">
+        app:title="Asthetics"
+        >
 
         <SwitchPreferenceCompat
             app:key="astheics_turnoff_sensor_colors"
