@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -136,6 +137,9 @@ class AddTaskFragment : Fragment() {
 //            findNavController().navigate(R.id.action_todaysTasksFragment2_to_addTaskFragment)
             val action = AddTaskFragmentDirections.actionAddTaskFragmentToTodaysTasksFragment2()
             findNavController().navigate(action)
+            val text = "Task Saved!"
+            val duration = Toast.LENGTH_SHORT
+            Toast.makeText(context, text, duration).show()
         }
     }
 
@@ -150,6 +154,9 @@ class AddTaskFragment : Fragment() {
             )
             val action = AddTaskFragmentDirections.actionAddTaskFragmentToTodaysTasksFragment2()
             findNavController().navigate(action)
+            val text = "Task Updated!"
+            val duration = Toast.LENGTH_SHORT
+            Toast.makeText(context, text, duration).show()
         }
     }
 

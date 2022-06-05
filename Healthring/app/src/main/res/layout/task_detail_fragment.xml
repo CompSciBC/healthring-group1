@@ -123,7 +123,7 @@
             android:layout_margin="24dp"
             android:backgroundTint="@color/pastelle_red"
             android:text="Delete"
-            android:textColor="@color/Alex_white"
+            android:textColor="@color/black"
             android:textSize="24sp"
 
             app:layout_constraintBottom_toBottomOf="parent"
@@ -138,8 +138,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="24dp"
             android:backgroundTint="@color/pastelle_amber"
-            android:text="Cancel"
-            android:textColor="@color/Alex_white"
+            android:text="Back"
+            android:textColor="@color/black"
             android:textSize="24sp"
 
             app:layout_constraintBottom_toBottomOf="parent"
