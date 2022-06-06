@@ -320,30 +320,30 @@ class DataViewModel: ViewModel() {
                 while(true) {
                     if (enableEmailNotifications && updatingSensors && (emailHeartRate || emailBloodPressure || emailBloodOxygen)) {
                         val emailList = mutableListOf(Amplify.Auth.currentUser.username)
-                        if(emergencyEmail.isNotBlank()) {
+                        if(!emergencyEmail.isNullOrBlank()) {
                             emailList.add(emergencyEmail)
                         }
-                        if(doctorEmail.isNotBlank()) {
+                        if(!doctorEmail.isNullOrBlank()) {
                             emailList.add(doctorEmail)
                         }
                         var title = ""
                         var body = ""
                         if (emailHeartRate && heart_rate.value!! > 150){
                             title = "Critical Heart Rate Alert"
-                            body = "Your heart rate is critically high at ${heart_rate.value}bpm. "
+                            body = "<h3>Your heart rate is critically high at ${heart_rate.value}bpm.</h3>"
                         }
                         if (emailBloodPressure && blood_pressure.value!! >= 150) {
                             if (title.isEmpty()) {
                                 title = "Critical Blood Pressure Alert"
                             }
-                            val newBody = body.plus("<br>Your blood pressure is critically high at ${blood_pressure.value}mmHg.")
+                            val newBody = body.plus("<h3>Your blood pressure is critically high at ${blood_pressure.value}mmHg.</h3>")
                             body = newBody
                         }
                         if (emailBloodOxygen && blood_oxygen.value!! != 0.0 && blood_oxygen.value!! < 70) {
                             if (title.isEmpty()) {
                                 title = "Critical Blood Oxygen Alert"
                             }
-                            val newBody = body.plus("<br>Your blood oxygen is critically low at ${blood_oxygen.value}%.")
+                            val newBody = body.plus("<h3>Your blood oxygen is critically low at ${blood_oxygen.value}%.</h3>")
                             body = newBody
                         }
                         if (title.isNotEmpty()) {
