@@ -244,17 +244,15 @@ class GraphFragment: Fragment(R.layout.graph_fragment), AdapterView.OnItemSelect
             }
             Sensors.B_PRESSURE -> {
                 yAxisLeft?.spaceTop = 250f
-                yAxisLeft?.axisMaximum = 230f
                 yAxisRight?.spaceTop = 250f
-                yAxisRight?.axisMaximum = 230f
             }
             Sensors.B_OXYGEN -> {
-                yAxisLeft?.spaceTop = 100f
-                yAxisRight?.spaceTop = 100f
+                yAxisLeft?.spaceTop = 1000f
+                yAxisRight?.spaceTop = 1000f
             }
             else -> {
-                yAxisLeft?.spaceMax = 20f
-                yAxisRight?.spaceMax = 20f
+                yAxisLeft?.spaceTop = 20f
+                yAxisRight?.spaceTop = 20f
                 Log.i("FULLRANGE", "Full range: ${yAxisRight?.mAxisRange}")
             }
         }
