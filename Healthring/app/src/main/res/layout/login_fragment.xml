@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.healthring.auth.AuthViewModel" />
+        <variable
+            name="loginVM"
+            type="com.example.healthring.auth.LoginViewModel" />
+        <variable
+            name="loginFragment"
+            type="com.example.healthring.auth.LoginFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/main_background_selector"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/title_healthring"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="72dp"
+            android:text="HEALTHRING"
+            android:textColor="@color/white"
+            android:textSize="48sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/login_email"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_healthring"
+            android:layout_marginTop="100dp"
+            android:layout_gravity="center"
+            style="@style/ProfileTextFields">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/ProfileTextFieldFonts"
+                tools:text="Alexander Filbert"
+                android:hint="Email"
+                android:inputType="textPersonName"
+                android:afterTextChanged="@{(edtitable)->loginVM.afterUserChangeEmail(edtitable)}"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/login_password"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/login_email"
+            android:layout_gravity="center"
+            style="@style/ProfileTextFields">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/ProfileTextFieldFonts"
+                tools:text="password321"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:afterTextChanged="@{(edtitable)->loginVM.afterUserChangePassword(edtitable)}"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/login_submit_button"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_height="64dp"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/login_password"
+            android:textSize="30sp"
+            android:fontFamily="@font/roboto"
+            tools:text="login"
+            android:text="login"
+            app:backgroundTint="#4A148C"
+            android:textColor="#FFFFFF"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:onClick="@{() -> loginFragment.goToHealthMonitorFragment()}"/>
+
+        <Button
+            android:id="@+id/login_create_account_button"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            android:layout_height="64dp"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/login_submit_button"
+            android:textSize="16sp"
+            android:fontFamily="@font/roboto"
+            tools:text="create account"
+            android:text="create account"
+            app:backgroundTint="#4A148C"
+            android:textColor="#FFFFFF"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:onClick="@{() -> loginFragment.goToSignupFragment()}" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

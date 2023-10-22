@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+    <fragment
+        android:id="@+id/healthMonitorFragment"
+        android:name="com.example.healthring.healthmonitor.HealthMonitorFragment"
+        android:label="HealthMonitorFragment" >
+        <action
+            android:id="@+id/action_healthMonitorFragment_to_todaysTasksFragment2"
+            app:destination="@id/todaysTasksFragment2" />
+        <action
+            android:id="@+id/action_healthMonitorFragment_to_fitnessTrackerFragment"
+            app:destination="@id/fitnessTrackerFragment" />
+        <action
+            android:id="@+id/action_healthMonitorFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/todaysTasksFragment2"
+        android:name="com.example.healthring.todaytasks.TodaysTasksFragment"
+        android:label="TodaysTasksFragment" >
+        <action
+            android:id="@+id/action_todaysTasksFragment2_to_healthMonitorFragment2"
+            app:destination="@id/healthMonitorFragment" />
+        <action
+            android:id="@+id/action_todaysTasksFragment2_to_fitnessTrackerFragment"
+            app:destination="@id/fitnessTrackerFragment" />
+        <action
+            android:id="@+id/action_todaysTasksFragment2_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fitnessTrackerFragment"
+        android:name="com.example.healthring.fitnesstracker.FitnessTrackerFragment"
+        android:label="FitnessTrackerFragment" >
+        <action
+            android:id="@+id/action_fitnessTrackerFragment_to_healthMonitorFragment"
+            app:destination="@id/healthMonitorFragment" />
+        <action
+            android:id="@+id/action_fitnessTrackerFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_fitnessTrackerFragment_to_todaysTasksFragment2"
+            app:destination="@id/todaysTasksFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.healthring.profile.ProfileFragment"
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_healthMonitorFragment"
+            app:destination="@id/healthMonitorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.healthring.auth.LoginFragment"
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_healthMonitorFragment"
+            app:destination="@id/healthMonitorFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_signupFragment"
+            app:destination="@id/signupFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signupFragment"
+        android:name="com.example.healthring.auth.SignupFragment"
+        android:label="SignupFragment" >
+        <action
+            android:id="@+id/action_signupFragment_to_healthMonitorFragment"
+            app:destination="@id/healthMonitorFragment" />
+        <action
+            android:id="@+id/action_signupFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+</navigation>

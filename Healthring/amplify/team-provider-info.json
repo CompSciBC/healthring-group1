@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-healthring-dev-200215-authRole",
+      "UnauthRoleArn": "arn:aws:iam::911522977501:role/amplify-healthring-dev-200215-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::911522977501:role/amplify-healthring-dev-200215-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-healthring-dev-200215-deployment",
+      "UnauthRoleName": "amplify-healthring-dev-200215-unauthRole",
+      "StackName": "amplify-healthring-dev-200215",
+      "StackId": "arn:aws:cloudformation:us-west-2:911522977501:stack/amplify-healthring-dev-200215/be733e90-87ca-11ec-a380-0219a4edc433",
+      "AmplifyAppId": "d1movd93pnmtuv"
+    },
+    "categories": {
+      "auth": {
+        "healthringe56f7633": {}
+      }
+    }
+  }
+}
